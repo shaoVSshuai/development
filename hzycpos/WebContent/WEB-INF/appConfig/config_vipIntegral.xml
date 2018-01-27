@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 会员积分的配置文件 -->
+<config>
+
+	<!-- 是否开启兑换礼品 -->
+	<property name="vip_integralGift" value="true"/>
+	
+	<!-- 是否开启清零 -->
+	<property name="vip_integralClear" value="true"/>
+	<!-- 若开启，期限需二选一 -->
+	<!-- 一个月 -->
+	<property name="vip_integralClear_deadline" id="a_month" value="true"/>
+	<!-- 一年 -->
+	<property name="vip_integralClear_deadline" id="one_year" value="false"/>
+		
+</config>

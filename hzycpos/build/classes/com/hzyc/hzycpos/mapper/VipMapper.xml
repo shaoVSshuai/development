@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.hzycpos.mapper.VipMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.hzycpos.domain.Vip" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="hy_code" property="hyCode" jdbcType="VARCHAR" />
+    <result column="hy_kind_id" property="hyKindId" jdbcType="INTEGER" />
+    <result column="hy_tel" property="hyTel" jdbcType="VARCHAR" />
+    <result column="hy_name" property="hyName" jdbcType="VARCHAR" />
+    <result column="hy_card" property="hyCard" jdbcType="VARCHAR" />
+    <result column="hy_total" property="hyTotal" jdbcType="DECIMAL" />
+    <result column="hy_remain_money" property="hyRemainMoney" jdbcType="DECIMAL" />
+    <result column="hy_birthday" property="hyBirthday" jdbcType="VARCHAR" />
+    <result column="hy_cunt" property="hyCunt" jdbcType="VARCHAR" />
+    <result column="hy_bz" property="hyBz" jdbcType="VARCHAR" />
+    <result column="hy_jf" property="hyJf" jdbcType="VARCHAR" />
+    <result column="hy_date" property="hyDate" jdbcType="VARCHAR" />
+    <result column="hy_expense" property="hyExpense" jdbcType="DECIMAL" />
+    <result column="hy_address" property="hyAddress" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="p1" property="p1" jdbcType="VARCHAR" />
+    <result column="p2" property="p2" jdbcType="VARCHAR" />
+    <result column="p3" property="p3" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hzyc.hzycpos.domain.Vip" extends="BaseResultMap" >
+    <result column="hy_photo" property="hyPhoto" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, hy_code, hy_kind_id, hy_tel, hy_name, hy_card, hy_total, hy_remain_money, hy_birthday, 
+    hy_cunt, hy_bz, hy_jf, hy_date, hy_expense, hy_address, remark, p1, p2, p3
+  </sql>
+  <sql id="Blob_Column_List" >
+    hy_photo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from vip
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vip
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.hzycpos.domain.Vip" >
+    insert into vip (id, hy_code, hy_kind_id, 
+      hy_tel, hy_name, hy_card, 
+      hy_total, hy_remain_money, hy_birthday, 
+      hy_cunt, hy_bz, hy_jf, 
+      hy_date, hy_expense, hy_address, 
+      remark, p1, p2, p3, 
+      hy_photo)
+    values (#{id,jdbcType=INTEGER}, #{hyCode,jdbcType=VARCHAR}, #{hyKindId,jdbcType=INTEGER}, 
+      #{hyTel,jdbcType=VARCHAR}, #{hyName,jdbcType=VARCHAR}, #{hyCard,jdbcType=VARCHAR}, 
+      #{hyTotal,jdbcType=DECIMAL}, #{hyRemainMoney,jdbcType=DECIMAL}, #{hyBirthday,jdbcType=VARCHAR}, 
+      #{hyCunt,jdbcType=VARCHAR}, #{hyBz,jdbcType=VARCHAR}, #{hyJf,jdbcType=VARCHAR}, 
+      #{hyDate,jdbcType=VARCHAR}, #{hyExpense,jdbcType=DECIMAL}, #{hyAddress,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{p1,jdbcType=VARCHAR}, #{p2,jdbcType=VARCHAR}, #{p3,jdbcType=VARCHAR}, 
+      #{hyPhoto,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.hzycpos.domain.Vip" >
+    insert into vip
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="hyCode != null" >
+        hy_code,
+      </if>
+      <if test="hyKindId != null" >
+        hy_kind_id,
+      </if>
+      <if test="hyTel != null" >
+        hy_tel,
+      </if>
+      <if test="hyName != null" >
+        hy_name,
+      </if>
+      <if test="hyCard != null" >
+        hy_card,
+      </if>
+      <if test="hyTotal != null" >
+        hy_total,
+      </if>
+      <if test="hyRemainMoney != null" >
+        hy_remain_money,
+      </if>
+      <if test="hyBirthday != null" >
+        hy_birthday,
+      </if>
+      <if test="hyCunt != null" >
+        hy_cunt,
+      </if>
+      <if test="hyBz != null" >
+        hy_bz,
+      </if>
+      <if test="hyJf != null" >
+        hy_jf,
+      </if>
+      <if test="hyDate != null" >
+        hy_date,
+      </if>
+      <if test="hyExpense != null" >
+        hy_expense,
+      </if>
+      <if test="hyAddress != null" >
+        hy_address,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="p1 != null" >
+        p1,
+      </if>
+      <if test="p2 != null" >
+        p2,
+      </if>
+      <if test="p3 != null" >
+        p3,
+      </if>
+      <if test="hyPhoto != null" >
+        hy_photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="hyCode != null" >
+        #{hyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hyKindId != null" >
+        #{hyKindId,jdbcType=INTEGER},
+      </if>
+      <if test="hyTel != null" >
+        #{hyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="hyName != null" >
+        #{hyName,jdbcType=VARCHAR},
+      </if>
+      <if test="hyCard != null" >
+        #{hyCard,jdbcType=VARCHAR},
+      </if>
+      <if test="hyTotal != null" >
+        #{hyTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="hyRemainMoney != null" >
+        #{hyRemainMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="hyBirthday != null" >
+        #{hyBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="hyCunt != null" >
+        #{hyCunt,jdbcType=VARCHAR},
+      </if>
+      <if test="hyBz != null" >
+        #{hyBz,jdbcType=VARCHAR},
+      </if>
+      <if test="hyJf != null" >
+        #{hyJf,jdbcType=VARCHAR},
+      </if>
+      <if test="hyDate != null" >
+        #{hyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="hyExpense != null" >
+        #{hyExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="hyAddress != null" >
+        #{hyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="p1 != null" >
+        #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        #{p3,jdbcType=VARCHAR},
+      </if>
+      <if test="hyPhoto != null" >
+        #{hyPhoto,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.hzycpos.domain.Vip" >
+    update vip
+    <set >
+      <if test="hyCode != null" >
+        hy_code = #{hyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="hyKindId != null" >
+        hy_kind_id = #{hyKindId,jdbcType=INTEGER},
+      </if>
+      <if test="hyTel != null" >
+        hy_tel = #{hyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="hyName != null" >
+        hy_name = #{hyName,jdbcType=VARCHAR},
+      </if>
+      <if test="hyCard != null" >
+        hy_card = #{hyCard,jdbcType=VARCHAR},
+      </if>
+      <if test="hyTotal != null" >
+        hy_total = #{hyTotal,jdbcType=DECIMAL},
+      </if>
+      <if test="hyRemainMoney != null" >
+        hy_remain_money = #{hyRemainMoney,jdbcType=DECIMAL},
+      </if>
+      <if test="hyBirthday != null" >
+        hy_birthday = #{hyBirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="hyCunt != null" >
+        hy_cunt = #{hyCunt,jdbcType=VARCHAR},
+      </if>
+      <if test="hyBz != null" >
+        hy_bz = #{hyBz,jdbcType=VARCHAR},
+      </if>
+      <if test="hyJf != null" >
+        hy_jf = #{hyJf,jdbcType=VARCHAR},
+      </if>
+      <if test="hyDate != null" >
+        hy_date = #{hyDate,jdbcType=VARCHAR},
+      </if>
+      <if test="hyExpense != null" >
+        hy_expense = #{hyExpense,jdbcType=DECIMAL},
+      </if>
+      <if test="hyAddress != null" >
+        hy_address = #{hyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="p1 != null" >
+        p1 = #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        p2 = #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        p3 = #{p3,jdbcType=VARCHAR},
+      </if>
+      <if test="hyPhoto != null" >
+        hy_photo = #{hyPhoto,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hzyc.hzycpos.domain.Vip" >
+    update vip
+    set hy_code = #{hyCode,jdbcType=VARCHAR},
+      hy_kind_id = #{hyKindId,jdbcType=INTEGER},
+      hy_tel = #{hyTel,jdbcType=VARCHAR},
+      hy_name = #{hyName,jdbcType=VARCHAR},
+      hy_card = #{hyCard,jdbcType=VARCHAR},
+      hy_total = #{hyTotal,jdbcType=DECIMAL},
+      hy_remain_money = #{hyRemainMoney,jdbcType=DECIMAL},
+      hy_birthday = #{hyBirthday,jdbcType=VARCHAR},
+      hy_cunt = #{hyCunt,jdbcType=VARCHAR},
+      hy_bz = #{hyBz,jdbcType=VARCHAR},
+      hy_jf = #{hyJf,jdbcType=VARCHAR},
+      hy_date = #{hyDate,jdbcType=VARCHAR},
+      hy_expense = #{hyExpense,jdbcType=DECIMAL},
+      hy_address = #{hyAddress,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      p1 = #{p1,jdbcType=VARCHAR},
+      p2 = #{p2,jdbcType=VARCHAR},
+      p3 = #{p3,jdbcType=VARCHAR},
+      hy_photo = #{hyPhoto,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.Vip" >
+    update vip
+    set hy_code = #{hyCode,jdbcType=VARCHAR},
+      hy_kind_id = #{hyKindId,jdbcType=INTEGER},
+      hy_tel = #{hyTel,jdbcType=VARCHAR},
+      hy_name = #{hyName,jdbcType=VARCHAR},
+      hy_card = #{hyCard,jdbcType=VARCHAR},
+      hy_total = #{hyTotal,jdbcType=DECIMAL},
+      hy_remain_money = #{hyRemainMoney,jdbcType=DECIMAL},
+      hy_birthday = #{hyBirthday,jdbcType=VARCHAR},
+      hy_cunt = #{hyCunt,jdbcType=VARCHAR},
+      hy_bz = #{hyBz,jdbcType=VARCHAR},
+      hy_jf = #{hyJf,jdbcType=VARCHAR},
+      hy_date = #{hyDate,jdbcType=VARCHAR},
+      hy_expense = #{hyExpense,jdbcType=DECIMAL},
+      hy_address = #{hyAddress,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      p1 = #{p1,jdbcType=VARCHAR},
+      p2 = #{p2,jdbcType=VARCHAR},
+      p3 = #{p3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

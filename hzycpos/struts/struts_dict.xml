@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts> 
+	 <package name="dictMan" extends="json-default" namespace="/dict" > 
+		<action name="selDictByType" class="dictAction" method="selDictByType" >
+			<!-- 添加用户  -->
+			<result name="success" type="json">
+				<!-- 过滤为空的属性 -->
+				<param name="excludeNullProperties">true</param>
+			</result>  
+			<result name="error">/error.jsp</result>  
+			<result name="login">/login.jsp</result>  
+			<result name="input" type="dispatcher">/index.jsp</result>  
+		</action>
+		
+		
+		
+	</package>
+	
+	 
+</struts>

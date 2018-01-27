@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!-- 会员设置的配置文件 --><config>
+
+	<!-- 是否开启会员打折 -->
+	<property name="vip_discount" value="false"/>
+	
+	<!-- 是否开启会员储值 -->
+	<!-- 若开启need_money为储值金额 -->
+	<!-- 若关闭need_money为消费金额 -->
+	<property name="vip_recharge" value="true"/>
+	
+</config>

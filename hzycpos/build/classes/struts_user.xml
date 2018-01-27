@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	
+	<!-- name:模块名即可  extend:默认继承struts-default -->
+	 <package name="userManager" extends="json-default" namespace="/user" >
+	 	<interceptors>  
+            <interceptor name="actionAccess" class="com.hzyc.hzycpos.interceptor.ActionAccess"></interceptor>  
+            <interceptor-stack name="mystack">  
+                <interceptor-ref name="actionAccess"></interceptor-ref>  
+                
+            </interceptor-stack>  
+        </interceptors> 
+	 	<global-results>
+		 		<result name="error">/error.html</result>
+		 	</global-results> 
+		 	
+	 	<action  name="validUserName" class="userAction" method="validUserName" >
+	 		<result name="success" type="json">
+	 			<param name="excludeNullProperties">true</param>
+	 		</result>
+	 		<result name="error" type="dispatcher">error.html</result>  
+	 	</action>
+	 	
+	 	
+	 	<!-- 查询 -->
+	 	<action  name="selective" class="userAction" method="selective" >
+		 	<interceptor-ref name="mystack"></interceptor-ref>
+		 	
+	 
+	 		<result name="success" type="json">
+	 			<param name="excludeNullProperties">true</param>
+	 			<param name="excludeProperties">user.pwd</param>
+	 		</result>
+	 		<result name="error" type="dispatcher">error.html</result>  
+	 	</action>
+	 	<!-- 插入 -->
+	 	<action  name="insert" class="userAction" method="insert" >
+	 		<result name="success" type="redirect">/employeeMan/add.html?code=102
+	 		</result>
+	 		<result name="error" type="redirect">error.html</result>  
+	 	</action>
+	 	<!-- 删除 -->
+	 	<action  name="delete" class="userAction" method="delete" >
+	 		<result name="success" type="json"></result>
+	 		<result name="error" type="dispatcher">error.html</result>  
+	 	</action>
+	 	<!-- 修改 -->
+	 	<action  name="update" class="userAction" method="update" >
+	 		<result name="success" type="json"></result>
+	 		<result name="error" type="dispatcher">error.html</result>  
+	 	</action>
+	<!--  <interceptors>  
+            定义拦截器   
+                name:拦截器名称  
+                class:拦截器类路径  
+              
+            <interceptor name="login" class="com.hzyc.hzycpos.interceptor.Login"></interceptor>  
+            <interceptor name="logger" class="com.kay.logger"></interceptor>  
+            定义拦截器栈  
+            <interceptor-stack name="mystack">  
+                <interceptor-ref name="timer"></interceptor-ref>  
+                <interceptor-ref name="logger"></interceptor-ref>  
+                <interceptor-ref name="login"></interceptor-ref>  
+                
+            </interceptor-stack>  
+        </interceptors> 
+	 	<default-interceptor-ref name="mystack"></default-interceptor-ref> -->
+		<!-- name:访问action的名称 class:对应处理类 -->
+		<action name="*_*" class="{1}Action" method="{2}" >
+			<!-- 添加用户  -->
+			<result name="success" type="json">
+				<param name="excludeNullProperties">true</param>
+			</result>  
+			<result name="error" type="json"> 
+				<param name="excludeNullProperties">true</param>
+			</result>  
+			<result name="login" type="json">
+				<param name="excludeNullProperties">true</param>
+			</result>  
+			<result type="json">
+			  <param name="excludeProperties">user.pwd</param>
+			</result>
+		</action>
+		
+		
+		
+	</package>
+	
+	 
+</struts>

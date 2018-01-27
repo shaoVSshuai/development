@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="/hzycpos/js/jquery-3.2.0.min.js"></script>
+<link rel="stylesheet" href="/hzycpos/css/iconfont.css">
+<link href="/hzycpos/css/bootstrap.min.css" rel="stylesheet">
+<link rel="/stylesheet" type="text/hzycpos/css" href="css/font-awesome.min.css">
+<link href="/hzycpos/css/nth.tabs.min.css" rel="stylesheet">
+<link rel="stylesheet" href="/hzycpos/css/style.css">
+<title>Insert title here</title>
+<style type="text/css">
+body{
+	margin:0;
+	padding:0;
+}
+.tab_bar {
+	width: 250px;
+	height: 100%;
+	border-right: 2px solid #0099cd;
+}
+.tab_bar :hover{
+	cursor: pointer;
+}
+.tab_bar ul li {
+	font-weight: bold;
+	font-size: 15px;
+	/*width: 100%;*/
+	padding: 0 30px;
+	height: 55px;
+	line-height: 55px;
+	border-bottom: 2px solid #0099cd;
+	/*text-align: center;*/
+}
+.tab_bar ul li span {
+	display: inline-block;
+	margin-left: 40px;
+}
+.tab_bar .active {
+	background: #10b0e6;
+	color: #fff;
+}
+	
+
+</style>
+<script>
+	function test(){
+		var pid = localStorage.getItem("pid");
+		var curWwwPath = window.document.location.href;
+		var pathName = window.document.location.pathname;
+        //获取带"/"的项目名，如：/uimcardprj
+        var pos = curWwwPath.indexOf(pathName);
+        var localhostPath = curWwwPath.substring(0, pos);
+        var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+        var basePath = localhostPath + projectName + "/";
+        var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function(){
+			if(xmlhttp.readyState == 4){
+				var data = xmlhttp.responseText;
+				var allLi = "";
+				var obj = JSON.parse(data);
+				for(var i = 0 ; i < obj.PList.length ; i++){
+					var mName = obj.PList[i].mName;
+					var mUrl = obj.PList[i].mUrl;
+					var imgUrl  = obj.PList[i].imgUrl;
+					allLi += '<li  onclick="addBClass(this,\''+basePath + mUrl +'\')"><i class="iconfont">'+'&#xe602;'+'</i><span>'+ mName + '</span></li>';
+				}
+				document.getElementById("menu_ul").innerHTML = allLi;
+			}
+		};
+		xmlhttp.open("post",basePath+"privilege/selLevel2.action",true);
+		xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+		xmlhttp.send("pid="+pid);
+        
+	}
+	function addBClass(li,myhref){
+		var index = $(li).index();
+		//追加选中样式
+		$(li).addClass("active").siblings().removeClass("active");
+		//走页面
+		window.open(myhref,"right");
+	}
+</script>
+</head>
+<body onload="test()">
+	<!-- 加载二级菜单 -->
+	<div class="tab_bar fl">
+			<ul id="menu_ul">
+				
+			</ul>
+	</div>
+		<script>
+			
+
+		
+		</script>
+
+</body>
+</html>

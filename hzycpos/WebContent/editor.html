@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/iconfont.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+	<script type="text/javascript" src="js/Tdrag.js"></script>
+	<script type="text/javascript" src="js/menu.js"></script>
+	<title>应用编辑</title>
+</head>
+<body>
+	<div class="header clearfix">
+		<div class="logo">
+			logo
+		</div>
+		<ul class="nav-list clearfix fl" id="menu">
+			
+		</ul>
+	</div>
+	<div class="all_function">
+		<div class="prompt">我的应用（按住拖动调整排序）</div>
+		<ul class="selected_list nav-list clearfix">
+		</ul>
+		<p class="sp-btn clearfix">
+			<span class="confirm">确定</span>
+			<span class="canael">取消</span>
+			<span class="recover">恢复</span>
+		</p>
+	</div>
+</body>
+<script type="text/javascript">
+	//默认选中应用编辑	
+	addSelectMenu(58);
+	$(function(){
+		var curWwwPath = window.document.location.href;
+		var pathName = window.document.location.pathname;
+        //获取带"/"的项目名，如：/uimcardprj
+        var pos = curWwwPath.indexOf(pathName);
+         var localhostPath = curWwwPath.substring(0, pos);
+        var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+        var basePath = localhostPath + projectName + "/";
+    	//调用数据
+    	$.ajax({
+    		url: basePath + 'privilege/selLevel1',
+    		type: 'post',
+    		dataType: 'json',
+    		data: {
+    		},
+    		success: function(res){
+    			var str1 = '';
+				for(var i = 0;i < res.PList.length;i++){
+					str1 += '<li class="move_li" id="'+res.PList[i].id+'"><i class="iconfont">'+res.PList[i].imgUrl+'</i><span title="'+ res.PList[i].mName +'">'+res.PList[i].mName+'</span></li>';
+				}
+				$(".selected_list").append(str1);
+				//成功后添加样式开始可以条换位置
+				$(".move_li").Tdrag({
+			        scope:".boxList",
+			        pos:true,
+			        dragChange:true
+		    	});
+		    	$(".confirm").click(function(){
+		    		paixu();
+		    	})
+				function paixu(){
+		    		var keyValue = "";
+		    		$(".move_li").each(function(index,domEle){
+		    			var value =  $(domEle).attr("id") ;
+		    			var key = $(domEle).attr("index") ;
+		    			keyValue += key+ "-" +value +",";
+		    		});
+		    		if(keyValue.length > 1){
+		    			keyValue = keyValue.substr(0,keyValue.length -1);
+		    		}
+				    $.ajax({
+				    	url: basePath + 'privilege/sort',
+				    	type: 'post',
+				    	dataType: 'json',
+				    	data: {
+				    		canshu: keyValue,
+				    	},
+				    	success: function(res1){
+				    		alert(res1.pm.code + res1.pm.info);
+				    		location.reload();
+				    	},
+				    	error: function(res1){	
+				    		alert(res1.pm.code + res1.pm.info);
+				    	}
+				    })
+		    	}
+    		},
+    		error: function(res){
+    			alert("失败");
+    		}
+    	});
+
+    	var windowHeight = $(window).height();
+    	$(".all_function").height(windowHeight - 80 - 13);
+	})
+</script>
+</html>

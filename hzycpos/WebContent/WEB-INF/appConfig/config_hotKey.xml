@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 快捷键的配置文件 -->
+
+<!-- 快捷键功能是否开启 -->
+<switch name="hotKey" value="true" >
+	<!-- 结算快捷键 -->
+	<property  name="settlement" value="38" />
+	<!-- 收银快捷键 -->
+	<property  name="caish" value="50" />
+</switch>
+

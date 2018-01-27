@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.hzycpos.mapper.VipRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.hzycpos.domain.VipRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="VARCHAR" />
+    <result column="give_money" property="giveMoney" jdbcType="VARCHAR" />
+    <result column="operate_date" property="operateDate" jdbcType="VARCHAR" />
+    <result column="give_good" property="giveGood" jdbcType="VARCHAR" />
+    <result column="is_receive" property="isReceive" jdbcType="VARCHAR" />
+    <result column="lingquDate" property="lingqudate" jdbcType="VARCHAR" />
+    <result column="integral" property="integral" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="p1" property="p1" jdbcType="VARCHAR" />
+    <result column="p2" property="p2" jdbcType="VARCHAR" />
+    <result column="p3" property="p3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, type, money, give_money, operate_date, give_good, is_receive, lingquDate, 
+    integral, remark, p1, p2, p3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from vip_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from vip_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.hzycpos.domain.VipRecord" >
+    insert into vip_record (id, code, type, 
+      money, give_money, operate_date, 
+      give_good, is_receive, lingquDate, 
+      integral, remark, p1, 
+      p2, p3)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{money,jdbcType=VARCHAR}, #{giveMoney,jdbcType=VARCHAR}, #{operateDate,jdbcType=VARCHAR}, 
+      #{giveGood,jdbcType=VARCHAR}, #{isReceive,jdbcType=VARCHAR}, #{lingqudate,jdbcType=VARCHAR}, 
+      #{integral,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{p1,jdbcType=VARCHAR}, 
+      #{p2,jdbcType=VARCHAR}, #{p3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.hzycpos.domain.VipRecord" >
+    insert into vip_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="giveMoney != null" >
+        give_money,
+      </if>
+      <if test="operateDate != null" >
+        operate_date,
+      </if>
+      <if test="giveGood != null" >
+        give_good,
+      </if>
+      <if test="isReceive != null" >
+        is_receive,
+      </if>
+      <if test="lingqudate != null" >
+        lingquDate,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="p1 != null" >
+        p1,
+      </if>
+      <if test="p2 != null" >
+        p2,
+      </if>
+      <if test="p3 != null" >
+        p3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="giveMoney != null" >
+        #{giveMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="operateDate != null" >
+        #{operateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="giveGood != null" >
+        #{giveGood,jdbcType=VARCHAR},
+      </if>
+      <if test="isReceive != null" >
+        #{isReceive,jdbcType=VARCHAR},
+      </if>
+      <if test="lingqudate != null" >
+        #{lingqudate,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="p1 != null" >
+        #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        #{p3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.hzycpos.domain.VipRecord" >
+    update vip_record
+    <set >
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=VARCHAR},
+      </if>
+      <if test="giveMoney != null" >
+        give_money = #{giveMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="operateDate != null" >
+        operate_date = #{operateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="giveGood != null" >
+        give_good = #{giveGood,jdbcType=VARCHAR},
+      </if>
+      <if test="isReceive != null" >
+        is_receive = #{isReceive,jdbcType=VARCHAR},
+      </if>
+      <if test="lingqudate != null" >
+        lingquDate = #{lingqudate,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="p1 != null" >
+        p1 = #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        p2 = #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        p3 = #{p3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.VipRecord" >
+    update vip_record
+    set code = #{code,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      money = #{money,jdbcType=VARCHAR},
+      give_money = #{giveMoney,jdbcType=VARCHAR},
+      operate_date = #{operateDate,jdbcType=VARCHAR},
+      give_good = #{giveGood,jdbcType=VARCHAR},
+      is_receive = #{isReceive,jdbcType=VARCHAR},
+      lingquDate = #{lingqudate,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      p1 = #{p1,jdbcType=VARCHAR},
+      p2 = #{p2,jdbcType=VARCHAR},
+      p3 = #{p3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

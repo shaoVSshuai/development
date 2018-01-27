@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.hzycpos.mapper.PromptMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.hzycpos.domain.PromptMessage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="code" property="code" jdbcType="INTEGER" />
+    <result column="info" property="info" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, info
+  </sql>
+  
+  <!-- 加载所有提示信息 -->
+  <select id="selectAll" resultMap="BaseResultMap" >
+  	select code,info from prompt_message
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.hzyc.hzycpos.domain.PromptMessage" >
+    select 
+    <include refid="Base_Column_List" />
+    from prompt_message
+    where id = #{id,jdbcType=INTEGER}
+      and code = #{code,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.PromptMessage" >
+    delete from prompt_message
+    where id = #{id,jdbcType=INTEGER}
+      and code = #{code,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.hzycpos.domain.PromptMessage" >
+    insert into prompt_message (id, code, info
+      )
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=INTEGER}, #{info,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.hzycpos.domain.PromptMessage" >
+    insert into prompt_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="info != null" >
+        info,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=INTEGER},
+      </if>
+      <if test="info != null" >
+        #{info,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.hzycpos.domain.PromptMessage" >
+    update prompt_message
+    <set >
+      <if test="info != null" >
+        info = #{info,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+      and code = #{code,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.PromptMessage" >
+    update prompt_message
+    set info = #{info,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+      and code = #{code,jdbcType=INTEGER}
+  </update>
+</mapper>

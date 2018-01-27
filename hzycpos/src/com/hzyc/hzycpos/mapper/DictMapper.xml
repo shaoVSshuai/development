@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.hzycpos.mapper.DictMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.hzycpos.domain.Dict" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dict_type" property="dictType" jdbcType="VARCHAR" />
+    <result column="dict_code" property="dictCode" jdbcType="VARCHAR" />
+    <result column="dict_name" property="dictName" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="TINYINT" />
+    <result column="enabled" property="enabled" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <!-- 一对多配置  sex：男，女 -->
+  <resultMap id="typeMap" type="com.hzyc.hzycpos.domain.Dict" >
+    <result column="o1" property="dictType" jdbcType="VARCHAR" />
+    <result column="name" property="typeName" jdbcType="VARCHAR" />
+        <collection property="dList" ofType="com.hzyc.hzycpos.domain.Dict">
+    	<id column="m1" property="dictCode" jdbcType="VARCHAR" />
+	    <result column="m2" property="dictName" jdbcType="VARCHAR" />
+    </collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, dict_type, dict_code, dict_name, sort, enabled
+  </sql>
+  
+  
+  <!-- 查询所有字典类别
+  		根据类别升序再根据sort升序（enabled=1为字典可用）
+   -->
+  <select id="selAllDicType" resultMap="typeMap">
+  	<!-- SELECT d1.dict_type o1, d2.dict_code m1, d2.dict_name m2 FROM (SELECT DISTINCT dict_type FROM dict )d1, dict d2 WHERE d1.dict_type = d2.dict_type -->
+	SELECT d1.dict_type o1, d2.dict_code m1, d2.dict_name m2,dict_depict.dic_type_name NAME FROM (SELECT DISTINCT dict_type FROM dict )d1, dict d2,dict_depict WHERE d1.dict_type = d2.dict_type AND d1.dict_type = dict_depict.dic_type
+  	AND d2.enabled='1' ORDER BY o1,d2.sort ASC
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dict
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dict
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.hzycpos.domain.Dict" >
+    insert into dict (id, dict_type, dict_code, 
+      dict_name, sort, enabled
+      )
+    values (#{id,jdbcType=INTEGER}, #{dictType,jdbcType=VARCHAR}, #{dictCode,jdbcType=VARCHAR}, 
+      #{dictName,jdbcType=VARCHAR}, #{sort,jdbcType=TINYINT}, #{enabled,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.hzycpos.domain.Dict" >
+    insert into dict
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dictType != null" >
+        dict_type,
+      </if>
+      <if test="dictCode != null" >
+        dict_code,
+      </if>
+      <if test="dictName != null" >
+        dict_name,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dictType != null" >
+        #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null" >
+        #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null" >
+        #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.hzycpos.domain.Dict" >
+    update dict
+    <set >
+      <if test="dictType != null" >
+        dict_type = #{dictType,jdbcType=VARCHAR},
+      </if>
+      <if test="dictCode != null" >
+        dict_code = #{dictCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dictName != null" >
+        dict_name = #{dictName,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=TINYINT},
+      </if>
+      <if test="enabled != null" >
+        enabled = #{enabled,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.Dict" >
+    update dict
+    set dict_type = #{dictType,jdbcType=VARCHAR},
+      dict_code = #{dictCode,jdbcType=VARCHAR},
+      dict_name = #{dictName,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=TINYINT},
+      enabled = #{enabled,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

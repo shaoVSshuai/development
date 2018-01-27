@@ -1,0 +1,76 @@
+html, body, td {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			background: #d7e9ed;
+		}
+		.form_name {
+			color: #0099cd;
+			/*font-weight: bold;*/
+			display: inline-block;
+			font-size: 14px;
+			width: 100px;
+			text-align: left;
+		}
+		.form_style {
+			width: 200px;
+			height: 27px;
+			border: 0;
+			border-radius: 2px;
+			border: 1px solid #0099cd;
+		}
+		.form_sub {
+			font-weight: bold;
+			width: 200px;
+			height: 40px;
+			background: #0099cd;
+			color: #fff;
+			text-align: center;
+			border-radius: 2px;
+		}
+		.form_sel {
+			color: #0099cd;
+			width: 100px;
+			height: 30px;
+			border: 1px solid #0099cd;
+		}
+		.btn-default {
+		    color: #0099cd;
+		    background-color: #fff;
+		    border-color: #ccc;
+		}
+		.btn {
+		    display: inline-block;
+		    padding: 6px 12px;
+		    margin-bottom: 0;
+		    font-size: 14px;
+		    font-weight: 400;
+		    line-height: 1.42857143;
+		    text-align: center;
+		    white-space: nowrap;
+		    vertical-align: middle;
+		    cursor: pointer;
+		    border: 1px solid transparent;
+		    border-radius: 4px;
+		}
+		#table-7 thead th {
+			background-color: #0099cd;
+			color: #fff;
+			border-bottom-width: 0;
+			border: 0;
+		}
+		#table-7 td, #table-7 th {
+			padding: 10px 25px;
+			font-size: 12px;
+			font-family: Verdana;
+			font-weight: bold;
+		}
+		#table-7 tr:nth-child(even) {
+			background: #5babc6;
+			color: #fff;
+		}
+		#table-7 tr:nth-child(odd) {
+			background: #FFF;
+			color: #5babc6;
+		}

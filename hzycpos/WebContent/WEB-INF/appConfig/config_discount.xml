@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 打折管理的配置 -->
+<!-- 总打折是否开启 -->
+<switch name="discount" value="true">
+	<!-- 结算时总折扣 -->
+	<property name="all_discount" value="1" />
+</switch>
+

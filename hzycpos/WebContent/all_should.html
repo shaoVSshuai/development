@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/iconfont.css">
+	<script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+	<title>全部应用</title>
+</head>
+<body>
+	<div class="header clearfix">
+		<div class="logo">
+			logo
+		</div>
+		<ul class="nav-list clearfix navList">
+			<li id="44">
+				<i class="iconfont active">&#xe62f;</i>
+				<a href="javascript:;" class="focus">首页</a>
+			</li>
+			<li id="55">
+				<i class="iconfont">&#xe61a;</i>
+				<a href="javascript:;">会员管理</a>
+			</li>
+			<li>
+				<i class="iconfont">&#xe610;</i>
+				<a href="javascript:;">库存管理</a>
+			</li>
+			<li>
+				<i class="iconfont">&#xe60c;</i>
+				<a href="javascrip:;t">订单查询</a>
+			</li>
+			<li>
+				<i class="iconfont">&#xe660;</i>
+				<a href="javascript:;">员工管理</a>
+			</li>
+			<li>
+				<i class="iconfont">&#xe622;</i>
+				<a href="javascript:;">帮助</a>
+			</li>
+			<li>
+				<i class="iconfont">&#xe714;</i>
+				<a href="javascript:;">所有功能</a>
+			</li>
+		</ul>
+	</div>
+	<div class="all_should">
+		<div class="prompt">点击添加功能</div>
+		<ul class="choose selected_list nav-list clearfix">
+
+		</ul>
+		<p class="sp-btn clearfix">
+			<span class="confirm">确定</span>
+			<span class="recover">取消</span>
+		</p>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+		// $.ajax({
+		// 	url: 'http://192.168.1.200:8080/hzycpos/privilege/selLevel1',
+		// 	type: 'post',
+		// 	dataType: 'json',
+		// 	data: {
+		// 	},
+		// 	success: function(res){
+		// 		var str = '';
+		// 		for(var i = 0;i < res.PList.length;i++){
+		// 			str += '<li id="'+res.PList[i].id+'" class="addLi"><i class="iconfont">'+res.PList[i].imgUrl+'</i><a href="javascript:;">'+res.PList[i].mName+'</a></li>';
+		// 		}
+		// 		$(".choose").html(str);
+		// 		$(".choose li").click(function(){
+		// 			var index = $(this);
+		// 			addLi(index);
+		// 		})
+		// 	},
+		// 	error:function(res){
+		// 		alert("失败");
+		// 	}
+		// })
+		var res = {
+			"PList":[
+		        {
+		            "enabled":1,
+		            "id":59,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"收银",
+		            "sort":1
+		        },
+		        {
+		            "dictId":101,
+		            "enabled":1,
+		            "id":1,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"会员管理",
+		            "mUrl":"",
+		            "sort":2
+		        },
+		        {
+		            "dictId":102,
+		            "enabled":1,
+		            "id":2,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"折扣管理",
+		            "mUrl":"",
+		            "sort":3
+		        },
+		        {
+		            "dictId":103,
+		            "enabled":1,
+		            "id":3,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"订单查询",
+		            "mUrl":"",
+		            "sort":4
+		        },
+		        {
+		            "dictId":104,
+		            "enabled":1,
+		            "id":4,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"商品管理",
+		            "mUrl":"",
+		            "sort":5
+		        },
+		        {
+		            "dictId":105,
+		            "enabled":1,
+		            "id":5,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"外送管理",
+		            "mUrl":"",
+		            "sort":6
+		        },
+		        {
+		            "dictId":108,
+		            "enabled":1,
+		            "id":6,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"其他设置",
+		            "mUrl":"",
+		            "sort":7
+		        },
+		        {
+		            "dictId":109,
+		            "enabled":1,
+		            "id":7,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"系统设置",
+		            "mUrl":"",
+		            "sort":8
+		        },
+		        {
+		            "enabled":1,
+		            "id":58,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"应用编辑",
+		            "sort":9
+		        },
+		        {
+		            "dictId":106,
+		            "enabled":1,
+		            "id":8,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"员工管理",
+		            "mUrl":"",
+		            "sort":10
+		        },
+		        {
+		            "dictId":107,
+		            "enabled":1,
+		            "id":9,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"库存管理",
+		            "mUrl":"",
+		            "sort":11
+		        },
+		        {
+		            "enabled":1,
+		            "id":56,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"帮助",
+		            "mUrl":"",
+		            "sort":12
+		        },
+		        {
+		            "enabled":1,
+		            "id":57,
+		            "imgUrl":"",
+		            "level":1,
+		            "mName":"全部应用",
+		            "sort":13
+		        }
+		    ]
+		}
+		var str = '';
+		for(var i = 0;i < res.PList.length;i++){
+			str += '<li id="'+res.PList[i].id+'" class="addLi"><i class="iconfont">'+res.PList[i].imgUrl+'</i><a href="javascript:;">'+res.PList[i].mName+'</a></li>';
+		}
+		$(".choose").html(str);
+		$(".choose li").click(function(){
+			var index = $(this);
+			addLi(index);
+		})
+
+		var windowHeight = $(window).height();
+    	$(".all_should").height(windowHeight - 80 - 13);
+		var v = $(".all_should").height();
+
+		function addLi(index){
+			var addId = $(index).attr("id");
+			var imgUrl = $(index).find(".iconfont").text();
+			var mName = $(index).find("a").text();
+			var str = '<li id="'+addId+'"><i class="iconfont">'+imgUrl+'</i><a href="javascript:;">'+mName+'</a></li>';
+			var isHave = false;
+			$(".navList li").each(function(){
+				var haveId = $(this).attr("id");
+				console.log(haveId);
+				if(haveId == addId){
+					isHave = true;
+				}
+			})
+			if(isHave){
+			}else{
+				$(".navList").append(str);
+			}
+		}
+	})
+</script>
+</html>

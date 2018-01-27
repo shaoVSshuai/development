@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	
+	<!-- name:模块名即可  extend:默认继承struts-default -->
+	 <package name="privilegeManager" extends="json-default" namespace="/privilege" > 
+	 	
+		<!-- name:访问action的名称 class:对应处理类 -->
+		<action name="setPrivilege" class="privilegeAction" method="setPrivilege" >
+				<result name="success">/WEB-INF/jsp/add_seller.jsp</result>  
+		</action>
+		<!-- 查询一级菜单 -->
+		<action name="selLevel1" class="privilegeAction" method="selLevel1" >
+			<!-- 过滤为空的属性 -->
+			<result name="success" type="json" >
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		<!-- 查询2级菜单 -->
+		<action name="selLevel2" class="privilegeAction" method="selLevel2" >
+			<!-- 过滤为空的属性 -->
+			<result name="success" type="json" >
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		<!-- 订单排序 -->
+		<action name="sort" class="privilegeAction" method="sort" >
+			<result name="success" type="json">
+				<param name="excludeNullProperties">true</param>
+			</result>
+			<result name="error" type="json">
+				<param name="excludeNullProperties">true</param>
+			</result>
+		</action>
+		
+	</package>
+	
+	 
+</struts>

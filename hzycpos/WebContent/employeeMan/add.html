@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="/hzycpos/js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript" src="/hzycpos/js/jquery-validate/lib/jquery.js"></script>
+
+<!-- <script type="text/javascript" src="/hzycpos/js/jquery-validate/dist/jquery.validate.min.js"></script>
+<script src="/hzycpos/js/jquery-validate/dist/localization/messages_zh.js"></script> -->
+<link rel="stylesheet" href="/hzycpos/plugin/layui/css/layui.css">
+<script src="/hzycpos/plugin/layui/layui.js"></script>
+<title>员工录入</title>
+<style>
+
+.error {
+  padding-left:16px;
+  color: #EA5200;
+}
+.checked {
+  color:#0f0;
+}
+.mywidth{
+	width:300px;
+}
+</style>
+<script>
+	$(function(){
+		
+			
+		
+		var curWwwPath = window.document.location.href;
+		var pathName = window.document.location.pathname;
+        //获取带"/"的项目名，如：/uimcardprj
+        var pos = curWwwPath.indexOf(pathName);
+         var localhostPath = curWwwPath.substring(0, pos);
+        var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+        var basePath = localhostPath + projectName + "/";
+		$("#username").blur(function(){
+			//验证用户名重复与否
+			//用户输入名称
+			var inputName = $("#username").val();
+			//ajax验证重复
+			$.ajax({
+					url: basePath+'user/validUserName.action',
+					type: 'post',
+					dataType: 'json',
+					data: {
+						userName: inputName
+					},
+					success: function(res){
+						if(res.pm.code == '106'){
+							//放过不处理
+						}else if(res.pm.code == '107'){
+							alert(res.pm.code + res.pm.info );
+							$("#username").val("");
+						}else{
+							alert(res.pm.code + res.pm.info );
+							$("#username").val("");
+						}
+					},
+					error: function(res){
+						alert("请求失败");
+					}
+				})
+		});
+		
+		/**
+		* ajax加载所有角色		
+		*/
+		$.ajax({
+			url: basePath+'user/validUserName.action',
+			type: 'post',
+			dataType: 'json',
+			data: {
+			},
+			success: function(res){
+				
+			},
+			error: function(res){
+			}
+		})
+		
+		/**
+		* ajax加载所有店铺
+		*/
+			
+	});
+ 
+</script>
+<style>
+	.red{
+		color:#f00;
+	}
+
+</style>
+</head>
+
+<body>
+	<script>
+		//请注意 不是我要在页面直接加载这段函数  而是因为ui渲染后无法追加了
+		var curWwwPath = window.document.location.href;
+		var pathName = window.document.location.pathname;
+	    //获取带"/"的项目名，如：/uimcardprj
+	    var pos = curWwwPath.indexOf(pathName);
+	     var localhostPath = curWwwPath.substring(0, pos);
+	    var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+	    var basePath = localhostPath + projectName + "/";
+		$.ajax({
+			url: basePath+'storeInfo/selAll.action',
+			type: 'post',
+			dataType: 'json',
+			data: {
+			},
+			success: function(res){
+				var obj = res.list;
+				//获取下拉狂
+				
+				for(var i = 0 ; i < obj.length ; i ++){
+					 var allOption = '<option value="'+obj[i].id+'" >'+ obj[i].name +'</option>';
+					$("#storeInfoId").append(allOption);
+				}
+			},
+			error: function(res){
+			}
+		});
+		$.ajax({
+			url: basePath+'role/selAll.action',
+			type: 'post',
+			dataType: 'json',
+			data: {
+			},
+			success: function(res){
+				var obj = res.list;
+				//获取下拉狂
+				
+				for(var i = 0 ; i < obj.length ; i ++){
+					 var allOption = '<option value="'+obj[i].id+'" >'+ obj[i].rname +'</option>';
+					$("#rid").append(allOption);
+				}
+			},
+			error: function(res){
+			}
+		})
+	
+	
+</script>
+	<form id="form" class="layui-form" action="/hzycpos/user/insert.action" method="post" enctype="multipart/form-data">
+		<div class="layui-form-item">
+    		<label class="layui-form-label"><span class="red">*</span>用户名：</label> 
+   			<div class="layui-input-inline">
+     			<input class="layui-input mywidth" type="text" name="user.uname" id="username" required lay-verify="required" /> 
+   			</div>
+   			<div class="layui-inline">
+			</div>
+ 		</div>
+ 		<div class="layui-form-item">
+    		<label class="layui-form-label"><span class="red">*</span>密码：</label> 
+   			<div class="layui-input-inline">
+     			<input class="layui-input mywidth"  type="text" name="user.pwd" id="pwd" required lay-verify="required"  /> 
+   			</div>
+   			 
+ 		</div>
+		<div class="layui-form-item">
+    		<label class="layui-form-label"><span class="red">*</span>真实姓名：</label> 
+   			<div class="layui-input-inline">
+     			<input class="layui-input mywidth"  type="text" id="trueName" name="user.trueName" required lay-verify="required"  /> 
+   			</div>
+   			 
+ 		</div>
+ 		<div class="layui-form-item">
+    		<label class="layui-form-label"><span class="red">*</span>身份证号：</label> 
+   			<div class="layui-input-inline">
+     			<input class="layui-input mywidth"  type="text" id="idCard" name="user.idCard" required lay-verify="required" /> 
+   			</div>
+ 		</div>
+ 		<div class="layui-form-item">
+    		<label class="layui-form-label"><span class="red">*</span> 电话：</label> 
+   			<div class="layui-input-inline">
+     			<input class="layui-input mywidth"  type="text" id="phone" name="vphone" required lay-verify="required"  /> 
+   			</div>
+   			 
+ 		</div>
+ 		<div class="layui-form-item">
+    		<label class="layui-form-label">邮箱：</label> 
+   			<div class="layui-input-block">
+     			<input class="layui-input mywidth"   type="text" name="user.email" id="email"   lay-verify="emaasdail"    /> 
+   			</div>
+ 		</div>
+ 		<div class="layui-form-item">
+    		<label class="layui-form-label">家庭住址：</label> 
+   			<div class="layui-input-block">
+     			<input class="layui-input mywidth"   type="text" id="address" name="user.address" maxlength="40" /> 
+   			</div>
+ 		</div>
+ 		<div class="layui-form-item">
+    		<label class="layui-form-label"><span class="red">*</span>所属店铺：</label> 
+   			<div class="layui-input-inline">
+     			<select class="mywidth" id="storeInfoId" name="user.storeInfoId" >
+     				
+     			</select>
+   			</div>
+   			 
+ 		</div>		  
+		<div class="layui-form-item">
+    		<label class="layui-form-label"><span class="red">*</span>职位/角色：</label> 
+   			<div class="layui-input-inline">
+   				<select class="mywidth" id="rid" name="user.rid" >
+     				
+     			</select>
+   			</div>
+   			 
+ 		</div>			 
+ 		
+ 		
+			
+			 
+			 
+			 <div style="position:absolute;top:100px;right:20px;">
+			 	 身份证正面图片： 
+				<input class="layui-input mywidth"  type="file" id="cardImgFace" name="cardImgFace"/> 
+				 
+				 
+				 
+				 <label class="layui-form-label">身份证反面图片：</label> 
+				<label for="cardImgReverse" class="btn btn-default">上传文件</label>
+			    <input class="layui-input mywidth" style="display:none" type="file" id="cardImgReverse" name="cardImgReverse" /> 
+			 
+			</div> 
+				 
+				 
+				<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+			 
+			  
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+	</form>
+	<script>
+//一般直接写在一个js文件中
+layui.use(['layer', 'form'], function(){
+  var layer = layui.layer
+  ,form = layui.form;
+  
+  if(window.location.href.indexOf("?") != -1){
+	  var url = window.location.href;
+	  var kv = url.substring(url.indexOf("?"));
+	  var array = kv.split("=");
+	  if(array[1] == 102){
+		  layer.msg('操作成功');
+	  }else{
+		  layui.msg('操作失败,未知错误');
+	  }
+  }
+});
+layui.use('upload', function(){
+  var $ = layui.jquery
+  ,upload = layui.upload;
+  
+  //普通图片上传
+  var uploadInst = upload.render({
+    elem: '#test1'
+    ,url: '/upload/'
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#demo1').attr('src', result); //图片链接（base64）
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code > 0){
+        return layer.msg('上传失败');
+      }
+      //上传成功
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+  
+  
+ /*  //选完文件后不自动上传
+  upload.render({
+    elem: '#test1'
+    ,url: '/upload/'
+    ,auto: false
+    //,multiple: true
+    ,bindAction: '#test1'
+    ,done: function(res){
+      console.log(res)
+    }
+  }); */
+  
+});
+</script>
+
+</body>
+</html>

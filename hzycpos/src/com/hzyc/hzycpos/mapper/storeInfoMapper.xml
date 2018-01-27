@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.hzycpos.mapper.storeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.hzycpos.domain.storeInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="code" property="code" jdbcType="VARCHAR" />
+    <id column="name" property="name" jdbcType="VARCHAR" />
+    <result column="kucun_record" property="kucunRecord" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="open_time" property="openTime" jdbcType="DATE" />
+    <result column="p1" property="p1" jdbcType="VARCHAR" />
+    <result column="p2" property="p2" jdbcType="VARCHAR" />
+    <result column="p3" property="p3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, code, name, kucun_record, province, city, area, address, remark, open_time, p1, 
+    p2, p3
+  </sql>
+  <select id="selAll"  resultMap="BaseResultMap">
+  	select * from store_info 
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.hzyc.hzycpos.domain.storeInfoKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from store_info
+    where id = #{id,jdbcType=INTEGER}
+      and code = #{code,jdbcType=VARCHAR}
+      and name = #{name,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.storeInfoKey" >
+    delete from store_info
+    where id = #{id,jdbcType=INTEGER}
+      and code = #{code,jdbcType=VARCHAR}
+      and name = #{name,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.hzycpos.domain.storeInfo" >
+    insert into store_info (id, code, name, 
+      kucun_record, province, city, 
+      area, address, remark, 
+      open_time, p1, p2, p3
+      )
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{kucunRecord,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{area,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{openTime,jdbcType=DATE}, #{p1,jdbcType=VARCHAR}, #{p2,jdbcType=VARCHAR}, #{p3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.hzycpos.domain.storeInfo" >
+    insert into store_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="kucunRecord != null" >
+        kucun_record,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="area != null" >
+        area,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="openTime != null" >
+        open_time,
+      </if>
+      <if test="p1 != null" >
+        p1,
+      </if>
+      <if test="p2 != null" >
+        p2,
+      </if>
+      <if test="p3 != null" >
+        p3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="kucunRecord != null" >
+        #{kucunRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null" >
+        #{openTime,jdbcType=DATE},
+      </if>
+      <if test="p1 != null" >
+        #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        #{p3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.hzycpos.domain.storeInfo" >
+    update store_info
+    <set >
+      <if test="kucunRecord != null" >
+        kucun_record = #{kucunRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        area = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="openTime != null" >
+        open_time = #{openTime,jdbcType=DATE},
+      </if>
+      <if test="p1 != null" >
+        p1 = #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        p2 = #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        p3 = #{p3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+      and code = #{code,jdbcType=VARCHAR}
+      and name = #{name,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.storeInfo" >
+    update store_info
+    set kucun_record = #{kucunRecord,jdbcType=VARCHAR},
+      province = #{province,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      open_time = #{openTime,jdbcType=DATE},
+      p1 = #{p1,jdbcType=VARCHAR},
+      p2 = #{p2,jdbcType=VARCHAR},
+      p3 = #{p3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+      and code = #{code,jdbcType=VARCHAR}
+      and name = #{name,jdbcType=VARCHAR}
+  </update>
+</mapper>

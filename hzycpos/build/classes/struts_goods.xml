@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+ 
+	<!-- name:模块名即可  extend:默认继承struts-default -->
+	 <package name="goodsMan" extends="json-default" namespace="/goods" > 
+	 	<action name="ceshi" class="goodsAction" method="ceshi">
+	 		<result name="success" type="json"></result>
+	 		
+	 	</action>
+	 
+		
+		
+		
+	</package> 
+	
+	 
+</struts>

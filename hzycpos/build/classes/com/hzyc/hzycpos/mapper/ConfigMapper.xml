@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.hzycpos.mapper.ConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.hzycpos.domain.Config" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="key" property="key" jdbcType="VARCHAR" />
+    <result column="value_dict" property="valueDict" jdbcType="INTEGER" />
+    <result column="desc" property="desc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, key, value_dict, desc
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.hzycpos.domain.Config" >
+    insert into config (id, key, value_dict, 
+      desc)
+    values (#{id,jdbcType=INTEGER}, #{key,jdbcType=VARCHAR}, #{valueDict,jdbcType=INTEGER}, 
+      #{desc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.hzycpos.domain.Config" >
+    insert into config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="key != null" >
+        key,
+      </if>
+      <if test="valueDict != null" >
+        value_dict,
+      </if>
+      <if test="desc != null" >
+        desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="key != null" >
+        #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="valueDict != null" >
+        #{valueDict,jdbcType=INTEGER},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.hzycpos.domain.Config" >
+    update config
+    <set >
+      <if test="key != null" >
+        key = #{key,jdbcType=VARCHAR},
+      </if>
+      <if test="valueDict != null" >
+        value_dict = #{valueDict,jdbcType=INTEGER},
+      </if>
+      <if test="desc != null" >
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.Config" >
+    update config
+    set key = #{key,jdbcType=VARCHAR},
+      value_dict = #{valueDict,jdbcType=INTEGER},
+      desc = #{desc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selAllConfig" resultMap="BaseResultMap">
+  	select * from config
+  </select>
+  <!-- 查询数据库里面是否有数据  -->
+  <select id="selKey" parameterType="String" resultType="int" >
+  	select count(*) from config where `key` = #{0}
+  </select>
+  <!-- 更改对应的config的值 -->
+  <update id="updateValueDict" parameterType="String">
+  	UPDATE config SET value_dict =  #{1} WHERE `key` = #{0}
+  </update>
+  <!-- 通过key值查询 -->
+  <select id="selByKey" resultMap="BaseResultMap" parameterType="String">
+  	select * from config where `key` = #{0}
+  </select>
+</mapper>

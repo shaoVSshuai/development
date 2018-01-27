@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 会员短信的配置文件 -->
+<config>
+
+	<!-- 是否开启会员生日祝福 -->
+	<property name="vip_birthday" value="true"/>
+
+	<!-- 是否开启会员消费提醒 -->
+	<property name="vip_consumption" value="true"/>
+	
+	<!-- 是否开启会员充值提醒 -->
+	<property name="vip_recharge" value="true"/>
+	
+</config>

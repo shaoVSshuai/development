@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.hzycpos.mapper.GoodsKindMapper" >
+  <!-- 开启二级缓存 -->
+  <cache />
+  <resultMap id="BaseResultMap" type="com.hzyc.hzycpos.domain.GoodsKind" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="p1" property="p1" jdbcType="VARCHAR" />
+    <result column="p2" property="p2" jdbcType="VARCHAR" />
+    <result column="p3" property="p3" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <!-- 小类-商品
+  		1-n
+   -->
+  <resultMap type="com.hzyc.hzycpos.domain.GoodsKind" id="SkindAndGoods">
+  	  <!-- 类别 kid 是区分主表的主键-->
+  	    <id column="kid" property="id" jdbcType="INTEGER" />
+	    <result column="level" property="level" jdbcType="VARCHAR" />
+	    <result column="pid" property="pid" jdbcType="VARCHAR" />
+	    <result column="remark" property="remark" jdbcType="VARCHAR" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="sort" property="sort" jdbcType="INTEGER" />
+	    <result column="p1" property="p1" jdbcType="VARCHAR" />
+	    <result column="p2" property="p2" jdbcType="VARCHAR" />
+	    <result column="p3" property="p3" jdbcType="VARCHAR" />
+  	  <!-- 包含的多个商品 -->
+  	  <collection property="goodsList" ofType="com.hzyc.hzycpos.domain.Goods">  
+            <id column="gid" property="id" jdbcType="INTEGER" />
+		    <result column="good_code" property="goodCode" jdbcType="CHAR" />
+		    <result column="good_name" property="goodName" jdbcType="VARCHAR" />
+		    <result column="good_kind_id" property="goodKindId" jdbcType="VARCHAR" />
+		    <result column="good_price" property="goodPrice" jdbcType="NUMERIC" />
+		    <result column="good_remark" property="goodRemark" jdbcType="VARCHAR" />
+		    <result column="full_pinyin" property="fullPinyin" jdbcType="VARCHAR" />
+	        <result column="easy_pinyin" property="easyPinyin" jdbcType="VARCHAR" />
+		    <result column="p1" property="p1" jdbcType="VARCHAR" />
+		    <result column="p2" property="p2" jdbcType="VARCHAR" />
+		    <result column="p3" property="p3" jdbcType="VARCHAR" />
+		    <result column="p4" property="p4" jdbcType="VARCHAR" />
+		    <result column="p5" property="p5" jdbcType="VARCHAR" />
+       </collection>  
+  
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, level, pid, remark, name, sort, p1, p2, p3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_kind
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_kind
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.hzycpos.domain.GoodsKind" >
+    insert into goods_kind (id, level, pid, 
+      remark, name, sort, 
+      p1, p2, p3)
+    values (#{id,jdbcType=INTEGER}, #{level,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, 
+      #{p1,jdbcType=VARCHAR}, #{p2,jdbcType=VARCHAR}, #{p3,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.hzycpos.domain.GoodsKind" >
+    insert into goods_kind
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="p1 != null" >
+        p1,
+      </if>
+      <if test="p2 != null" >
+        p2,
+      </if>
+      <if test="p3 != null" >
+        p3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="p1 != null" >
+        #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        #{p3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.hzycpos.domain.GoodsKind" >
+    update goods_kind
+    <set >
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="p1 != null" >
+        p1 = #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        p2 = #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        p3 = #{p3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.GoodsKind" >
+    update goods_kind
+    set level = #{level,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      p1 = #{p1,jdbcType=VARCHAR},
+      p2 = #{p2,jdbcType=VARCHAR},
+      p3 = #{p3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查询所有小类的商品   商品查询很频繁,使用二级缓存-->
+  <select id="selSmallKindGoods" resultMap="SkindAndGoods" useCache="true">
+    	select * from goods_skind
+  </select>
+</mapper>

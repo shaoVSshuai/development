@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">  
+
+<struts >
+	
+  
+	 <package name="default" extends="struts-default" namespace="," > 
+	 	
+        
+        <!-- 定义默认的拦截器 每个Action都会自动引用  
+         如果Action中引用了其它的拦截器 默认的拦截器将无效 -->  
+        <default-interceptor-ref name="mystack"></default-interceptor-ref>  
+        
+        <!-- 全局results配置 -->  
+        <global-results>  
+            <result name="input">/error.jsp</result>  
+            <result name="login">/login.html</result>  
+            <result name="no_access">/no_access.html</result>  
+        </global-results>    
+		
+	</package> 
+	
+	
+	
+	
+	<include file="./struts_user.xml"></include>
+	<include file="./struts_goods.xml"></include>
+	<include file="./struts_goodsKind.xml"></include>
+	<include file="./struts_seller.xml"></include>
+	<include file="./struts_privilege.xml"></include>
+	<include file="./struts_dict.xml"></include>
+	<include file="./struts_property.xml"></include>
+	<include file="./struts_vip.xml"></include>
+	
+	<include file="struts_orders.xml"></include>
+	<include file="./struts_storeInfo.xml"></include>
+	<include file="./struts_role.xml"></include>
+</struts>

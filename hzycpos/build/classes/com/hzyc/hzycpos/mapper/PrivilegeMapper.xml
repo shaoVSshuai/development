@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.hzycpos.mapper.PrivilegeMapper" >
+  <cache></cache>
+  <resultMap id="BaseResultMap" type="com.hzyc.hzycpos.domain.Privilege" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="m_name" property="mName" jdbcType="VARCHAR" />
+    <result column="m_url" property="mUrl" jdbcType="VARCHAR" />
+    <result column="LEVEL" property="level" jdbcType="INTEGER" />
+    <result column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="corresponding_xml" property="correspondingXml" jdbcType="VARCHAR" />
+    <result column="func_id" property="dictId" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="enabled" property="enabled" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, m_name, m_url, LEVEL, p_id, img_url, corresponding_xml, func_id, sort, enabled
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from privilege
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <!-- 查询一级菜单 level=1代表1一级菜单  enabled='1' 代表系统启用  根据sort升序-->
+  <select id="selLevel1" resultMap="BaseResultMap" useCache="true">
+      SELECT * FROM privilege WHERE LEVEL = '1' AND enabled = '1' ORDER BY sort asc
+  </select>
+  <select id="selLevel2" resultMap="BaseResultMap" parameterType="String" useCache="true">
+  	  SELECT * FROM privilege WHERE LEVEL = '2' AND enabled = '1' and p_id = #{0} ORDER BY sort asc
+  </select>
+  <!-- 查询所有菜单 -->
+  <select id="selAll"  resultMap="BaseResultMap" useCache="true">
+  	select * from privilege where enabled = '1' 
+  </select>
+  <!-- 菜单排序 -->
+  <update id="updateSort" parameterType="java.util.List" >
+	<foreach collection="list" item="item" index="index" separator=";">
+		update privilege set 
+			sort = #{item.sort}
+			where 
+			id = #{item.id}
+	</foreach>
+  </update>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from privilege
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.hzycpos.domain.Privilege" >
+    insert into privilege (id, m_name, m_url, 
+      LEVEL, p_id, img_url, 
+      corresponding_xml, func_id, sort, 
+      enabled)
+    values (#{id,jdbcType=INTEGER}, #{mName,jdbcType=VARCHAR}, #{mUrl,jdbcType=VARCHAR}, 
+      #{level,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER}, #{imgUrl,jdbcType=VARCHAR}, 
+      #{correspondingXml,jdbcType=VARCHAR}, #{dictId,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, 
+      #{enabled,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.hzycpos.domain.Privilege" >
+    insert into privilege
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="mName != null" >
+        m_name,
+      </if>
+      <if test="mUrl != null" >
+        m_url,
+      </if>
+      <if test="level != null" >
+        LEVEL,
+      </if>
+      <if test="pId != null" >
+        p_id,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+      <if test="correspondingXml != null" >
+        corresponding_xml,
+      </if>
+      <if test="dictId != null" >
+        func_id,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="enabled != null" >
+        enabled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="mName != null" >
+        #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="mUrl != null" >
+        #{mUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="correspondingXml != null" >
+        #{correspondingXml,jdbcType=VARCHAR},
+      </if>
+      <if test="dictId != null" >
+        #{dictId,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="enabled != null" >
+        #{enabled,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.hzycpos.domain.Privilege" >
+    update privilege
+    <set >
+      <if test="mName != null" >
+        m_name = #{mName,jdbcType=VARCHAR},
+      </if>
+      <if test="mUrl != null" >
+        m_url = #{mUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        LEVEL = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        p_id = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="correspondingXml != null" >
+        corresponding_xml = #{correspondingXml,jdbcType=VARCHAR},
+      </if>
+      <if test="dictId != null" >
+        func_id = #{dictId,jdbcType=INTEGER},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="enabled != null" >
+        enabled = #{enabled,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.Privilege" >
+    update privilege
+    set m_name = #{mName,jdbcType=VARCHAR},
+      m_url = #{mUrl,jdbcType=VARCHAR},
+      LEVEL = #{level,jdbcType=INTEGER},
+      p_id = #{pId,jdbcType=INTEGER},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      corresponding_xml = #{correspondingXml,jdbcType=VARCHAR},
+      func_id = #{dictId,jdbcType=INTEGER},
+      sort = #{sort,jdbcType=INTEGER},
+      enabled = #{enabled,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="setPrivilege">
+  	UPDATE privilege SET enabled ='1' WHERE func_id IN
+	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+          #{item}
+     </foreach>
+  </update>
+  <update id="updatePrivilege">
+  	UPDATE privilege SET enabled ='0' WHERE func_id IS NOT NULL and func_id NOT IN 
+  	<foreach collection="array" index="index" item="item" open="(" separator="," close=")">
+          #{item}
+     </foreach>
+  </update>
+  <select id="selectByRid" resultMap="BaseResultMap" parameterType="int">
+   SELECT  * 
+   FROM privilege,role_privilege 
+   WHERE privilege.id = role_privilege.pid  AND role_privilege.rid = #{0}  AND LEVEL = 1 
+  	<if test=" value != 1">
+  		AND enabled = 1
+  	</if>
+  	ORDER BY sort asc 
+  </select>
+</mapper>

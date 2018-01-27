@@ -1,0 +1,27 @@
+src: 源代码
+	action：业务控制层
+	domain：实体层
+	filter：过滤器
+	interceptor: 拦截器
+	mapper: 实体关系映射 与dao接口
+	service： 业务处理层
+	system：系统设置必要类
+	test：单元测试
+	util：工具包
+	
+config：框架，日志等配置
+	applicationContext.xml: spring配置
+	db.properties: 数据库源配置
+	log4j.properties: 日志配置[日志记录在项目/WEB-INF/logs文件夹下]
+	mybatisConfig.xml: mybatis框架配置
+	struts.properties: struts属性配置
+	struts.xml : struts必要配置
+	
+struts: struts请求映射与返回视图[每个人维护自己的xml]
+	命名规则:struts-主表.xml
+	
+WebContent:web正文
+	WEB-INF/appConfig : 应用配置[功能的禁用与启用]
+	WEB-INF/jsp : 视图层
+	WEB-INF/lib : 应用必须jar包
+	WEB-INF/template : struts模版

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+var goods =new Array();
+var totalPrice ;
+function load(){
+	var url=location.search;
+	var Request = new Object();
+	if(url.indexOf("?")!=-1){
+	    var str = url.substr(1)　//去掉?号
+	    strs = str.split("&");
+	    for(var i=0;i<strs.length;i++){
+	        Request[strs[i ].split("=")[0]]=unescape(strs[i].split("=")[1]);
+	    }
+	}
+	goods = Request["goods"];
+	totalPrice = Request["totalPrice"];
+	alert(goods);;
+	alert(totalPrice);
+	document.getElementById("payWay1RevenueMoney").value = totalPrice;
+	document.getElementById("goods").value = goods;
+	document.getElementById("totalPrice").value = totalPrice;
+}
+function insertOrder(){
+	
+	var curWwwPath = window.document.location.href;
+	var pathName = window.document.location.pathname;
+    var pos = curWwwPath.indexOf(pathName);
+    var localhostPath = curWwwPath.substring(0, pos);
+    var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+    var basePath = localhostPath + projectName + "/";
+    
+    var form = document.getElementById("formId");
+    form.action = basePath+"order/insertOrder";
+    form.submit();
+}
+</script>
+</head>
+<body onload="load()">
+<form id="formId" method="post">
+<input type="hidden" name="goods" id="goods"/>
+<input type="hidden" name="totalPrice" id="totalPrice"/>
+ <div>
+ 	支付方式：<select name="orders.payWay1">
+ 					<option>现金支付</option>
+ 					<option>微信支付</option>
+ 					<option>支付宝支付</option>
+ 			</select>
+ 	支付金额：<input type="text" name="orders.payWay1RevenueMoney" id="payWay1RevenueMoney"/>
+ </div>
+<div>
+	组合方式：<select name="orders.pay_way2">
+					<option>不使用组合支付方式</option>
+					<option>现金支付</option>
+					<option>微信支付</option>
+					<option>支付宝支付</option>
+			</select>
+	支付金额：<input type="text" name="orders.payWay2RevenueMoney"/>
+ </div>
+ <input type="submit" onclick="insertOrder()"/>
+ </form>
+</body>
+</html>

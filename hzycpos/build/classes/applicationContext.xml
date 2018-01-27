@@ -1,0 +1,94 @@
+<beans xmlns="http://www.springframework.org/schema/beans"     
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"      
+    xmlns:aop="http://www.springframework.org/schema/aop"     
+    xmlns:tx="http://www.springframework.org/schema/tx"     
+    xmlns:context="http://www.springframework.org/schema/context"     
+    xsi:schemaLocation="      
+          http://www.springframework.org/schema/beans      
+          http://www.springframework.org/schema/beans/spring-beans-3.0.xsd      
+          http://www.springframework.org/schema/tx      
+          http://www.springframework.org/schema/tx/spring-tx-3.0.xsd     
+          http://www.springframework.org/schema/context      
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd      
+          http://www.springframework.org/schema/aop      
+          http://www.springframework.org/schema/aop/spring-aop-3.0.xsd" > 
+	
+	<!-- 我们使用占位符标签使用配置文件去动态的替换数据源 -->
+	<context:property-placeholder location="classpath:db.properties"/>
+	
+	<!-- 数据源  
+			destroy-method="close"关闭自动销毁
+			两种数据库连接池技术c3p0    dbcp
+	-->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${db.driver}"/>
+		<property name="url" value="${db.url}"/>
+		<property name="username" value="${db.username}"/>
+		<property name="password" value="${db.password}"/>
+		<!-- 连接活跃最大值（最大连接数） -->
+		<property name="maxActive" value="${maxActive}"/>
+		<!-- 最大空闲连接数 -->
+		<property name="maxIdle" value="${maxIdle}"/>
+		
+	</bean>
+	
+<!-- 	<bean id="transactionManager"  
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager ">  
+        <property name="dataSource">  
+            <ref bean="dataSource" />  
+        </property>  
+    </bean>   -->
+	
+	<!-- 
+	定义TransactionProxy
+	<bean id="transactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+		<property name="transactionManager">
+			<ref bean="transactionManager"/>
+		</property>
+		<property name="target">
+			<bean id="ceShiSer" class="com.hzyc.hzycpos.service.CeShiSer">
+				<property name="dataSource">
+					<ref local="dataSource"/>
+				</property>
+			</bean>
+		</property>
+		<property name="proxyTargetClass" value="true" />
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+	 -->
+	 
+	 <!-- 配置事务管理 -->  
+    <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">       
+          <property name="dataSource" ref="dataSource"/>  
+    </bean>   
+    <!-- 开启事务控制的注解支持 -->  
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
+   
+	 
+
+	<!-- mybatis配置 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="configLocation" value="classpath:mybatisConfig.xml"/>
+		<property name="dataSource" ref="dataSource"/>			
+	</bean>
+	
+	<!-- mapper扫描配置 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.hzyc.hzycpos.mapper"/>
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
+	
+	<!-- 扫描包 并指定scope的模式 -->
+	<context:component-scan base-package="com.hzyc.hzycpos.action" scope-resolver="com.hzyc.hzycpos.system.MyScopeResolver"/>  
+	<context:component-scan base-package="com.hzyc.hzycpos.service" />  
+	
+	<!-- 手动获取bean工具 -->
+	<bean id="beanUtil" class="com.hzyc.hzycpos.util.BeanUtil"></bean>  
+	<!-- 系统初始化 Service-->
+	<bean id="initService" class="com.hzyc.hzycpos.service.InitService" name="initService"></bean> 
+	
+</beans>

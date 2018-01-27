@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.hzycpos.mapper.OrdersMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.hzycpos.domain.Orders" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="order_code" property="orderCode" jdbcType="VARCHAR" />
+    <result column="orders_time" property="ordersTime" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="customer_tel" property="customerTel" jdbcType="VARCHAR" />
+    <result column="customer_address" property="customerAddress" jdbcType="VARCHAR" />
+    <result column="delivery_date" property="deliveryDate" jdbcType="VARCHAR" />
+    <result column="delivery_time" property="deliveryTime" jdbcType="VARCHAR" />
+    <result column="customer_bz" property="customerBz" jdbcType="VARCHAR" />
+    <result column="pay_state" property="payState" jdbcType="VARCHAR" />
+    <result column="delivery_state" property="deliveryState" jdbcType="VARCHAR" />
+    <result column="order_type" property="orderType" jdbcType="VARCHAR" />
+    <result column="compay_state" property="compayState" jdbcType="VARCHAR" />
+    <result column="receivable_money" property="receivableMoney" jdbcType="VARCHAR" />
+    <result column="pay_way1" property="payWay1" jdbcType="VARCHAR" />
+    <result column="pay_way1_revenue_money" property="payWay1RevenueMoney" jdbcType="VARCHAR" />
+    <result column="pay_way2" property="payWay2" jdbcType="VARCHAR" />
+    <result column="pay_way2_revenue_money" property="payWay2RevenueMoney" jdbcType="VARCHAR" />
+    <result column="change_money" property="changeMoney" jdbcType="VARCHAR" />
+    <result column="sell_store" property="sellStore" jdbcType="VARCHAR" />
+    <result column="cashier" property="cashier" jdbcType="VARCHAR" />
+    <result column="delivery_people" property="deliveryPeople" jdbcType="VARCHAR" />
+    <result column="delivery_fee" property="deliveryFee" jdbcType="VARCHAR" />
+    <result column="vip_code" property="vipCode" jdbcType="VARCHAR" />
+    <result column="product_remark" property="productRemark" jdbcType="VARCHAR" />
+    <result column="table_num" property="tableNum" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="p1" property="p1" jdbcType="VARCHAR" />
+    <result column="p2" property="p2" jdbcType="VARCHAR" />
+    <result column="p3" property="p3" jdbcType="VARCHAR" />
+    <result column="p4" property="p4" jdbcType="VARCHAR" />
+    <result column="p5" property="p5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_code, orders_time, customer_name, customer_tel, customer_address, delivery_date, 
+    delivery_time, customer_bz, pay_state, delivery_state, order_type, compay_state, 
+    receivable_money, pay_way1, pay_way1_revenue_money, pay_way2, pay_way2_revenue_money, 
+    change_money, sell_store, cashier, delivery_people, delivery_fee, vip_code, product_remark, 
+    table_num, remark, p1, p2, p3, p4, p5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.hzyc.hzycpos.domain.OrdersKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from orders
+    where id = #{id,jdbcType=INTEGER}
+      and order_code = #{orderCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.OrdersKey" >
+    delete from orders
+    where id = #{id,jdbcType=INTEGER}
+      and order_code = #{orderCode,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.hzycpos.domain.Orders" >
+    insert into orders (id, order_code, orders_time, 
+      customer_name, customer_tel, customer_address, 
+      delivery_date, delivery_time, customer_bz, 
+      pay_state, delivery_state, order_type, 
+      compay_state, receivable_money, pay_way1, 
+      pay_way1_revenue_money, pay_way2, pay_way2_revenue_money, 
+      change_money, sell_store, cashier, 
+      delivery_people, delivery_fee, vip_code, 
+      product_remark, table_num, remark, 
+      p1, p2, p3, p4, 
+      p5)
+    values (#{id,jdbcType=INTEGER}, #{orderCode,jdbcType=VARCHAR}, #{ordersTime,jdbcType=VARCHAR}, 
+      #{customerName,jdbcType=VARCHAR}, #{customerTel,jdbcType=VARCHAR}, #{customerAddress,jdbcType=VARCHAR}, 
+      #{deliveryDate,jdbcType=VARCHAR}, #{deliveryTime,jdbcType=VARCHAR}, #{customerBz,jdbcType=VARCHAR}, 
+      #{payState,jdbcType=VARCHAR}, #{deliveryState,jdbcType=VARCHAR}, #{orderType,jdbcType=VARCHAR}, 
+      #{compayState,jdbcType=VARCHAR}, #{receivableMoney,jdbcType=VARCHAR}, #{payWay1,jdbcType=VARCHAR}, 
+      #{payWay1RevenueMoney,jdbcType=VARCHAR}, #{payWay2,jdbcType=VARCHAR}, #{payWay2RevenueMoney,jdbcType=VARCHAR}, 
+      #{changeMoney,jdbcType=VARCHAR}, #{sellStore,jdbcType=VARCHAR}, #{cashier,jdbcType=VARCHAR}, 
+      #{deliveryPeople,jdbcType=VARCHAR}, #{deliveryFee,jdbcType=VARCHAR}, #{vipCode,jdbcType=VARCHAR}, 
+      #{productRemark,jdbcType=VARCHAR}, #{tableNum,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{p1,jdbcType=VARCHAR}, #{p2,jdbcType=VARCHAR}, #{p3,jdbcType=VARCHAR}, #{p4,jdbcType=VARCHAR}, 
+      #{p5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.hzycpos.domain.Orders" >
+    insert into orders
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderCode != null" >
+        order_code,
+      </if>
+      <if test="ordersTime != null" >
+        orders_time,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="customerTel != null" >
+        customer_tel,
+      </if>
+      <if test="customerAddress != null" >
+        customer_address,
+      </if>
+      <if test="deliveryDate != null" >
+        delivery_date,
+      </if>
+      <if test="deliveryTime != null" >
+        delivery_time,
+      </if>
+      <if test="customerBz != null" >
+        customer_bz,
+      </if>
+      <if test="payState != null" >
+        pay_state,
+      </if>
+      <if test="deliveryState != null" >
+        delivery_state,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="compayState != null" >
+        compay_state,
+      </if>
+      <if test="receivableMoney != null" >
+        receivable_money,
+      </if>
+      <if test="payWay1 != null" >
+        pay_way1,
+      </if>
+      <if test="payWay1RevenueMoney != null" >
+        pay_way1_revenue_money,
+      </if>
+      <if test="payWay2 != null" >
+        pay_way2,
+      </if>
+      <if test="payWay2RevenueMoney != null" >
+        pay_way2_revenue_money,
+      </if>
+      <if test="changeMoney != null" >
+        change_money,
+      </if>
+      <if test="sellStore != null" >
+        sell_store,
+      </if>
+      <if test="cashier != null" >
+        cashier,
+      </if>
+      <if test="deliveryPeople != null" >
+        delivery_people,
+      </if>
+      <if test="deliveryFee != null" >
+        delivery_fee,
+      </if>
+      <if test="vipCode != null" >
+        vip_code,
+      </if>
+      <if test="productRemark != null" >
+        product_remark,
+      </if>
+      <if test="tableNum != null" >
+        table_num,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="p1 != null" >
+        p1,
+      </if>
+      <if test="p2 != null" >
+        p2,
+      </if>
+      <if test="p3 != null" >
+        p3,
+      </if>
+      <if test="p4 != null" >
+        p4,
+      </if>
+      <if test="p5 != null" >
+        p5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ordersTime != null" >
+        #{ordersTime,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTel != null" >
+        #{customerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="customerAddress != null" >
+        #{customerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryDate != null" >
+        #{deliveryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTime != null" >
+        #{deliveryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="customerBz != null" >
+        #{customerBz,jdbcType=VARCHAR},
+      </if>
+      <if test="payState != null" >
+        #{payState,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryState != null" >
+        #{deliveryState,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="compayState != null" >
+        #{compayState,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableMoney != null" >
+        #{receivableMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay1 != null" >
+        #{payWay1,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay1RevenueMoney != null" >
+        #{payWay1RevenueMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay2 != null" >
+        #{payWay2,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay2RevenueMoney != null" >
+        #{payWay2RevenueMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="changeMoney != null" >
+        #{changeMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="sellStore != null" >
+        #{sellStore,jdbcType=VARCHAR},
+      </if>
+      <if test="cashier != null" >
+        #{cashier,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryPeople != null" >
+        #{deliveryPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryFee != null" >
+        #{deliveryFee,jdbcType=VARCHAR},
+      </if>
+      <if test="vipCode != null" >
+        #{vipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productRemark != null" >
+        #{productRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="tableNum != null" >
+        #{tableNum,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="p1 != null" >
+        #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        #{p3,jdbcType=VARCHAR},
+      </if>
+      <if test="p4 != null" >
+        #{p4,jdbcType=VARCHAR},
+      </if>
+      <if test="p5 != null" >
+        #{p5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.hzycpos.domain.Orders" >
+    update orders
+    <set >
+      <if test="ordersTime != null" >
+        orders_time = #{ordersTime,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerTel != null" >
+        customer_tel = #{customerTel,jdbcType=VARCHAR},
+      </if>
+      <if test="customerAddress != null" >
+        customer_address = #{customerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryDate != null" >
+        delivery_date = #{deliveryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTime != null" >
+        delivery_time = #{deliveryTime,jdbcType=VARCHAR},
+      </if>
+      <if test="customerBz != null" >
+        customer_bz = #{customerBz,jdbcType=VARCHAR},
+      </if>
+      <if test="payState != null" >
+        pay_state = #{payState,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryState != null" >
+        delivery_state = #{deliveryState,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="compayState != null" >
+        compay_state = #{compayState,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableMoney != null" >
+        receivable_money = #{receivableMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay1 != null" >
+        pay_way1 = #{payWay1,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay1RevenueMoney != null" >
+        pay_way1_revenue_money = #{payWay1RevenueMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay2 != null" >
+        pay_way2 = #{payWay2,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay2RevenueMoney != null" >
+        pay_way2_revenue_money = #{payWay2RevenueMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="changeMoney != null" >
+        change_money = #{changeMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="sellStore != null" >
+        sell_store = #{sellStore,jdbcType=VARCHAR},
+      </if>
+      <if test="cashier != null" >
+        cashier = #{cashier,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryPeople != null" >
+        delivery_people = #{deliveryPeople,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryFee != null" >
+        delivery_fee = #{deliveryFee,jdbcType=VARCHAR},
+      </if>
+      <if test="vipCode != null" >
+        vip_code = #{vipCode,jdbcType=VARCHAR},
+      </if>
+      <if test="productRemark != null" >
+        product_remark = #{productRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="tableNum != null" >
+        table_num = #{tableNum,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="p1 != null" >
+        p1 = #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        p2 = #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        p3 = #{p3,jdbcType=VARCHAR},
+      </if>
+      <if test="p4 != null" >
+        p4 = #{p4,jdbcType=VARCHAR},
+      </if>
+      <if test="p5 != null" >
+        p5 = #{p5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+      and order_code = #{orderCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.Orders" >
+    update orders
+    set orders_time = #{ordersTime,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      customer_tel = #{customerTel,jdbcType=VARCHAR},
+      customer_address = #{customerAddress,jdbcType=VARCHAR},
+      delivery_date = #{deliveryDate,jdbcType=VARCHAR},
+      delivery_time = #{deliveryTime,jdbcType=VARCHAR},
+      customer_bz = #{customerBz,jdbcType=VARCHAR},
+      pay_state = #{payState,jdbcType=VARCHAR},
+      delivery_state = #{deliveryState,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=VARCHAR},
+      compay_state = #{compayState,jdbcType=VARCHAR},
+      receivable_money = #{receivableMoney,jdbcType=VARCHAR},
+      pay_way1 = #{payWay1,jdbcType=VARCHAR},
+      pay_way1_revenue_money = #{payWay1RevenueMoney,jdbcType=VARCHAR},
+      pay_way2 = #{payWay2,jdbcType=VARCHAR},
+      pay_way2_revenue_money = #{payWay2RevenueMoney,jdbcType=VARCHAR},
+      change_money = #{changeMoney,jdbcType=VARCHAR},
+      sell_store = #{sellStore,jdbcType=VARCHAR},
+      cashier = #{cashier,jdbcType=VARCHAR},
+      delivery_people = #{deliveryPeople,jdbcType=VARCHAR},
+      delivery_fee = #{deliveryFee,jdbcType=VARCHAR},
+      vip_code = #{vipCode,jdbcType=VARCHAR},
+      product_remark = #{productRemark,jdbcType=VARCHAR},
+      table_num = #{tableNum,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      p1 = #{p1,jdbcType=VARCHAR},
+      p2 = #{p2,jdbcType=VARCHAR},
+      p3 = #{p3,jdbcType=VARCHAR},
+      p4 = #{p4,jdbcType=VARCHAR},
+      p5 = #{p5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+      and order_code = #{orderCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

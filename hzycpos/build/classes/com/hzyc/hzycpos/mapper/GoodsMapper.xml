@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.hzycpos.mapper.GoodsMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.hzycpos.domain.Goods" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="good_code" property="goodCode" jdbcType="CHAR" />
+    <result column="good_name" property="goodName" jdbcType="VARCHAR" />
+    <result column="good_kind_id" property="goodKindId" jdbcType="VARCHAR" />
+    <result column="good_price" property="goodPrice" jdbcType="NUMERIC" />
+    <result column="good_remark" property="goodRemark" jdbcType="VARCHAR" />
+    <result column="full_pinyin" property="fullPinyin" jdbcType="VARCHAR" />
+    <result column="easy_pinyin" property="easyPinyin" jdbcType="VARCHAR" />
+    <result column="p1" property="p1" jdbcType="VARCHAR" />
+    <result column="p2" property="p2" jdbcType="VARCHAR" />
+    <result column="p3" property="p3" jdbcType="VARCHAR" />
+    <result column="p4" property="p4" jdbcType="VARCHAR" />
+    <result column="p5" property="p5" jdbcType="VARCHAR" />
+    <result column="good_photo" property="goodPhoto" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  
+ 
+ 
+  <!-- 基础字段 -->
+  <sql id="Base_Column_List" >
+    id, good_code, good_name, good_kind_id, good_price, good_remark, full_pinyin , easy_pinyin , p1, p2, p3, p4, p5
+    , good_photo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" /> 
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.hzycpos.domain.Goods" >
+    insert into goods (id, good_code, good_name, 
+      good_kind_id, good_price, good_remark, 
+      p1, p2, p3, p4, 
+      p5, good_photo)
+    values (#{id,jdbcType=INTEGER}, #{goodCode,jdbcType=CHAR}, #{goodName,jdbcType=VARCHAR}, 
+      #{goodKindId,jdbcType=VARCHAR}, #{goodPrice,jdbcType=NUMERIC}, #{goodRemark,jdbcType=VARCHAR}, 
+      #{p1,jdbcType=VARCHAR}, #{p2,jdbcType=VARCHAR}, #{p3,jdbcType=VARCHAR}, #{p4,jdbcType=VARCHAR}, 
+      #{p5,jdbcType=VARCHAR}, #{goodPhoto,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.hzycpos.domain.Goods" >
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodCode != null" >
+        good_code,
+      </if>
+      <if test="goodName != null" >
+        good_name,
+      </if>
+      <if test="goodKindId != null" >
+        good_kind_id,
+      </if>
+      <if test="goodPrice != null" >
+        good_price,
+      </if>
+      <if test="goodRemark != null" >
+        good_remark,
+      </if>
+      <if test="p1 != null" >
+        p1,
+      </if>
+      <if test="p2 != null" >
+        p2,
+      </if>
+      <if test="p3 != null" >
+        p3,
+      </if>
+      <if test="p4 != null" >
+        p4,
+      </if>
+      <if test="p5 != null" >
+        p5,
+      </if>
+      <if test="goodPhoto != null" >
+        good_photo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodCode != null" >
+        #{goodCode,jdbcType=CHAR},
+      </if>
+      <if test="goodName != null" >
+        #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodKindId != null" >
+        #{goodKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodPrice != null" >
+        #{goodPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="goodRemark != null" >
+        #{goodRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="p1 != null" >
+        #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        #{p3,jdbcType=VARCHAR},
+      </if>
+      <if test="p4 != null" >
+        #{p4,jdbcType=VARCHAR},
+      </if>
+      <if test="p5 != null" >
+        #{p5,jdbcType=VARCHAR},
+      </if>
+      <if test="goodPhoto != null" >
+        #{goodPhoto,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.hzycpos.domain.Goods" >
+    update goods
+    <set >
+      <if test="goodCode != null" >
+        good_code = #{goodCode,jdbcType=CHAR},
+      </if>
+      <if test="goodName != null" >
+        good_name = #{goodName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodKindId != null" >
+        good_kind_id = #{goodKindId,jdbcType=VARCHAR},
+      </if>
+      <if test="goodPrice != null" >
+        good_price = #{goodPrice,jdbcType=NUMERIC},
+      </if>
+      <if test="goodRemark != null" >
+        good_remark = #{goodRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="p1 != null" >
+        p1 = #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        p2 = #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        p3 = #{p3,jdbcType=VARCHAR},
+      </if>
+      <if test="p4 != null" >
+        p4 = #{p4,jdbcType=VARCHAR},
+      </if>
+      <if test="p5 != null" >
+        p5 = #{p5,jdbcType=VARCHAR},
+      </if>
+      <if test="goodPhoto != null" >
+        good_photo = #{goodPhoto,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hzyc.hzycpos.domain.Goods" >
+    update goods
+    set good_code = #{goodCode,jdbcType=CHAR},
+      good_name = #{goodName,jdbcType=VARCHAR},
+      good_kind_id = #{goodKindId,jdbcType=VARCHAR},
+      good_price = #{goodPrice,jdbcType=NUMERIC},
+      good_remark = #{goodRemark,jdbcType=VARCHAR},
+      p1 = #{p1,jdbcType=VARCHAR},
+      p2 = #{p2,jdbcType=VARCHAR},
+      p3 = #{p3,jdbcType=VARCHAR},
+      p4 = #{p4,jdbcType=VARCHAR},
+      p5 = #{p5,jdbcType=VARCHAR},
+      good_photo = #{goodPhoto,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.Goods" >
+    update goods
+    set good_code = #{goodCode,jdbcType=CHAR},
+      good_name = #{goodName,jdbcType=VARCHAR},
+      good_kind_id = #{goodKindId,jdbcType=VARCHAR},
+      good_price = #{goodPrice,jdbcType=NUMERIC},
+      good_remark = #{goodRemark,jdbcType=VARCHAR},
+      p1 = #{p1,jdbcType=VARCHAR},
+      p2 = #{p2,jdbcType=VARCHAR},
+      p3 = #{p3,jdbcType=VARCHAR},
+      p4 = #{p4,jdbcType=VARCHAR},
+      p5 = #{p5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- <select id="selectAllGoods" parameterType="Goods" resultMap="BaseResultMap">
+  	select good_code,good_name,good_photo,good_price from goods
+  </select> -->
+</mapper>

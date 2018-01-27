@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.hzycpos.mapper.OrderdetailMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.hzycpos.domain.Orderdetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="orders_code" property="ordersCode" jdbcType="VARCHAR" />
+    <result column="good_code" property="goodCode" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="revenue_money" property="revenueMoney" jdbcType="VARCHAR" />
+    <result column="good_skind" property="goodSkind" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="p1" property="p1" jdbcType="VARCHAR" />
+    <result column="p2" property="p2" jdbcType="VARCHAR" />
+    <result column="p3" property="p3" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, orders_code, good_code, number, revenue_money, good_skind, remark, p1, p2, p3
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from orderdetail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from orderdetail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.hzycpos.domain.Orderdetail" >
+    insert into orderdetail (id, orders_code, good_code, 
+      number, revenue_money, good_skind, 
+      remark, p1, p2, p3
+      )
+    values (#{id,jdbcType=INTEGER}, #{ordersCode,jdbcType=VARCHAR}, #{goodCode,jdbcType=VARCHAR}, 
+      #{number,jdbcType=VARCHAR}, #{revenueMoney,jdbcType=VARCHAR}, #{goodSkind,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{p1,jdbcType=VARCHAR}, #{p2,jdbcType=VARCHAR}, #{p3,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.hzycpos.domain.Orderdetail" >
+    insert into orderdetail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ordersCode != null" >
+        orders_code,
+      </if>
+      <if test="goodCode != null" >
+        good_code,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="revenueMoney != null" >
+        revenue_money,
+      </if>
+      <if test="goodSkind != null" >
+        good_skind,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="p1 != null" >
+        p1,
+      </if>
+      <if test="p2 != null" >
+        p2,
+      </if>
+      <if test="p3 != null" >
+        p3,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ordersCode != null" >
+        #{ordersCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodCode != null" >
+        #{goodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="revenueMoney != null" >
+        #{revenueMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="goodSkind != null" >
+        #{goodSkind,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="p1 != null" >
+        #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        #{p3,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.hzycpos.domain.Orderdetail" >
+    update orderdetail
+    <set >
+      <if test="ordersCode != null" >
+        orders_code = #{ordersCode,jdbcType=VARCHAR},
+      </if>
+      <if test="goodCode != null" >
+        good_code = #{goodCode,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="revenueMoney != null" >
+        revenue_money = #{revenueMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="goodSkind != null" >
+        good_skind = #{goodSkind,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="p1 != null" >
+        p1 = #{p1,jdbcType=VARCHAR},
+      </if>
+      <if test="p2 != null" >
+        p2 = #{p2,jdbcType=VARCHAR},
+      </if>
+      <if test="p3 != null" >
+        p3 = #{p3,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.hzycpos.domain.Orderdetail" >
+    update orderdetail
+    set orders_code = #{ordersCode,jdbcType=VARCHAR},
+      good_code = #{goodCode,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      revenue_money = #{revenueMoney,jdbcType=VARCHAR},
+      good_skind = #{goodSkind,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      p1 = #{p1,jdbcType=VARCHAR},
+      p2 = #{p2,jdbcType=VARCHAR},
+      p3 = #{p3,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertOrderdetailList" parameterType="java.util.List" >
+	 INSERT INTO orderdetail(orders_code,good_code,number) VALUES
+    <foreach collection="list" item="item" index="index" open="(" separator=","  close=")"> 
+        #{item.ordersCode},#{item.goodCode},#{item.number} 
+    </foreach> 
+</insert>
+</mapper>

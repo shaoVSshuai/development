@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+	<link rel="stylesheet" href="css/iconfont.css">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link href="css/nth.tabs.min.css" rel="stylesheet">
+	<link href="css/jquery.scrollbar.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css"><link href="css/jquery.scrollbar.min.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollbar.min.js"></script>
+	<script type="text/javascript" src="js/nth.tabs.min.js"></script>
+	<script type="text/javascript"  src="js/main.js"></script>
+	<script type="text/javascript"  src="js/menu.js"></script>
+	<script type="text/javascript"  src="js/jquery.cookie.js"></script>
+	<script type="text/javascript">
+	var goods =new Array();
+		function getValue(){
+			var totalPrice = $(".operation-list").find(".money").find(".add-money").text();
+			$(".operation-list operation-list-special clearfix").find(".money fr clearfix").find(".add-money fr").text();
+			alert($(".operation-list operation-list-special ").find(".money").i);
+			$(".shop-item").each(function(){
+				var id = $(this).attr("id");
+				//截取商品的id
+				var id1 = id.substring(id.lastIndexOf("-")+1);
+				goods.push(id1+"--"+$(this).find(".operate-shop").text());
+			});
+			//alert(goods);
+			//insertOrder();
+			window.open ('pop.html?goods='+goods+'&totalPrice='+totalPrice,'newwindow','height=400,width=600,top=200,left=275,toolbar=no,menubar=no,scrollbars=no, resizable=no,location=no, status=no') 
+		}
+		
+	</script>
+	<title>收银</title>
+</head>
+<body>
+	<div class="content clearfix">
+		<div class="operation">
+			<div class="operation-list clearfix">
+				<span class="search-shop fl">查询商品</span>
+				<input class="search" type="text">
+				<i class="iconfont post-icon">&#xe649;</i>
+			</div>
+			<div class="operation-list clearfix" style="background:#0099cd;color:#fff;">
+				<span class="selected fl">已选商品</span>
+				<span class="count">共<span class="number">3</span>件</span>
+			</div>
+			<div class="shop-list">
+			</diV>
+			<div class="operation-list empty">清空</div>
+			<div class="operation-list operation-list-special clearfix" onclick="getValue()">
+				<span class="fl">收款</span>
+				<span class="money fr clearfix">
+					<span class="post-money fl">￥</span>
+					<span class="add-money fr">0</span>
+				</span>
+			</div>
+		</div>
+		<div class="kind">
+			
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="nth-tabs" id="editor-tabs"></div>
+						<!--使用时只需此标签，class固定,id自定义-->
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+</body>
+</html>

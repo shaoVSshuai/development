@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	
+	<!-- name:模块名即可  extend:默认继承struts-default -->
+	 <package name="orderManager" extends="struts-default" namespace="/order" > 
+	 	
+		<!-- name:访问action的名称 class:对应处理类 -->
+		<action name="insertOrder" class="ordersAction" method="insertOrder" >
+			<result name="success">/index.html</result>  
+			<result name="error">/error.jsp</result>  
+			<result name="login">/login.jsp</result>  
+		</action>
+		
+		
+	</package>
+	
+	 
+</struts>

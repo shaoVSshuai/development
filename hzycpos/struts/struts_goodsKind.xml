@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC  
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+<!-- <package name="userManager" extends="struts-default" namespace="/user"> 
+		name:访问action的名称 class:对应处理类
+		<action name="*_*" class="{1}Action" method="{2}">
+			添加用户
+			<result>/WEB-INF/jsp/{0}.jsp</result>  
+			<result name="error">/error.jsp</result>  
+			<result name="login">/login.jsp</result>  
+			<result name="input">/update.jsp</result>  
+		</action>
+	</package> -->
+	
+	<!-- name:模块名即可  extend:默认继承struts-default -->
+	 <package name="goodsKind" extends="json-default" namespace="/goodsKind" > 
+	 	
+	 	<!-- <interceptors>
+			<interceptor name="timer" class="com.opensymphony.xwork2.interceptor.TimerInterceptor">
+			</interceptor>
+		</interceptors> -->
+			
+		<!-- name:访问action的名称 class:对应处理类 -->
+		<action name="selAllGoods" class="goodsKindAction" method="selAllGoods" >
+			<!-- 添加用户  -->
+			
+			<result name="success" type="json">
+				<!-- 过滤为空的属性 -->
+				<param name="excludeNullProperties">true</param>
+			</result>  
+		</action>
+		
+		
+		
+	</package>
+	
+	 
+</struts>

@@ -68,7 +68,7 @@
   </update>
   <select id="selectByUid" resultMap="BaseResultMap" parameterType="User">
   	SELECT * 
-  	FROM USER,user_role 
+  	FROM `USER`,user_role 
   	WHERE user.id = #{id} AND uid = user.id
   </select>
 </mapper>

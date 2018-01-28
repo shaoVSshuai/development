@@ -66,9 +66,9 @@
       rid = #{rid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByUid" resultMap="BaseResultMap" parameterType="User">
+  <select id="selectByUid" resultMap="BaseResultMap" parameterType="com.hzyc.hzycpos.domain.User">
   	SELECT * 
-  	FROM USER,user_role 
+  	FROM pos.user,user_role 
   	WHERE user.id = #{id} AND uid = user.id
   </select>
 </mapper>

@@ -68,7 +68,7 @@
   </update>
   <select id="selectByUid" resultMap="BaseResultMap" parameterType="com.hzyc.hzycpos.domain.User">
   	SELECT * 
-  	FROM pos.user,user_role 
-  	WHERE user.id = #{id} AND uid = user.id
+  	FROM pos.user u,user_role 
+  	WHERE u.id = #{id} AND uid = u.id
   </select>
 </mapper>

@@ -295,4 +295,7 @@
       p3 = #{p3,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByTel" resultMap="BaseResultMap" parameterType="String">
+  	select * from vip where hy_tel = #{0}
+  </select>
 </mapper>

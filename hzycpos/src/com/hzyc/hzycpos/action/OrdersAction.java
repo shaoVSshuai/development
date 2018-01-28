@@ -28,8 +28,11 @@ public class OrdersAction extends ActionSupport implements ServletRequestAware, 
 	
 	public void insertOrder(){
 		String goods = request.getParameter("goods");
+		String discount = request.getParameter("discount");
+		String totalPrice = request.getParameter("totalPrice");
+		System.out.println(discount+"------");
 		System.out.println(orders.getPayWay1RevenueMoney()+"=========================");
-		os.insertOrder(request,goods,orders);		
+		os.insertOrder(request,goods,orders,discount,totalPrice);		
 	}
 	
 	public HttpServletRequest getRequest() {

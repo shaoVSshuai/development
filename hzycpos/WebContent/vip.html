@@ -3,6 +3,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+
+	#show{width:70px;height:70px;}
+
+</style>
 </head>
 <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
 <script type="text/javascript">
@@ -14,7 +19,6 @@
     var basePath = localhostPath + projectName + "/";
 
 	function process(){
-        var imgs=[];//存储图片链接
 		 //为文件上传添加change事件
 		var fileM=document.querySelector("#file");
 		//获取文件对象，files是文件选取控件的属性，存储的是文件选取控件选取的文件对象，类型是一个数组
@@ -54,20 +58,47 @@
 				}
 	 	 }};
 	}
+	
+	function tel(){
+		var telId = document.getElementById("telId").value;
+		var ajax=new XMLHttpRequest();
+	    //发送POST请求
+	    ajax.open("POST",basePath+"vip/vip_selTel",true);
+	    ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	    ajax.send("tel="+telId);
+	    ajax.onreadystatechange=function(){ 
+	    	if (ajax.readyState == 4) {
+	    		var data= ajax.responseText;
+				if (data == 1) {
+					alert("请勿重复注册！");
+					document.getElementById("telId").value = "";
+				} 
+	 	 }};
+		
+	}
+	
+	function photo(){
+		var r = new FileReader();
+		f = document.getElementById('file').files[0];
+		r.readAsDataURL(f);
+		r.onload = function(e) {
+			document.getElementById('show').src = this.result;
+		};
+	}
 </script>
 
 <body onload="vipType()">
 
 	<div id="div_img">
-		<img src="images/logo.png">
-		<p>上传照片:<input type="file" name="vip.hyPhoto" id="file"/></p>
+		<img src="images/logo.png" id="show"/>
+		<p>上传照片:<input type="file" name="vip.hyPhoto" id="file" onchange="photo()"/></p>
 	</div>
 	
 	<div id="div_form">
 		<form action="#" method="post" id="form" enctype="multipart/form-data">
 			<p>姓名:<input type="text" name="vip.hyName"/></p>
-			电话:<input type="text" name="vip.hyTel"/>
-			省份证号:<input type="text" name="vip.hyCard"/>
+			电话:<input type="text" name="vip.hyTel" id="telId" onchange="tel()"/>
+			身份证号:<input type="text" name="vip.hyCard"/>
 			<div style="display: none" id="div_hyToal">
 				充值金额:<input type="text" name="vip.hyTotal"/>
 			</div>

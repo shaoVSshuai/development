@@ -14,6 +14,30 @@
     <result column="sort" property="sort" jdbcType="INTEGER" />
     <result column="enabled" property="enabled" jdbcType="INTEGER" />
   </resultMap>
+  
+   <resultMap id="levelOneAndTwo" type="com.hzyc.hzycpos.domain.Privilege" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="mname" property="mName" jdbcType="VARCHAR" />
+    <result column="murl" property="mUrl" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="pid" property="pId" jdbcType="INTEGER" />
+    <result column="imgurl" property="imgUrl" jdbcType="VARCHAR" />
+    <result column="funcid" property="dictId" jdbcType="INTEGER" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="enabled" property="enabled" jdbcType="INTEGER" />
+    	<!-- 多 ： 二级菜单 -->
+    	<collection property="list" javaType="java.util.List" ofType="com.hzyc.hzycpos.domain.Privilege" >
+    		 <id column="pid" property="id" jdbcType="INTEGER" />
+		    <result column="pmname" property="mName" jdbcType="VARCHAR" />
+		    <result column="pmurl" property="mUrl" jdbcType="VARCHAR" />
+		    <result column="plevel" property="level" jdbcType="INTEGER" />
+		    <result column="ppid" property="pId" jdbcType="INTEGER" />
+		    <result column="pimgurl" property="imgUrl" jdbcType="VARCHAR" />
+		    <result column="pfuncid" property="dictId" jdbcType="INTEGER" />
+		    <result column="psort" property="sort" jdbcType="INTEGER" />
+		    <result column="penabled" property="enabled" jdbcType="INTEGER" />
+    	</collection>
+  </resultMap>
   <sql id="Base_Column_List" >
     id, m_name, m_url, LEVEL, p_id, img_url, corresponding_xml, func_id, sort, enabled
   </sql>
@@ -185,13 +209,29 @@
           #{item}
      </foreach>
   </update>
-  <select id="selectByRid" resultMap="BaseResultMap" parameterType="int">
-   SELECT  * 
-   FROM privilege,role_privilege 
-   WHERE privilege.id = role_privilege.pid  AND role_privilege.rid = #{0}  AND LEVEL = 1 
-  	<if test=" value != 1">
-  		AND enabled = 1
-  	</if>
-  	ORDER BY sort asc 
+  <select id="selectByRid" resultMap="levelOneAndTwo" parameterType="int">
+      SELECT p1.id ,p1.m_name mname,p1.m_url murl,p1.level level,p1.p_id pid, p1.img_url imgurl, p1.func_id funcid, p1.sort sort,p1.enabled enabled,
+		p2.id pid,p2.m_name pmname,p2.m_url pmurl,p2.level plevel,p2.p_id ppid, p2.img_url pimgurl, p2.func_id pfuncid, p2.sort psort,p2.enabled penabled  FROM 
+			(SELECT DISTINCT privilege.* FROM privilege, role_privilege 
+				WHERE LEVEL = '1' 
+					<if test=" value != 1">
+				  		AND enabled = 1
+				  	</if>
+				  AND  role_privilege.pid  = privilege.id  AND rid = 
+				#{value}
+				) p1 ,
+			(SELECT DISTINCT privilege.* FROM privilege,role_privilege
+				 WHERE LEVEL = '2' 
+					 <if test=" value != 1">
+				  		AND enabled = 1
+				  	</if>
+				  AND 
+				  role_privilege.pid  = privilege.id  AND rid = 
+				  #{value}
+				  ) p2  
+				 WHERE p1.id = p2.p_id  
+		<!-- 一级菜单先排序 -->
+  		ORDER BY p1.sort ASC , p2.sort asc
+  
   </select>
 </mapper>

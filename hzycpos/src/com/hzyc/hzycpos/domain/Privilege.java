@@ -30,7 +30,25 @@ public class Privilege implements Serializable{
 
     private Integer enabled;
     
-    /**
+    private List<Privilege> list;
+    
+    public Integer getFuncId() {
+		return funcId;
+	}
+
+	public void setFuncId(Integer funcId) {
+		this.funcId = funcId;
+	}
+
+	public List<Privilege> getList() {
+		return list;
+	}
+
+	public void setList(List<Privilege> list) {
+		this.list = list;
+	}
+
+	/**
      * 封装用户所拥有的权限信息
      * */
     private List<Privilege> pList;

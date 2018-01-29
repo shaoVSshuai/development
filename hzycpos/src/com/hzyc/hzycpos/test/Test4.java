@@ -38,9 +38,7 @@ public class Test4 {
 	 
 	 @Test
 	 public void testAction() throws Exception{
-		 User u = new User();
-		 u.setRid("2");
-		 u.setAddress("adssadasdas");
+		pd.selectById(3);
 		// us.insertUser(u);
 	 }
 

@@ -18,8 +18,6 @@ function load(){
 	}
 	goods = Request["goods"];
 	totalPrice = Request["totalPrice"];
-	alert(goods);;
-	alert(totalPrice);
 	document.getElementById("payWay1RevenueMoney").value = totalPrice;
 	document.getElementById("goods").value = goods;
 	document.getElementById("totalPrice").value = totalPrice;
@@ -52,13 +50,23 @@ function insertOrder(){
  	支付金额：<input type="text" name="orders.payWay1RevenueMoney" id="payWay1RevenueMoney"/>
  </div>
 <div>
-	组合方式：<select name="orders.pay_way2">
+	组合方式：<select name="orders.payWay2">
 					<option>不使用组合支付方式</option>
 					<option>现金支付</option>
 					<option>微信支付</option>
 					<option>支付宝支付</option>
 			</select>
 	支付金额：<input type="text" name="orders.payWay2RevenueMoney"/>
+ </div>
+ <div>
+ 	<input type="radio" name="discount" value="0.95"/>95折
+	<input type="radio" name="discount" value="0.90"/>9折
+	<input type="radio" name="discount" value="0.85"/>85折
+	<input type="radio" name="discount" value="0.80"/>8折
+	<input type="radio" name="discount" value="0.75"/>75折
+	<input type="radio" name="discount" value="0.70"/>7折
+	<input type="radio" name="discount" value="0.69"/>69折
+	<input type="radio" name="discount" value="0.50"/>5折
  </div>
  <input type="submit" onclick="insertOrder()"/>
  </form>

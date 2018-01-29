@@ -21,12 +21,11 @@
 		function getValue(){
 			var totalPrice = $(".operation-list").find(".money").find(".add-money").text();
 			$(".operation-list operation-list-special clearfix").find(".money fr clearfix").find(".add-money fr").text();
-			alert($(".operation-list operation-list-special ").find(".money").i);
 			$(".shop-item").each(function(){
 				var id = $(this).attr("id");
 				//截取商品的id
 				var id1 = id.substring(id.lastIndexOf("-")+1);
-				goods.push(id1+"--"+$(this).find(".operate-shop").text());
+				goods.push(id1+"--"+$(this).find(".operate-shop").text()+"--"+$(this).find(".addNub").text());
 			});
 			//alert(goods);
 			//insertOrder();

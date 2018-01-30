@@ -150,9 +150,9 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <insert id="insertOrderdetailList" parameterType="java.util.List" >
-	 INSERT INTO orderdetail(orders_code,good_code,number) VALUES
-    <foreach collection="list" item="item" index="index" open="(" separator=","  close=")"> 
-        #{item.ordersCode},#{item.goodCode},#{item.number} 
+	 INSERT INTO orderdetail(orders_code,good_code,number,revenue_money) VALUES
+    <foreach collection="list" item="item" index="index" separator="," > 
+        (#{item.ordersCode},#{item.goodCode},#{item.number},#{item.revenueMoney}) 
     </foreach> 
 </insert>
 </mapper>

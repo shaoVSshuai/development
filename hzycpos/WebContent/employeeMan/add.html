@@ -7,8 +7,6 @@
 
 <!-- <script type="text/javascript" src="/hzycpos/js/jquery-validate/dist/jquery.validate.min.js"></script>
 <script src="/hzycpos/js/jquery-validate/dist/localization/messages_zh.js"></script> -->
-<link rel="stylesheet" href="/hzycpos/plugin/layui/css/layui.css">
-<script src="/hzycpos/plugin/layui/layui.js"></script>
 <title>员工录入</title>
 <meta name="description" content="This is page-header (.page-header &gt; h1)" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -30,61 +28,7 @@
 <![endif]-->
 <style> 
 </style>
-<script>
-		function test(){
-		
-			var pid = localStorage.getItem("ai");
-			
-					var allLi = "";
-					var obj = JSON.parse(pid);
-					for(var i = 0 ; i < obj.pList.length ; i++){
-						var mName = obj.pList[i].mName;
-						var mUrl = obj.pList[i].mUrl;
-						var imgUrl  = obj.pList[i].imgUrl;
-						var secondObj = obj.pList[i].list;
-						var ppid = obj.pList[i].id;
-						allLi += '<li class="hsub" id="ul-' + ppid + '">'+
-						'<a href="#" class="dropdown-toggle">'+
-							'<i class="menu-icon fa fa-tachometer"></i>'+
-							'<span class="menu-text">'+mName+' </span>'+
-							'<b class="arrow fa fa-angle-down"></b>'+
-						'</a>'+
-						'<ul class="submenu">' ;
-							for(var j = 0 ; j < secondObj.length ; j++){
-								var pmName = secondObj[j].mName;
-								var pmUrl = secondObj[j].mUrl;
-								var pimgUrl  = secondObj[j].imgUrl;
-								var id = secondObj[j].id;
-								var pid = secondObj[j].pId;
-								allLi += '<li id="li-' + id + '">'+
-								'<a href="javascript:open(\''+ pmUrl +'\', \''+ pid +'\',  \''+ id +'\');" >'+
-								'<i class="menu-icon fa fa-caret-right"></i>'+
-									pmName +
-								'</a>'+
-								'<b class="arrow"></b>'+
-								'</li>';
-							}
-							
-							allLi += '</ul>'+	'</li>';
-					}
-					
-					var ularray = document.getElementsByClassName("nav nav-list");
-					ularray[0].innerHTML = allLi;
-					
-					var pid = localStorage.getItem("pid" );
-					var id = localStorage.getItem("id");
-					$("#"+pid).addClass("active open hsub");
-					$("#"+id).addClass("active");
-		}
-		function open(url,id,pid){
-			//选中的父节点
-			localStorage.setItem("pid" ,  pid);
-			//选中的子id
-			localStorage.setItem("id" , id);
-			//页面跳转
-			window.location.href = url ;
-		}
-	</script>
+
 <script>
 	$(function(){
 		
@@ -209,14 +153,11 @@
 	
 	
 </script>
-<script>
-	//看当前应该选中那个
-	
-</script>
 
 
 
-<body class="no-skin" onload="test()">
+
+<body class="no-skin" >
 		<div id="navbar" class="navbar navbar-default">
 			<div class="navbar-container" id="navbar-container">
 
@@ -405,378 +346,8 @@
 			<!-- #section:basics/sidebar -->
 			<div id="sidebar" class="sidebar responsive">
 
-
+				<!-- 左侧导航 -->
 				<ul class="nav nav-list">
-					<li class="active">
-						<a href="index.html">
-							<i class="menu-icon fa fa-tachometer"></i>
-							<span class="menu-text"> 总控制台 </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-
-					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-desktop"></i>
-							<span class="menu-text"> UI &amp; 元素 </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-
-							<li class="">
-								<a href="typography.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									排版
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="elements.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									UI元素
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="buttons.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									按钮 &amp; 图标
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="treeview.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									树状结构
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="jquery-ui.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									jQuery UI
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="nestable-list.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									可拖拽列表
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="#" class="dropdown-toggle">
-									<i class="menu-icon fa fa-caret-right"></i>
-									三级菜单
-									<b class="arrow fa fa-angle-down"></b>
-								</a>
-
-								<b class="arrow"></b>
-
-								<ul class="submenu">
-									<li class="">
-										<a href="#">
-											<i class="menu-icon fa fa-leaf green"></i>
-											第一级
-										</a>
-
-										<b class="arrow"></b>
-									</li>
-
-									<li class="">
-										<a href="#" class="dropdown-toggle">
-											<i class="menu-icon fa fa-pencil orange"></i>
-
-											第四级
-											<b class="arrow fa fa-angle-down"></b>
-										</a>
-
-										<b class="arrow"></b>
-
-										<ul class="submenu">
-											<li class="">
-												<a href="#">
-													<i class="menu-icon fa fa-plus purple"></i>
-													添加商品
-												</a>
-
-												<b class="arrow"></b>
-											</li>
-
-											<li class="">
-												<a href="#">
-													<i class="menu-icon fa fa-eye pink"></i>
-													查看商品
-												</a>
-
-												<b class="arrow"></b>
-											</li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-list"></i>
-							<span class="menu-text"> 表格 </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="tables.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									简单通用表格
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="jqgrid.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									jqGrid插件表格
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-					</li>
-
-					<li class="active open hsub">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-pencil-square-o"></i>
-							<span class="menu-text"> 表单 </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu ">
-							<li class="active">
-								<a href="form-elements.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									表单组件
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="form-wizard.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									向导提示 &amp; 验证
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="wysiwyg.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									编辑器
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="dropzone.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									文件上传
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="widgets.html">
-							<i class="menu-icon fa fa-list-alt"></i>
-							<span class="menu-text"> 插件 </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-
-					<li class="">
-						<a href="calendar.html">
-							<i class="menu-icon fa fa-calendar"></i>
-
-							<span class="menu-text">
-								日历
-
-								<!-- #section:basics/sidebar.layout.badge -->
-								<span class="badge badge-transparent tooltip-error" title="有2件重要事件">
-									<i class="ace-icon fa fa-exclamation-triangle red bigger-130"></i>
-								</span>
-
-								<!-- /section:basics/sidebar.layout.badge -->
-							</span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-
-					<li class="">
-						<a href="gallery.html">
-							<i class="menu-icon fa fa-picture-o"></i>
-							<span class="menu-text"> 相册 </span>
-						</a>
-
-						<b class="arrow"></b>
-					</li>
-
-					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-tag"></i>
-							<span class="menu-text"> 更多页面 </span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="profile.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									用户信息
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="pricing.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									售价单
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="invoice.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									购物车
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="timeline.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									时间轴
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-
-							<li class="">
-								<a href="login.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									登录注册
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-					</li>
-
-					<li class="">
-						<a href="#" class="dropdown-toggle">
-							<i class="menu-icon fa fa-file-o"></i>
-
-							<span class="menu-text">
-								其他页面
-
-								<!-- #section:basics/sidebar.layout.badge -->
-								<span class="badge badge-primary">5</span>
-
-								<!-- /section:basics/sidebar.layout.badge -->
-							</span>
-
-							<b class="arrow fa fa-angle-down"></b>
-						</a>
-
-						<b class="arrow"></b>
-
-						<ul class="submenu">
-							<li class="">
-								<a href="faq.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									帮助页面
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="error-404.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									404错误页面
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="error-500.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									500错误页面
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="grid.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									网格
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-
-							<li class="">
-								<a href="blank.html">
-									<i class="menu-icon fa fa-caret-right"></i>
-									空白页面
-								</a>
-
-								<b class="arrow"></b>
-							</li>
-						</ul>
-					</li>
 				</ul><!-- /.nav-list -->
 
 				<!-- #section:basics/sidebar.layout.minimize -->
@@ -813,28 +384,94 @@
 				<div class="page-content">
 					<!-- /section:settings.box -->
 					<div class="page-content-area">
-
+					<!-- 主题内容开始写 -->
 						<div class="row">
 							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-								<div class="alert alert-block alert-info">
-									<button type="button" class="close" data-dismiss="alert">
-										<i class="ace-icon fa fa-times"></i>
-									</button>
+								<form id="form" class="form-horizontal" role="form"
+									action="/hzycpos/user/insert.action" method="post"
+									enctype="multipart/form-data">
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="red">*</span>用户名：</label>
+										<div class="col-sm-9">
+											<input class="col-xs-10 col-sm-5"   type="text" name="user.uname"
+												id="username"   />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="red">*</span>密码：</label>
+										<div class="col-sm-9">
+											<input class="col-xs-10 col-sm-5"   type="text" name="user.pwd"
+												id="pwd"   />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="red">*</span>身份证号：</label>
+										<div class="col-sm-9">
+											<input class="col-xs-10 col-sm-5"   type="text" id="idCard"
+												name="user.idCard"  />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 邮箱：</label>
+										<div class="col-sm-9">
+											<input class="col-xs-10 col-sm-5"   type="text" name="user.email"
+												id="email"   />
+										</div>
+									</div> 
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">家庭住址：</label>
+										<div class="col-sm-9">
+											<input class="col-xs-10 col-sm-5"   type="text" id="address"
+												name="user.address"   />
+										</div>
+									</div> 
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1">所属店铺：</label>
+										<div class="col-sm-9">
+											<div class="pos-rel">
+												<select class="form-control" id="storeInfoId" name="user.storeInfoId">
+												</select>
+											</div>
+										</div>
+									</div> 
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"><span class="red">*</span>职位/角色：</label>
+										<div class="col-sm-9">
+											<div class="pos-rel">
+												<select class="form-control" id="rid" name="user.rid">
+												</select>
+											</div>
+										</div>
+									</div> 
+									<div style="position: absolute; top: 100px; right: 20px;">
+										身份证正面图片： <input class="layui-input mywidth" type="file"
+											id="cardImgFace" name="cardImgFace" /> <label
+											class="layui-form-label">身份证反面图片：</label> <label
+											for="cardImgReverse" class="btn btn-default">上传文件</label> <input
+											class="layui-input mywidth" style="display: none" type="file"
+											id="cardImgReverse" name="cardImgReverse" />
+			
+									</div>
+									<div class="clearfix form-actions">
+										<div class="col-md-offset-3 col-md-9">
+											<button class="btn btn-info" type="button">
+												<i class="ace-icon fa fa-check bigger-110"></i>
+												立即提交
+											</button>
 
-									<i class="ace-icon fa fa-check green"></i>
+											&nbsp; &nbsp; &nbsp;
+											<button class="btn" type="reset">
+												<i class="ace-icon fa fa-undo bigger-110"></i>
+												重置
+											</button>
+										</div>
+									</div>
 
-									<strong class="green">最新公告：</strong>
-									南航开通华中首条直达美国航线，广州-武汉-旧金山首航，为中部崛起注入创新活力
-								</div>
-								<div class="row center">
-									<img src="assets/avatars/logo_2.png" />
-								</div><!-- /.row -->
+							</form>
+						</div>
+					</div>
 
-								<!-- PAGE CONTENT ENDS -->
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-					</div><!-- /.page-content-area -->
+				</div><!-- /.page-content-area -->
 				</div><!-- /.page-content -->
 			</div><!-- /.main-content -->
 
@@ -843,7 +480,7 @@
 					<!-- #section:basics/footer -->
 					<div class="footer-content">
 						<span class="bigger-120">
-							 统一开发平台-UI库 &copy; 2014  更多模板：<a href="http://www.mycodes.net/" target="_blank">源码之家</a>
+							合众易成项目组 &copy; 2018  @合众易成信息技术咨询服务有限公司
 						</span>
 					</div>
 
@@ -858,31 +495,28 @@
 
 		<!--[if !IE]> -->
 			<script type="text/javascript">
-				window.jQuery || document.write("<script src='/hzycpos/assets/js/jquery.min.js'>"+"<"+"/script>");
+				window.jQuery || document.write("<script src='assets/js/jquery.min.js'>"+"<"+"/script>");
 			</script>
 		<!-- <![endif]-->
 		<!--[if IE]>
 			<script type="text/javascript">
-			 window.jQuery || document.write("<script src='/hzycpos/assets/js/jquery1x.min.js'>"+"<"+"/script>");
+			 window.jQuery || document.write("<script src='assets/js/jquery1x.min.js'>"+"<"+"/script>");
 			</script>
 		<![endif]-->
 		<script type="text/javascript">
-			if('ontouchstart' in document.documentElement) document.write("<script src='/hzycpos/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-		<script src="/hzycpos/assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
 		<!--[if lte IE 8]>
-		  <script src="/hzycpos/assets/js/excanvas.min.js"></script>
+		  <script src="assets/js/excanvas.min.js"></script>
 		<![endif]-->
 		<script src="/hzycpos/assets/js/jquery-ui.custom.min.js"></script>
 		<script src="/hzycpos/assets/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="/hzycpos/assets/js/ace-elements.min.js"></script>
 		<script src="/hzycpos/assets/js/ace.min.js"></script>
+		<script src="/hzycpos/js/menu.js"></script>
 
 	</body>
-
-
-
-
  
 
 
@@ -897,110 +531,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<form id="form" class="layui-form" action="/hzycpos/user/insert.action" method="post" enctype="multipart/form-data">
-		<div class="layui-form-item">
-    		<label class="layui-form-label"><span class="red">*</span>用户名：</label> 
-   			<div class="layui-input-inline">
-     			<input class="layui-input mywidth" type="text" name="user.uname" id="username" required lay-verify="required" /> 
-   			</div>
-   			<div class="layui-inline">
-			</div>
- 		</div>
- 		<div class="layui-form-item">
-    		<label class="layui-form-label"><span class="red">*</span>密码：</label> 
-   			<div class="layui-input-inline">
-     			<input class="layui-input mywidth"  type="text" name="user.pwd" id="pwd" required lay-verify="required"  /> 
-   			</div>
-   			 
- 		</div>
-		<div class="layui-form-item">
-    		<label class="layui-form-label"><span class="red">*</span>真实姓名：</label> 
-   			<div class="layui-input-inline">
-     			<input class="layui-input mywidth"  type="text" id="trueName" name="user.trueName" required lay-verify="required"  /> 
-   			</div>
-   			 
- 		</div>
- 		<div class="layui-form-item">
-    		<label class="layui-form-label"><span class="red">*</span>身份证号：</label> 
-   			<div class="layui-input-inline">
-     			<input class="layui-input mywidth"  type="text" id="idCard" name="user.idCard" required lay-verify="required" /> 
-   			</div>
- 		</div>
- 		<div class="layui-form-item">
-    		<label class="layui-form-label"><span class="red">*</span> 电话：</label> 
-   			<div class="layui-input-inline">
-     			<input class="layui-input mywidth"  type="text" id="phone" name="vphone" required lay-verify="required"  /> 
-   			</div>
-   			 
- 		</div>
- 		<div class="layui-form-item">
-    		<label class="layui-form-label">邮箱：</label> 
-   			<div class="layui-input-block">
-     			<input class="layui-input mywidth"   type="text" name="user.email" id="email"   lay-verify="emaasdail"    /> 
-   			</div>
- 		</div>
- 		<div class="layui-form-item">
-    		<label class="layui-form-label">家庭住址：</label> 
-   			<div class="layui-input-block">
-     			<input class="layui-input mywidth"   type="text" id="address" name="user.address" maxlength="40" /> 
-   			</div>
- 		</div>
- 		<div class="layui-form-item">
-    		<label class="layui-form-label"><span class="red">*</span>所属店铺：</label> 
-   			<div class="layui-input-inline">
-     			<select class="mywidth" id="storeInfoId" name="user.storeInfoId" >
-     				
-     			</select>
-   			</div>
-   			 
- 		</div>		  
-		<div class="layui-form-item">
-    		<label class="layui-form-label"><span class="red">*</span>职位/角色：</label> 
-   			<div class="layui-input-inline">
-   				<select class="mywidth" id="rid" name="user.rid" >
-     				
-     			</select>
-   			</div>
-   			 
- 		</div>			 
- 		
- 		
-			
-			 
-			 
-			 <div style="position:absolute;top:100px;right:20px;">
-			 	 身份证正面图片： 
-				<input class="layui-input mywidth"  type="file" id="cardImgFace" name="cardImgFace"/> 
-				 
-				 
-				 
-				 <label class="layui-form-label">身份证反面图片：</label> 
-				<label for="cardImgReverse" class="btn btn-default">上传文件</label>
-			    <input class="layui-input mywidth" style="display:none" type="file" id="cardImgReverse" name="cardImgReverse" /> 
-			 
-			</div> 
-				 
-				 
-				<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-			 
-			  
-				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
-	</form>
+	
 	<script>
 //一般直接写在一个js文件中
 layui.use(['layer', 'form'], function(){

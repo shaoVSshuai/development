@@ -69,40 +69,43 @@
   <select id="selective" resultMap="BaseResultMap" parameterType="com.hzyc.hzycpos.domain.User">
   	select
   		 <include refid="Extra_Column_List" />
-     FROM USER,role,user_role,store_info
+     FROM user,role,user_role,store_info
     WHERE user.id =user_role.uid 
     	AND user_role.rid = role.id 
     	AND role.visible = 1
     	AND store_info.id = user.store_info_id
 	   	  <if test="id != null and id != ''" >
-	        and id = #{id,jdbcType=INTEGER},
+	        and id = #{id,jdbcType=INTEGER}
+	      </if>
+	      <if test="rid != null and rid != ''" >
+	        and user_role.rid = #{rid,jdbcType=INTEGER}
 	      </if>
 	      <if test="uname != null and uname != ''" >
-	        and uname = #{uname,jdbcType=VARCHAR},
+	        and uname = #{uname,jdbcType=VARCHAR}
 	      </if>
 	      <if test="pwd != null and pwd != ''" >
-	        and pwd = #{pwd,jdbcType=VARCHAR},
+	        and pwd = #{pwd,jdbcType=VARCHAR}
 	      </if>
 	      <if test="trueName != null and trueName != ''" >
-	        and true_name = #{trueName,jdbcType=VARCHAR},
+	        and true_name = #{trueName,jdbcType=VARCHAR}
 	      </if>
 	      <if test="phone != null and phone != ''" >
-	        and phone = #{phone,jdbcType=VARCHAR},
+	        and phone = #{phone,jdbcType=VARCHAR}
 	      </if>
 	      <if test="idCard != null and idCard != ''" >
-	        and id_card = #{idCard,jdbcType=VARCHAR},
+	        and id_card = #{idCard,jdbcType=VARCHAR}
 	      </if>
 	      <if test="email != null and email != ''" >
-	        and email = #{email,jdbcType=VARCHAR},
+	        and email = #{email,jdbcType=VARCHAR}
 	      </if>
 	      <if test="address != null and address != ''" >
-	        and address = #{address,jdbcType=VARCHAR},
+	        and address = #{address,jdbcType=VARCHAR}
 	      </if>
 	      <if test="enabled != null and enabled != ''" >
-	        and enabled = #{enabled,jdbcType=INTEGER},
+	        and enabled = #{enabled,jdbcType=INTEGER}
 	      </if>
 	      <if test="storeInfoId != null and storeInfoId != ''" >
-	        and store_info_id = #{storeInfoId)
+	        and store_info_id = #{storeInfoId}
 	      </if>
 	      <if test="cardImgFace != null and cardImgFace != ''" >
 	        and card_img_face = #{cardImgFace}

@@ -15,6 +15,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.hzyc.hzycpos.domain.User;
 import com.hzyc.hzycpos.mapper.UserMapper;
 import com.hzyc.hzycpos.mapper.UserRoleMapper;
@@ -81,8 +84,11 @@ public class UserSer {
 		return i > 0 ? true : false;
 	}
 	//选择查询用户
-	public List<User> selectice(User  user){
-		return userMapper.selective(user);
+	public List<User> selectice(User  user,PageInfo<?> pageInfo){
+		//分页插件显示6条
+		PageHelper.startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
+		List<User> list = userMapper.selective(user);
+		return list;
 	}
 	
 	/**

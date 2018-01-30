@@ -28,7 +28,7 @@
 	 	
 	 	<!-- 查询 -->
 	 	<action  name="selective" class="userAction" method="selective" >
-		 	<interceptor-ref name="mystack"></interceptor-ref>
+		 	<!-- <interceptor-ref name="mystack"></interceptor-ref> -->
 		 	
 	 
 	 		<result name="success" type="json">

@@ -11,6 +11,7 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.github.pagehelper.PageInfo;
 import com.hzyc.hzycpos.domain.Privilege;
 import com.hzyc.hzycpos.domain.PromptMessage;
 import com.hzyc.hzycpos.domain.User;
@@ -42,7 +43,16 @@ public class UserAction extends ActionSupport implements ServletRequestAware, Se
 	
 	//用户查询绑定
 	private List<User> userList;
+	//分页信息绑定
+	private PageInfo<?> pageInfo;
 	
+	public PageInfo<?> getPageInfo() {
+		return pageInfo;
+	}
+
+	public void setPageInfo(PageInfo<?> pageInfo) {
+		this.pageInfo = pageInfo;
+	}
 	//用户身份证图片
 	private File cardImgFace;
 	//反面
@@ -87,8 +97,15 @@ public class UserAction extends ActionSupport implements ServletRequestAware, Se
 	
 	//查询用户 多条件查询
 	public String selective(){
-		List<User> list = userSer.selectice(user);
+		List<User> list = userSer.selectice(user,pageInfo);
+		String a = request.getParameter("user.trueName");
+		System.out.println(a);
+		System.out.println(user.getTrueName()+"====");
+		
 		this.userList  = list;
+		//连续显示的页数(导航页)
+		pageInfo = new PageInfo<>(list , 5); 
+		System.out.println(pageInfo.getNavigatepageNums().length);
 		return SUCCESS;
 	}
 	

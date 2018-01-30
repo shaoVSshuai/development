@@ -1,7 +1,24 @@
 package com.hzyc.hzycpos.domain;
 
 public class User {
-    private Integer id;
+	//当前页
+	private int nowPage;
+	//默认显示6条
+	private int pageSize = 6;
+    public int getNowPage() {
+		return nowPage;
+	}
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
+	}
+	public int getPageSize() {
+		return pageSize;
+	}
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	private Integer id;
 
     private String uname;
 

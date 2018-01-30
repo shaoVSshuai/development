@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE configuration PUBLIC
 	
 	"-//mybatis.org/DTD Config 3.0 //EN"
@@ -17,11 +18,16 @@
         <setting name="cacheEnabled" value="true"/>
 	
 	</settings>
-	
 	<typeAliases>
 		<package name="com.hzyc.hzycpos.domain"/>
 		
 	</typeAliases>
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor">
+			<!--新版本分页插件自动识别数据库
+			 <property name="dialect" value="mysql"/> -->
+		</plugin>
+	</plugins>
 </configuration>
 	
 

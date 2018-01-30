@@ -28,7 +28,7 @@
 	    <result column="store_info_id" property="storeInfoId" jdbcType="INTEGER" />
 	    <result column="card_img_face" property="cardImgFace" jdbcType="LONGVARBINARY" />
 	    <result column="card_img_reverse" property="cardImgReverse" jdbcType="LONGVARBINARY" />
-	    <result column="rid" property="rid" jdbcType="VARCHAR" />
+	    <result column="rid" property="rid" jdbcType="INTEGER" />
 	    <result column="rname" property="rname" jdbcType="VARCHAR" />
 	    <result column="sname" property="storeName" jdbcType="VARCHAR" />
   </resultMap>
@@ -37,8 +37,7 @@
     ,card_img_reverse
   </sql>
   <sql id="Extra_Column_List" >
-	 user.id, uname, pwd, true_name, phone, id_card, email, user.address, enabled,store_info_id,card_img_face
-    ,card_img_reverse ,role.id rid,  role.rname , role.remark , store_info.name sname
+	 user.id, uname, pwd, true_name, phone, id_card, email, user.address, enabled,store_info_id,role.id rid,  role.rname , role.remark , store_info.name sname
   </sql>
   <!-- 查询用户名是否重复 -->
   <select id="validUserName" resultType="java.lang.Integer" parameterType="String" >
@@ -66,7 +65,7 @@
       )
   </insert>
   <!-- 选择性查询 -->
-  <select id="selective" resultMap="BaseResultMap" parameterType="com.hzyc.hzycpos.domain.User">
+  <select id="selective" resultMap="extraMap" parameterType="com.hzyc.hzycpos.domain.User">
   	select
   		 <include refid="Extra_Column_List" />
      FROM user,role,user_role,store_info
@@ -86,8 +85,10 @@
 	      <if test="pwd != null and pwd != ''" >
 	        and pwd = #{pwd,jdbcType=VARCHAR}
 	      </if>
+	      <!-- 姓名得是模糊搜索 -->
 	      <if test="trueName != null and trueName != ''" >
-	        and true_name = #{trueName,jdbcType=VARCHAR}
+	        and true_name 
+	        LIKE CONCAT(CONCAT('%',#{trueName},'%'))
 	      </if>
 	      <if test="phone != null and phone != ''" >
 	        and phone = #{phone,jdbcType=VARCHAR}

@@ -58,7 +58,7 @@ public class UserSer {
 		}
 		if(cardImgReverse != null){
 			byte[] b2 = FileConversion.PictureConversion(cardImgReverse);
-			user.setCardImgFace(b2);
+			user.setCardImgReverse(b2);
 		}
 		
 		//插入用户 另外需要指定角色

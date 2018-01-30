@@ -64,7 +64,9 @@
 							   if (window.localStorage) {
 		                 		//存储变量的值
 		                 		var jsonstr =JSON.stringify(res);
+		                 		var user = JSON.stringify(res.user);
 		                 			localStorage.setItem("ai",jsonstr);
+		                 			localStorage.setItem("user",user);
 		                 			
 		                 			//找到第一个要显示的页面
 		                 			 var value = localStorage.getItem("ai");

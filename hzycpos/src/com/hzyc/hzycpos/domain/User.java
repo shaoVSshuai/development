@@ -1,22 +1,6 @@
 package com.hzyc.hzycpos.domain;
 
 public class User {
-	//当前页
-	private int nowPage;
-	//默认显示6条
-	private int pageSize = 6;
-    public int getNowPage() {
-		return nowPage;
-	}
-	public void setNowPage(int nowPage) {
-		this.nowPage = nowPage;
-	}
-	public int getPageSize() {
-		return pageSize;
-	}
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
 
 	private Integer id;
 
@@ -46,21 +30,18 @@ public class User {
 	public void setStoreName(String storeName) {
 		this.storeName = storeName;
 	}
-	public void setRid(int rid) {
-		this.rid = rid;
-	}
 
 	private Integer enabled;
     private String rname;
     private String storeName;
     
     //用来参数绑定 角色id
-    private int rid;
+    private Integer rid;
     
-    public void setRid(String rid){
-    	this.rid = Integer.parseInt(rid);
+    public void setRid(Integer rid){
+    	this.rid = rid;
     }
-    public int getRid(){
+    public Integer getRid(){
     	return this.rid;
     }
     

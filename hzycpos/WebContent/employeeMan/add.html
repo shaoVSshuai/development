@@ -26,7 +26,26 @@
 <script src="/hzycpos/assets/js/html5shiv.min.js"></script>
 <script src="/hzycpos/assets/js/respond.min.js"></script>
 <![endif]-->
+<script src="/hzycpos/assets/js/bootbox.min.js"></script>
+
 <style> 
+	#reverse{
+		width:150px;
+		height:150px;
+		border:1px solid #e3e3e3;
+	}
+	#face{
+		width:150px;
+		height:150px;
+		margin:0px 20px;
+		border:1px solid #e3e3e3;
+	}
+	ul#img {
+		list-style: none;
+	}
+	ul#img li{
+		display: inline;
+	}
 </style>
 
 <script>
@@ -45,29 +64,33 @@
 			//验证用户名重复与否
 			//用户输入名称
 			var inputName = $("#username").val();
-			//ajax验证重复
-			$.ajax({
-					url: basePath+'user/validUserName.action',
-					type: 'post',
-					dataType: 'json',
-					data: {
-						userName: inputName
-					},
-					success: function(res){
-						if(res.pm.code == '106'){
-							//放过不处理
-						}else if(res.pm.code == '107'){
-							alert(res.pm.code + res.pm.info );
-							$("#username").val("");
-						}else{
-							alert(res.pm.code + res.pm.info );
-							$("#username").val("");
+			if(inputName.trim() != ""){
+				//ajax验证重复
+				$.ajax({
+						url: basePath+'user/validUserName.action',
+						type: 'post',
+						dataType: 'json',
+						data: {
+							userName: inputName
+						},
+						success: function(res){
+							if(res.pm.code == '106'){
+								//放过不处理
+								alert(res.pm.code + res.pm.info );
+							}else if(res.pm.code == '107'){
+								alert(res.pm.code + res.pm.info );
+								$("#username").val("");
+							}else{
+								alert(res.pm.code + res.pm.info );
+								$("#username").val("");
+							}
+						},
+						error: function(res){
+							alert("请求失败");
 						}
-					},
-					error: function(res){
-						alert("请求失败");
-					}
-				})
+					})
+			}
+			
 		});
 		
 		/**
@@ -86,10 +109,34 @@
 			}
 		})
 		
-		/**
-		* ajax加载所有店铺
-		*/
+		$("#cardImgFace").change(function(){
+			var reader = new FileReader();
+			reader.readAsDataURL(this.files[0]);
+			//var src= window.URL.cteateObejectURL(this.files[0]) ;
+			reader.onloadend = function () {
+				  $("#face").attr("src",reader.result);
+			}
+			if (file) {
+				  reader.readAsDataURL(this.files[0]);
+			} else {
+				  $("#face").attr("src","");
+			}
 			
+		});
+		$("#cardImgReverse").change(function(){
+			var reader = new FileReader();
+			reader.readAsDataURL(this.files[0]);
+			//var src= window.URL.cteateObejectURL(this.files[0]) ;
+			reader.onloadend = function () {
+				  $("#reverse").attr("src",reader.result);
+			}
+			if (file) {
+				  reader.readAsDataURL(this.files[0]);
+			} else {
+				  $("#reverse").attr("src","");
+			}
+			
+		});
 	});
  
 </script>
@@ -149,7 +196,11 @@
 
 		
 		
-		})
+		});
+		function submit(){
+			//form表单提交
+			document.getElementById("form").submit();
+		}
 	
 	
 </script>
@@ -412,6 +463,20 @@
 										</div>
 									</div>
 									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="red">*</span>真实姓名：</label>
+										<div class="col-sm-9">
+											<input class="col-xs-10 col-sm-5"   type="text" id="trueName"
+												name="user.trueName"  />
+										</div>
+									</div>
+									<div class="form-group">
+										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> <span class="red">*</span>电话：</label>
+										<div class="col-sm-9">
+											<input class="col-xs-10 col-sm-5"   type="text" id="phone"
+												name="user.phone"  />
+										</div>
+									</div>
+									<div class="form-group">
 										<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 邮箱：</label>
 										<div class="col-sm-9">
 											<input class="col-xs-10 col-sm-5"   type="text" name="user.email"
@@ -443,18 +508,29 @@
 											</div>
 										</div>
 									</div> 
-									<div style="position: absolute; top: 100px; right: 20px;">
-										身份证正面图片： <input class="layui-input mywidth" type="file"
-											id="cardImgFace" name="cardImgFace" /> <label
-											class="layui-form-label">身份证反面图片：</label> <label
-											for="cardImgReverse" class="btn btn-default">上传文件</label> <input
+									<div style="position: absolute; top: 0px; right: 20px;">
+										<ul id="img">
+											<li><img src="" alt="" id="face"/></li>
+											<li><img src="" alt="" id="reverse"/></li>
+										</ul>
+										<label
+											class="layui-form-label">身份证正面图片：
+										</label>
+										<label for="cardImgFace" class="btn btn-default">上传文件</label>
+										<input class="layui-input mywidth" style="display: none" type="file"
+											id="cardImgFace" name="cardImgFace" />
+										<label
+											class="layui-form-label">身份证反面图片：
+										</label>
+										<label for="cardImgReverse" class="btn btn-default">上传文件</label>
+										<input
 											class="layui-input mywidth" style="display: none" type="file"
 											id="cardImgReverse" name="cardImgReverse" />
 			
 									</div>
 									<div class="clearfix form-actions">
 										<div class="col-md-offset-3 col-md-9">
-											<button class="btn btn-info" type="button">
+											<button class="btn btn-info" type="button" onclick="submit()">
 												<i class="ace-icon fa fa-check bigger-110"></i>
 												立即提交
 											</button>
@@ -464,7 +540,9 @@
 												<i class="ace-icon fa fa-undo bigger-110"></i>
 												重置
 											</button>
+											<span style="color:red">系统提示：</span>带*为必填项目,若暂无身份证图片,可以稍后在[员工修改]中继续上传
 										</div>
+	
 									</div>
 
 							</form>
@@ -506,7 +584,7 @@
 		<script type="text/javascript">
 			if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 		</script>
-		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="/hzycpos/assets/js/bootstrap.min.js"></script>
 		<!--[if lte IE 8]>
 		  <script src="assets/js/excanvas.min.js"></script>
 		<![endif]-->
@@ -527,73 +605,32 @@
 
 
 
+<button class="btn btn-success" id="bootbox-options">多按钮弹出层</button>
 
 
 
 
 	
 	<script>
-//一般直接写在一个js文件中
-layui.use(['layer', 'form'], function(){
-  var layer = layui.layer
-  ,form = layui.form;
-  
-  if(window.location.href.indexOf("?") != -1){
-	  var url = window.location.href;
-	  var kv = url.substring(url.indexOf("?"));
-	  var array = kv.split("=");
-	  if(array[1] == 102){
-		  layer.msg('操作成功');
-	  }else{
-		  layui.msg('操作失败,未知错误');
+	  if(window.location.href.indexOf("?") != -1){
+		  
+		  var url = window.location.href;
+		  var kv = url.substring(url.indexOf("?"));
+		  var array = kv.split("=");
+		  if(array[1] == 102){
+			  bootbox.alert({
+				  size: "small",
+				  title: "系统提示",
+				  message: "<div class='row'><div class='col-sm-12'>操作成功！</div></div>",
+			  });
+		  }else{
+			  bootbox.alert({
+				  size: "small",
+				  title: "系统提示",
+				  message: "<div class='row'><div class='col-sm-12'>操作失败,未知错误！</div></div>",
+			  });
+		  }
 	  }
-  }
-});
-layui.use('upload', function(){
-  var $ = layui.jquery
-  ,upload = layui.upload;
-  
-  //普通图片上传
-  var uploadInst = upload.render({
-    elem: '#test1'
-    ,url: '/upload/'
-    ,before: function(obj){
-      //预读本地文件示例，不支持ie8
-      obj.preview(function(index, file, result){
-        $('#demo1').attr('src', result); //图片链接（base64）
-      });
-    }
-    ,done: function(res){
-      //如果上传失败
-      if(res.code > 0){
-        return layer.msg('上传失败');
-      }
-      //上传成功
-    }
-    ,error: function(){
-      //演示失败状态，并实现重传
-      var demoText = $('#demoText');
-      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
-      demoText.find('.demo-reload').on('click', function(){
-        uploadInst.upload();
-      });
-    }
-  });
-  
-  
- /*  //选完文件后不自动上传
-  upload.render({
-    elem: '#test1'
-    ,url: '/upload/'
-    ,auto: false
-    //,multiple: true
-    ,bindAction: '#test1'
-    ,done: function(res){
-      console.log(res)
-    }
-  }); */
-  
-});
 </script>
 
 

@@ -80,6 +80,34 @@ public class VipAction extends ActionSupport implements ServletRequestAware, Ser
 			writer.close();
 		}
 	}
+	
+	/**
+	 * 对vip的电话号进行判断
+	 * 
+	 * @author ZHENGBIN
+	 *
+	 */
+	public void selTel(){
+		PrintWriter writer = null;
+		try {
+			String tel = request.getParameter("tel");
+			writer = response.getWriter();
+			boolean flag = vs.selTel(tel);
+			if (flag) {
+				//查到了返回1
+				writer.print("1");
+			} else {
+				writer.print("0");
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			writer.flush();
+			writer.close();
+		}
+	}
 
 	/**
 	 * 会员录入
@@ -94,10 +122,20 @@ public class VipAction extends ActionSupport implements ServletRequestAware, Ser
 			MultiPartRequestWrapper mpRequest = (MultiPartRequestWrapper)request; 
 			File[] files = mpRequest.getFiles("file");    //文件现在还在临时目录中
 			writer = response.getWriter();
-			if (files.length > 0 && files != null && vip != null) {
-				byte [] picture = FileConversion.PictureConversion(files[0]);
+			if (vip != null) {
+				byte [] picture;
+				if (files != null && files.length > 0) {
+					picture = FileConversion.PictureConversion(files[0]);
+				} else {
+					//获取默认图片路径
+					String path = request.getRealPath("/");
+					String allPath = path + "images" +"/logo.png";
+					File file = new File(allPath); 
+					picture = FileConversion.PictureConversion(file);
+				}
 				//将图片存入model
 				vip.setHyPhoto(picture);
+				
 				boolean falg = vs.addVip(vip);
 				if (falg) {
 					writer.print("1");

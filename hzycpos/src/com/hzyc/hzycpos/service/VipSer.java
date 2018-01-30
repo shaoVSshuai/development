@@ -1,6 +1,5 @@
 package com.hzyc.hzycpos.service;
 
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -55,6 +54,34 @@ public class VipSer {
 		return result;
 	}
 	
+	/**
+	 * 对vip电话处理
+	 * 
+	 * @author ZHENGBIN
+	 *
+	 */
+	public boolean selTel(String tel){
+		
+		boolean flag = false;
+		
+		Vip result = vm.selectByTel(tel);
+		
+		//查到了
+		if (result != null) {
+			flag = true;
+		}
+		
+		
+		return flag;
+		
+	}
+	
+	/**
+	 * 会员添加的处理
+	 * 
+	 * @author ZHENGBIN
+	 *
+	 */
 	public boolean addVip(Vip vip){
 		boolean flag = true;
 		int hyKindId;
@@ -70,19 +97,16 @@ public class VipSer {
 		
 		//获取充值金额
 		double hyTotal = vip.getHyTotal();
-		System.out.println("------------1");
 		//判断是啥类型的会员
 		String result = selType();
 		
 		if (hyTotal >= 0 && result == "1"){
 			//进来了证明是打折并储值会员
-			System.out.println("------------3");
+			
 			//余额
 			vip.setHyRemainMoney(hyTotal);
-			System.out.println("------------4");
 			//查询小于等于充值金额的所有会员类型
 			vkList = vkm.selByNeedMoney(hyTotal);
-			System.out.println("------------2");
 			if (vkList.size() != 0 && vkList != null) {
 				hyKindId = vkList.get(0).getId();
 				vip.setHyKindId(hyKindId);
@@ -120,8 +144,8 @@ public class VipSer {
 	                    + hyCard.substring(8, 10) + "-" 
 	                    + hyCard.substring(10, 12); 
 	        } 
+			vip.setHyBirthday(birthday);
 		}
-		vip.setHyBirthday(birthday);
 		
 		String hyDate = sdfHyDate.format(date);
 		vip.setHyDate(hyDate);

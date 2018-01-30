@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+
+	var curWwwPath = window.document.location.href;
+	var pathName = window.document.location.pathname;
+	var pos = curWwwPath.indexOf(pathName);
+	var localhostPath = curWwwPath.substring(0, pos);
+	var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+	var basePath = localhostPath + projectName + "/";
+
+	function vipType(){
+		ajaxTable();
+		var ajax=new XMLHttpRequest();
+	    //发送POST请求
+	    ajax.open("POST",basePath+"vip/vip_selType",true);
+	    ajax.send("");
+	    ajax.onreadystatechange=function(){ 
+	    	if (ajax.readyState == 4) {
+	    		var data= ajax.responseText;
+				if (data == 1) {
+					//打折&储值会员显示充值金额
+					document.getElementById("span_hyTotal").innerHTML = "应存金额：";
+					document.getElementById("td_hyToatal").innerHTML = "应存金额：";
+					//显示该提示
+					document.getElementById("p_hyStorage").style.display = "block";
+					document.getElementById("p_hyDiscount").style.display = "none";
+				} else if (data == 2) {
+					alert("数据库被错误修改,请先修复好！！");
+				}
+	 	 }};
+	}
+
+	function submitForm(){
+		//获取form表单
+		var formData=new FormData($('#form')[0]);
+		var ajax = new XMLHttpRequest();
+		ajax.open("POST",basePath+"vip/vipKind_addVipKind",true);
+		ajax.send(formData);
+		ajax.onreadystatechange=function(){
+			if (ajax.readyState == 4) {
+				var data = ajax.responseText;
+				//添加成功
+				if (data == 1) {
+					alert("添加成功！");
+					$("#table").children().remove();
+					ajaxTable();
+					//重置
+					$("input[type=reset]").trigger("click");
+				} else {
+					alert("添加失败！");
+				}
+			}
+		}
+		
+		
+	}
+	
+	function ajaxTable(){
+		var ajax = new XMLHttpRequest();
+		ajax.open("POST",basePath+"vip/vipKind_selVipKind",true);
+		ajax.send(null);
+		ajax.onreadystatechange=function(){
+			if (ajax.readyState == 4) {
+				var data = ajax.responseText;
+				var dataArray = eval("("+data+")");
+				var dataTable = "";
+				dataTable = '<tr><td>会员种类</td>' +
+							'<td>对应折扣</td>' +
+							'<td id="td_hyToatal">消费金额</td>' +
+							'<td>备注</td></tr>';
+				for(var i= 0;i < dataArray.vkList.length;i++){
+					dataTable += '<tr><td>'+dataArray.vkList[i].kind +
+								'</td><td>'+dataArray.vkList[i].discount +
+								'</td><td>'+dataArray.vkList[i].needMoney +
+								'</td><td>'+dataArray.vkList[i].remark +
+								'</td></tr>';
+				}
+				var newDiv = $("<tbody></tbody>");
+				newDiv.html(dataTable);
+				$("#table").append(newDiv);
+			}
+		}
+		
+	}
+	
+</script>
+<style type="text/css">
+	table{
+		width:400px;
+		height:200px;
+	}
+	form{
+		margin-top:50px;
+	}
+</style>
+</head>
+<body onload="vipType()">
+
+	<table border="1" id="table">
+	</table>
+	
+	
+	<form action="#" method="post" id="form">
+		<p id="p_hyDiscount" style="display: block">会员办理打折卡时默认类型为消费金额最小的，若消费金额大于某个类型，则会升级</p>
+		会员类型：<input type="text" placeholder="如黄金会员" name="vk.kind"/> 		
+		<p>具体折扣：<input type="text" placeholder="如9折则填0.9" name="vk.discount"/>若不想打折则填：1</p>	
+		<p id="p_hyStorage" style="display: none">会员办理储值并打折时，会根据应存金额小于该金额且最近的来办理会员类型，所有最好设置一个默认值,若某次一次性充值超过某类型规定的应存金额，则会升级</p>
+		<span id="span_hyTotal">消费金额：</span><input type="text" placeholder="如88.88" name="vk.needMoney"/>
+		备注：<input type="text" name="vk.remark"/>
+		<input type="reset" name="reset" style="display: none;" />
+		<input type="button" onclick="submitForm()" value="提交"/> 		
+	</form>
+
+</body>
+</html>

@@ -16,4 +16,6 @@ public interface VipMapper {
     int updateByPrimaryKeyWithBLOBs(Vip record);
 
     int updateByPrimaryKey(Vip record);
+    
+    Vip selectByTel(String tel);
 }

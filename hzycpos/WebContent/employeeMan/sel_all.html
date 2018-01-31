@@ -104,6 +104,10 @@ if('ontouchstart' in document.documentElement) document.write("<script src='/hzy
 		
 	});
 	
+	function detail(id){
+		window.open('employeeMan/detail.html','_blank' ,'width=600px,height=400px,top=100px,left=0');
+	}
+	
 	function page(page){
 		var trueName = $("#trueName").val().trim();
 		var idCard = $("#idCard").val().trim();
@@ -136,7 +140,7 @@ if('ontouchstart' in document.documentElement) document.write("<script src='/hzy
 						'<td>'+ obj[i].rname +'</td>'+
 						'<td>'+ obj[i].storeName +'</td>'+
 						'<td> '+
-							'<button class="btn btn-xs" id="detail">'+
+							'<button class="btn btn-xs" id="detail" onclick="detail(\''+ obj[i].id  +'\')">'+
 							'详细'+
 							'</button><button class="btn btn-xs" id="update" style="margin:0px 15px;">'+
 								'修改'+

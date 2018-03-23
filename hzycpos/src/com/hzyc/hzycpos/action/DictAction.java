@@ -24,7 +24,7 @@ public class DictAction extends ActionSupport implements ServletRequestAware, Se
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	
-	
+	private Dict[] payWayArray;
 	
 	//根据类别查询过滤字典
 	public String selDictByType(){
@@ -35,7 +35,11 @@ public class DictAction extends ActionSupport implements ServletRequestAware, Se
 		return SUCCESS;
 	}
 	
-	
+	public String selDictByPayWay() {
+		//DataDict.
+		this.payWayArray = DataDict.getDictByType("pay_way");
+		return SUCCESS;
+	}
 	
 	
 	
@@ -69,6 +73,14 @@ public class DictAction extends ActionSupport implements ServletRequestAware, Se
 		// TODO Auto-generated method stub
 		this.request = arg0;
 		
+	}
+
+	public Dict[] getPayWayArray() {
+		return payWayArray;
+	}
+
+	public void setPayWayArray(Dict[] payWayArray) {
+		this.payWayArray = payWayArray;
 	}
 
 }

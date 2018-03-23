@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.website.mappers.JobMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.website.beans.Job" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="job_code" property="jobCode" jdbcType="VARCHAR" />
+    <result column="job_name" property="jobName" jdbcType="VARCHAR" />
+    <result column="job_remark" property="jobRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- 注:job表应该是是主表  这里缓存所有职位的菜单 -->
+  <resultMap id="extraMap" type="com.hzyc.website.beans.Job" >
+    <id column="job_code" property="jobCode" jdbcType="VARCHAR" />
+    <collection property="pList" ofType="com.hzyc.website.beans.Privilege">
+    	 <result column="m_name" property="mName" jdbcType="VARCHAR" />
+	    <result column="m_url" property="mUrl" jdbcType="VARCHAR" />
+	    <result column="level" property="level" jdbcType="INTEGER" />
+	    <result column="p_id" property="pId" jdbcType="INTEGER" />
+	    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+    </collection>
+   </resultMap> 
+     <resultMap type="job" id="jobUntilEmployee">
+     		<id column="id" property="id"/>
+			<result column="job_code" property="jobCode"/>
+			<result column="job_name" property="jobName"/>
+			<result column="job_remark" property="jobRemark"/>
+			<collection property="employeeList" ofType="Employee">
+				<id column="id" property="id"/>
+				<result column="code" property="code"/>
+				<result column="name" property="name"/>
+				<result column="tel" property="tel"/>
+				<result column="sex" property="sex"/>
+				<result column="birthday" property="birthday"/>
+				<result column="idcard" property="idcard"/>
+		   </collection>
+	</resultMap>
+  	<select id="selectJobEmplee" resultMap="jobUntilEmployee" parameterType="String" >
+  	SELECT employee.* FROM job,employee_job,employee WHERE  job.job_code=employee_job.job_code AND employee_job.code=employee.code AND job.job_code=#{jobCode}         
+  	
+  	</select>
+   
+   
+   
+   
+  <sql id="Base_Column_List" >
+    id, job_code, job_name, job_remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from job
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from job
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.website.beans.Job" >
+    insert into job (id, job_code, job_name, 
+      job_remark)
+    values (#{id,jdbcType=INTEGER}, #{jobCode,jdbcType=VARCHAR}, #{jobName,jdbcType=VARCHAR}, 
+      #{jobRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.website.beans.Job" >
+    insert into job
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="jobCode != null" >
+        job_code,
+      </if>
+      <if test="jobName != null" >
+        job_name,
+      </if>
+      <if test="jobRemark != null" >
+        job_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jobCode != null" >
+        #{jobCode,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null" >
+        #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobRemark != null" >
+        #{jobRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.website.beans.Job" >
+    update job
+    <set >
+      <if test="jobCode != null" >
+        job_code = #{jobCode,jdbcType=VARCHAR},
+      </if>
+      <if test="jobName != null" >
+        job_name = #{jobName,jdbcType=VARCHAR},
+      </if>
+      <if test="jobRemark != null" >
+        job_remark = #{jobRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.website.beans.Job" >
+    update job
+    set job_code = #{jobCode,jdbcType=VARCHAR},
+      job_name = #{jobName,jdbcType=VARCHAR},
+      job_remark = #{jobRemark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查询角色 -->
+  <select id="selRole" parameterType="Job" resultMap="BaseResultMap">
+  	select 
+  		<include refid="Base_Column_List"></include>
+  	from job
+  		<where>
+			<if test="jobCode != null and jobCode != ''">
+			and job_code = #{jobCode}
+     		 </if>
+			<if test="jobName != null and jobName != ''">
+			and job_name like #{jobName}
+		      </if>
+			<if test="jobRemark != null and jobRemark != ''">
+			and job_remark = #{jobRemark}
+		      </if>
+  		</where>
+  </select>
+  <!-- 根据二级部门查询所属职位 -->
+  <select id="selJobByDept2" parameterType="String" resultMap="BaseResultMap" >
+  	SELECT 
+  		<include refid="Base_Column_List"></include>
+  	 FROM job WHERE job_code IN(SELECT job_code FROM dept_job WHERE  dept_level = #{value} )
+  </select>
+  
+   <!-- 缓存所有角色菜单树 -->
+  <select id="selAllRoleMenu" resultMap="extraMap" >
+  	SELECT job_id job_code, privilege.*  FROM job_privilege,privilege WHERE  job_privilege.p_id = privilege.id  
+  </select>
+  <select id="selMaxCode" resultType="String">
+  	SELECT MAX(job_code) FROM job
+  </select>
+  
+  <select id="selJobCodeByJobName" parameterType="String" resultMap="BaseResultMap">
+    SELECT job_code FROM job WHERE job_name=#{jobName}
+  </select>
+  <select id="selJobNameByJobCode" parameterType="String" resultType="String">
+    SELECT job_name FROM job WHERE job_code=#{jobCode}
+  </select>
+  
+  <!--  查询二级部门下的职位 -->
+  <select id="selDeptByLevel2" resultMap="BaseResultMap" parameterType="String">
+  	SELECT job.* FROM job,dept_job,dept WHERE job.job_code=dept_job.job_code AND dept_job.dept_code=dept.dept_code AND dept.dept_code=#{dept.dept_code}
+  </select>
+</mapper>

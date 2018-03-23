@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.website.mappers.LogMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.website.beans.Log" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="loginAccount" property="loginaccount" jdbcType="VARCHAR" />
+    <result column="loginIp" property="loginip" jdbcType="VARCHAR" />
+    <result column="actionUrl" property="actionurl" jdbcType="VARCHAR" />
+    <result column="module" property="module" jdbcType="VARCHAR" />
+    <result column="method" property="method" jdbcType="VARCHAR" />
+    <result column="actionTime" property="actiontime" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="gmtCreate" property="gmtcreate" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="exception" property="exception" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, loginAccount, loginIp, actionUrl, module, method, actionTime, description, gmtCreate, 
+    state , exception
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.website.beans.Log" >
+    insert into log (id, loginAccount, loginIp, 
+      actionUrl, module, method, 
+      actionTime, description, gmtCreate, 
+      state , exception)
+    values (#{id,jdbcType=INTEGER}, #{loginaccount,jdbcType=VARCHAR}, #{loginip,jdbcType=VARCHAR}, 
+      #{actionurl,jdbcType=VARCHAR}, #{module,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
+      #{actiontime,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, #{gmtcreate,jdbcType=VARCHAR}, 
+      #{state,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.website.beans.Log" >
+    insert into log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginaccount != null" >
+        loginAccount,
+      </if>
+      <if test="loginip != null" >
+        loginIp,
+      </if>
+      <if test="actionurl != null" >
+        actionUrl,
+      </if>
+      <if test="module != null" >
+        module,
+      </if>
+      <if test="method != null" >
+        method,
+      </if>
+      <if test="actiontime != null" >
+        actionTime,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="gmtcreate != null" >
+        gmtCreate,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="exception != null" >
+        exception,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginaccount != null" >
+        #{loginaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="loginip != null" >
+        #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="actionurl != null" >
+        #{actionurl,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null" >
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="actiontime != null" >
+        #{actiontime,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtcreate != null" >
+        #{gmtcreate,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="exception != null" >
+        #{exception,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.website.beans.Log" >
+    update log
+    <set >
+      <if test="loginaccount != null" >
+        loginAccount = #{loginaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="loginip != null" >
+        loginIp = #{loginip,jdbcType=VARCHAR},
+      </if>
+      <if test="actionurl != null" >
+        actionUrl = #{actionurl,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null" >
+        module = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        method = #{method,jdbcType=VARCHAR},
+      </if>
+      <if test="actiontime != null" >
+        actionTime = #{actiontime,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtcreate != null" >
+        gmtCreate = #{gmtcreate,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.website.beans.Log" >
+    update log
+    set loginAccount = #{loginaccount,jdbcType=VARCHAR},
+      loginIp = #{loginip,jdbcType=VARCHAR},
+      actionUrl = #{actionurl,jdbcType=VARCHAR},
+      module = #{module,jdbcType=VARCHAR},
+      method = #{method,jdbcType=VARCHAR},
+      actionTime = #{actiontime,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      gmtCreate = #{gmtcreate,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 根据时间查询 -->
+  <select id="selectByTime" parameterType="com.hzyc.website.beans.Log" resultType="com.hzyc.website.beans.Log">
+		select  
+		<include refid="Base_Column_List"></include>
+		 from log 
+		 <where>
+		 	<if test="startTime != null and startTime != ''">
+		 		and gmtCreate  &gt; #{startTime} 
+		 	</if>
+		 	<if test="endTime != null and endTime != ''">
+		 	    and gmtCreate &lt; #{endTime} 
+		 	</if>
+		 	<if test="state != null and state != ''">
+		 	    and state = #{state} 
+		 	</if>
+		 	
+		 </where>
+		order by gmtCreate desc; 
+  </select>
+  
+  <delete id="delLogByTime">
+  		delete from log where gmtCreate  &gt; #{stime} and  gmtCreate &lt; #{etime} 
+  </delete>
+</mapper>

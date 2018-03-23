@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+/*
+* layui样式：表格td内边距降低
+*/
+.layui-table td, .layui-table th {
+    position: relative;
+    padding: 6px 15px;
+    min-height: 20px;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.hzyc-input {
+	width: 200px;
+	height: 28px;
+	line-height: 28px;
+	border: 1px solid #e6e6e6;
+	background-color: #fff;
+	border-radius: 2px;
+}
+.hzyc-select{
+	width: 200px;
+	height: 28px;
+	border-radius: 2px;
+	border: 1px solid #e6e6e6;
+	background-color: #fff;
+}
+
+.hzyc-table {
+	width: 100%;
+	margin: 10px 0;
+	background-color: #fff;
+	text-align: left;
+	 border-color:#e6e6e6; 
+}
+
+.hzyc-table tr {
+	padding: 0;
+}
+
+.hzyc-table tr:nth-child(2n){
+	background-color: #e3e3e3;
+}
+
+/*
+*	重置按钮
+*/
+input[type='reset']{
+	width: 60px;
+    height: 30px;
+    background-color: #FF5722;;
+    border: 0;
+    font-size:14px;
+    color: #fff;
+}
+input[type='submit']{
+	width: 60px;
+    height: 30px;
+    background-color: #009688;
+    border: 0;
+    font-size:14px;
+    color: #fff;
+}
+input[type='button']{
+	width: 60px;
+    height: 30px;
+    background-color: #1E9FFF;;
+    border: 0;
+    font-size:14px;
+    color: #fff;
+}
+ul{
+	list-style:none;
+}
+ul li{
+	display:inline-block;
+	margin:0px 10px;
+}
+/**
+*小型按钮
+*/
+.hzyc-small-button{
+	width:45px;
+	height:27px;
+	border:0;
+	background-color: #f09900;
+	border-radius:1px;
+}

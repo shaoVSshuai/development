@@ -2,10 +2,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
 <title>Insert title here</title>
 <script type="text/javascript">
 var goods =new Array();
 var totalPrice ;
+var curWwwPath = window.document.location.href;
+var pathName = window.document.location.pathname;
+var pos = curWwwPath.indexOf(pathName);
+var localhostPath = curWwwPath.substring(0, pos);
+var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
+var basePath = localhostPath + projectName + "/";
 function load(){
 	var url=location.search;
 	var Request = new Object();
@@ -16,24 +23,45 @@ function load(){
 	        Request[strs[i ].split("=")[0]]=unescape(strs[i].split("=")[1]);
 	    }
 	}
+	//获取地址栏传过来的值
 	goods = Request["goods"];
 	totalPrice = Request["totalPrice"];
 	document.getElementById("payWay1RevenueMoney").value = totalPrice;
 	document.getElementById("goods").value = goods;
 	document.getElementById("totalPrice").value = totalPrice;
+	
+	//ajax获取字典里面的支付方式
+	ajaxGetWay();
 }
+//走后台插入订单
 function insertOrder(){
 	
-	var curWwwPath = window.document.location.href;
-	var pathName = window.document.location.pathname;
-    var pos = curWwwPath.indexOf(pathName);
-    var localhostPath = curWwwPath.substring(0, pos);
-    var projectName = pathName.substring(0, pathName.substr(1).indexOf('/') + 1);
-    var basePath = localhostPath + projectName + "/";
-    
     var form = document.getElementById("formId");
     form.action = basePath+"order/insertOrder";
     form.submit();
+}
+//ajax获取从后台查到的支付方式的数据
+function ajaxGetWay(){
+	var ajax = new XMLHttpRequest();
+	ajax.open("POST",basePath+"dict/selDictByPayWay",true);
+	ajax.send("");
+	ajax.onreadystatechange=function(){
+		if (ajax.readyState == 4) {
+			var data = ajax.responseText;
+			var dataArray = eval("("+data+")");
+			/* 把从数据库里面查询到的支付方式循环赋值到select1上*/
+			for(var i = 0 ;i<dataArray.payWayArray.length;i++){
+				var newOption = document.createElement("option");
+				newOption.innerText = dataArray.payWayArray[i].dictName;
+				newOption.value = dataArray.payWayArray[i].dictName;
+				$("#payWay1").append(newOption);
+				var newOption = document.createElement("option");
+				newOption.innerText = dataArray.payWayArray[i].dictName;
+				newOption.value = dataArray.payWayArray[i].dictName;
+				$("#payWay2").append(newOption);
+			}
+		}
+	}
 }
 </script>
 </head>
@@ -42,19 +70,13 @@ function insertOrder(){
 <input type="hidden" name="goods" id="goods"/>
 <input type="hidden" name="totalPrice" id="totalPrice"/>
  <div>
- 	支付方式：<select name="orders.payWay1">
- 					<option>现金支付</option>
- 					<option>微信支付</option>
- 					<option>支付宝支付</option>
+ 	支付方式：<select id="payWay1" name="orders.payWay1">
  			</select>
  	支付金额：<input type="text" name="orders.payWay1RevenueMoney" id="payWay1RevenueMoney"/>
  </div>
 <div>
-	组合方式：<select name="orders.payWay2">
+	组合方式：<select id="payWay2" name="orders.payWay2">
 					<option>不使用组合支付方式</option>
-					<option>现金支付</option>
-					<option>微信支付</option>
-					<option>支付宝支付</option>
 			</select>
 	支付金额：<input type="text" name="orders.payWay2RevenueMoney"/>
  </div>

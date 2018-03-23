@@ -15,7 +15,9 @@
 			<result name="login">/login.jsp</result>  
 			<result name="input" type="dispatcher">/index.jsp</result>  
 		</action>
-		
+		<action name="selDictByPayWay" class="dictAction" method="selDictByPayWay" >
+				<result name="success" type="json"></result>
+		</action>
 		
 		
 	</package>

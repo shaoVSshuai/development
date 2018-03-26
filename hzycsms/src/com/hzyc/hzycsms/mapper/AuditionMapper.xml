@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.hzycsms.mapper.AuditionMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.hzycsms.bean.Audition" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="CHAR" />
+    <result column="apply_time" property="applyTime" jdbcType="CHAR" />
+    <result column="apply_code" property="applyCode" jdbcType="CHAR" />
+    <result column="stu_dept" property="stuDept" jdbcType="VARCHAR" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="apply_lesson" property="applyLesson" jdbcType="VARCHAR" />
+    <result column="classes" property="classes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, tel, apply_time, apply_code, stu_dept, school, apply_lesson ,classes
+  </sql>
+  <!-- 插入试听学员 -->
+  <insert id="insertSelective" parameterType="com.hzyc.hzycsms.bean.Audition" >
+    insert into audition
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="applyCode != null" >
+        apply_code,
+      </if>
+      <if test="stuDept != null" >
+        stu_dept,
+      </if>
+      <if test="school != null" >
+        school,
+      </if>
+      <if test="applyLesson != null" >
+        apply_lesson,
+      </if>
+      <if test="classes != null" >
+        classes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=CHAR},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=CHAR},
+      </if>
+      <if test="applyCode != null" >
+        #{applyCode,jdbcType=CHAR},
+      </if>
+      <if test="stuDept != null" >
+        #{stuDept,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="applyLesson != null" >
+        #{applyLesson,jdbcType=VARCHAR},
+      </if>
+      <if test="classes != null" >
+        #{classes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+ 
+</mapper>

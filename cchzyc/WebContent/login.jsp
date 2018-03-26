@@ -35,7 +35,7 @@
 						<label class="beg-login-icon">
                         <i class="layui-icon">&#xe642;</i>
                     </label>
-						<input type="password" name="password" lay-verify="required" value="111111" autocomplete="off" placeholder="这里输入密码" class="layui-input">
+						<input type="password" name="password" lay-verify="required" value="123456" autocomplete="off" placeholder="这里输入密码" class="layui-input">
 					</div>
 					<div class="layui-form-item">
 						<div class="beg-pull-left beg-login-remember">

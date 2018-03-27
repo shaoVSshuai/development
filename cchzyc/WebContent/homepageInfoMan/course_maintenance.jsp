@@ -9,12 +9,15 @@
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
 <title>Insert title here</title>
 </head>
 <body>
-<form action="<%=basePath%>HomepageInfoManCon/selCourse.hzyc" method="post">
-<input type="submit">
-</form>
+	<div style="width:100%;height:30px;background-color: #f2f2f2;line-height:30px;font-size:13px;color:#444;padding-left:10px;">
+		当前位置 >> 首页信息管理 >> 精品课程维护  
+	</div>
+	<iframe src="<%=basePath%>courseCon/courseDisplay.hzyc" name="result" style="width:1130px;height:450px;margin-top:20px">
+	
+	</iframe>
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.hzyc.website.beans;
 
+import java.util.Arrays;
+
 public class Course {
     private Integer id;
 
@@ -60,4 +62,10 @@ public class Course {
     public void setIcon(byte[] icon) {
         this.icon = icon;
     }
+
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", courseName=" + courseName + ", title=" + title + ", application=" + application
+				+ ", describe=" + describe + ", icon=" + Arrays.toString(icon) + "]";
+	}
 }

@@ -224,30 +224,5 @@ public class InitService extends HttpServlet{
 		return list;
 	}
 	
-	/**
-	 * @author 郑斌
-	 * @param request
-	 * @return
-	 * 在初始化的时候把课程图标缓存到服务器下
-	 */
-	public List<Course> courseIcon(HttpServletRequest request){
-		List<Course> cList = cm.selCourse();
-		for (int i=0; i<cList.size(); i++) {
-			if (cList.get(i).getIcon() != null && !cList.get(i).getIcon().equals("")) {
-				FileOutputStream fos;
-				try {
-					String path = request.getSession().getServletContext().getRealPath("/");
-					String finalPathAndName = path +"images/course/"+cList.get(i).getIconName();
-					fos = new FileOutputStream(finalPathAndName);
-					fos.write(cList.get(i).getIcon());
-					fos.close();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
-		return cList;
-	}
 	
 }

@@ -45,7 +45,7 @@ public class SystemInit implements ServletContextListener {
 	/**
      * @see ServletContextListener#contextInitialized(ServletContextEvent)
      */
-    public void contextInitialized(ServletContextEvent sce , HttpServletRequest request) {
+    public void contextInitialized(ServletContextEvent sce) {
         // TODO Auto-generated method stub
     	System.out.println("====================容器启动,数据字典加载中...===========================");
     	try {
@@ -72,10 +72,6 @@ public class SystemInit implements ServletContextListener {
 		    sys.getInitService().selCourse();
 		    System.out.println("====================把课程信息存在redis完毕！===========================");
 			
-		    System.out.println("====================课程图片缓存中...===========================");
-		    sys.getInitService().courseIcon(request);
-		    System.out.println("====================课程图片缓存完毕！===========================");
-			
 		    System.out.println("====================公司信息加载中...(用于招聘)===========================");
 		   List<Company> companyList = sys.getInitService().selAllCompany();
 		   CompanyForInit.setList(companyList);
@@ -100,9 +96,4 @@ public class SystemInit implements ServletContextListener {
         // TODO Auto-generated method stub
     }
 
-	public void contextInitialized(ServletContextEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }

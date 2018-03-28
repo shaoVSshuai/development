@@ -16,8 +16,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=basePath%>plugins/layui/css/layui.css" media="all">
-<script src="<%=basePath%>plugins/layui/layui.js"></script>
- <script src="<%=basePath%>js/jquery1.4.2.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/common.css" >
+<script type="text/javascript" src="<%=basePath%>js/jquery-3.2.1.js" charset=”utf-8″></script>
+<script  type="text/javascript" src="<%=basePath%>plugins/layer/layer.js" charset=”utf-8″></script>
+<script type="text/javascript" src="<%=basePath%>plugins/layui/layui.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/jquery1.4.2.js" charset=”utf-8″></script>
  <style type="text/css">
  	.omit {
 		max-width: 110px;
@@ -57,8 +60,8 @@
 				        		<td><%=cList.get(i).getApplication()%></td>
 				        		<td class="omit"><%=cList.get(i).getDescribe()%></td>
 				        		<td>
-				        		<button class="layui-btn layui-btn-small layui-btn-normal" style="margin:0" >详细</button>
-				        		<button class="layui-btn layui-btn-small layui-btn-warm" style="margin:0" >修改</button>
+				        		<button id="detail" onclick="detail('<%=cList.get(i).getId() %>')" class="layui-btn layui-btn-small layui-btn-normal" style="margin:0" >详细</button>
+				        		<button id="upd" class="layui-btn layui-btn-small layui-btn-warm" style="margin:0" >修改</button>
 				        		</td>
 				        	</tr>
 	        	<%		
@@ -75,6 +78,23 @@
 	        <tfoot>
 	        </tfoot>
 		</table>
+		<script type="text/javascript">
+		function 
+	$(document).ready(function(){
+		$("#upd").click(function(){
+			parent.layer.open({
+			      type: 2,
+			      title: '招聘信息修改',
+			      maxmin: true,
+			      name:'add',
+			      shadeClose: false, //点击遮罩关闭层
+			      area : ['900px' , '520px'],
+			      content: '<%=basePath%>recInfCon/recInfUpdate.hzyc'
+			});
+		});
+		
+	});
+	</script>
 	</form>
 </body>
 </html>

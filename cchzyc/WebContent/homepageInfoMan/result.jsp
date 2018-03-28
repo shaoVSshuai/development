@@ -16,11 +16,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=basePath%>plugins/layui/css/layui.css" media="all">
-<link rel="stylesheet" href="<%=basePath%>css/common.css" >
-<script type="text/javascript" src="<%=basePath%>js/jquery-3.2.1.js" charset=”utf-8″></script>
-<script  type="text/javascript" src="<%=basePath%>plugins/layer/layer.js" charset=”utf-8″></script>
-<script type="text/javascript" src="<%=basePath%>plugins/layui/layui.js"></script>
-<script type="text/javascript" src="<%=basePath%>js/jquery1.4.2.js" charset=”utf-8″></script>
+<script src="<%=basePath%>plugins/layui/layui.js"></script>
+ <script src="<%=basePath%>js/jquery1.4.2.js"></script>
  <style type="text/css">
  	.omit {
 		max-width: 110px;
@@ -29,6 +26,17 @@
 		white-space: nowrap;
 		}
  </style>
+ <script type="text/javascript">
+ function detail(id){
+		var iWidth=620;                          //弹出窗口的宽度; 
+		var iHeight=420; 
+     var iTop = (window.screen.availHeight - 30 - iHeight) / 2; 
+     //获得窗口的水平位置 
+     var iLeft = (window.screen.availWidth - 10 - iWidth) / 2; 
+     window.open("<%=basePath%>/homepageInfoMan/detail.jsp?code="+id, "_blank", 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft +
+     ',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no'); 	
+	}
+ </script>
 </head>
 <body>
 	<% 
@@ -60,8 +68,8 @@
 				        		<td><%=cList.get(i).getApplication()%></td>
 				        		<td class="omit"><%=cList.get(i).getDescribe()%></td>
 				        		<td>
-				        		<button id="detail" onclick="detail('<%=cList.get(i).getId() %>')" class="layui-btn layui-btn-small layui-btn-normal" style="margin:0" >详细</button>
-				        		<button id="upd" class="layui-btn layui-btn-small layui-btn-warm" style="margin:0" >修改</button>
+				        		<button onclick="detail('<%=cList.get(i).getDescribe()%>')" class="layui-btn layui-btn-small layui-btn-normal" style="margin:0" >详细</button>
+				        		<button class="layui-btn layui-btn-small layui-btn-warm" style="margin:0" >修改</button>
 				        		</td>
 				        	</tr>
 	        	<%		
@@ -78,23 +86,7 @@
 	        <tfoot>
 	        </tfoot>
 		</table>
-		<script type="text/javascript">
-		function 
-	$(document).ready(function(){
-		$("#upd").click(function(){
-			parent.layer.open({
-			      type: 2,
-			      title: '招聘信息修改',
-			      maxmin: true,
-			      name:'add',
-			      shadeClose: false, //点击遮罩关闭层
-			      area : ['900px' , '520px'],
-			      content: '<%=basePath%>recInfCon/recInfUpdate.hzyc'
-			});
-		});
-		
-	});
-	</script>
 	</form>
+	
 </body>
 </html>

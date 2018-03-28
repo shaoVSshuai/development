@@ -1,8 +1,11 @@
 package com.hzyc.website.services;
 
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -48,6 +51,7 @@ public class InitService {
 	CompanyMapper companyMapper;
 	@Autowired
 	CourseMapper cm;
+	
 	/**
 	 * 数据字典初始化 缓存
 	 * 		格式 ：  String(sex)，Map<String,String>(key:1,value:女)
@@ -217,6 +221,32 @@ public class InitService {
 		RedisPool.getClient().set("jsonString", jsonString);
 		System.out.println("redis存储字段runoobkey:" + RedisPool.getClient().get("jsonString"));
 		return list;
+	}
+	
+	/**
+	 * @author 郑斌
+	 * @param request
+	 * @return
+	 * 在初始化的时候把课程图标缓存到服务器下
+	 */
+	public List<Course> courseIcon(HttpServletRequest request){
+		List<Course> cList = cm.selCourse();
+		for (int i=0; i<cList.size(); i++) {
+			if (cList.get(i).getIcon() != null && !cList.get(i).getIcon().equals("")) {
+				FileOutputStream fos;
+				try {
+					String path = request.getSession().getServletContext().getRealPath("/");
+					String finalPathAndName = path +"images/course/"+cList.get(i).getIconName();
+					fos = new FileOutputStream(finalPathAndName);
+					fos.write(cList.get(i).getIcon());
+					fos.close();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return cList;
 	}
 	
 }

@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.hzyc.website.beans.Course;
 import com.hzyc.website.beans.StudentInfo;
 import com.hzyc.website.mappers.CourseMapper;
+import com.hzyc.website.utils.BeanUtil;
 
 @Service
 public class CourseSer {
@@ -29,6 +30,14 @@ public class CourseSer {
 		return cList;
 	}
 	
+	/**
+	 * @return
+	 * 根据id查询课程
+	 */
+	public Course selCourseById(int id){
+		Course course = cm.selectByPrimaryKey(id);
+		return course;
+	}
 	/**
 	 * @author 马荣福
 	 * @param c 课程
@@ -63,6 +72,12 @@ public class CourseSer {
 		
 		
 		flag = cm.updateByPrimaryKeySelective(c);
+		//如果数据库更新了，则更新redis
+		if(flag>=1) {
+			InitService init =  (InitService)BeanUtil.getBean("InitService");
+			init.selCourse();
+		}
+		
 		return flag >= 1 ? true : false;
 	}
 }

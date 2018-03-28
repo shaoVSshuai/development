@@ -65,5 +65,13 @@ public class CourseCon {
 		}
 		return b ? "../../success.jsp" : "../../fail.jsp";
 	}
-
+	
+	@RequestMapping("/selCourseById.hzyc")
+	public ModelAndView selCourseById(int id) {
+		ModelAndView modelAndView = new ModelAndView();
+		Course course = cs.selCourseById(id);
+		modelAndView.addObject("course",course);
+		modelAndView.setViewName("../homepageInfoMan/result_update.jsp");
+		return modelAndView;
+	}
 }

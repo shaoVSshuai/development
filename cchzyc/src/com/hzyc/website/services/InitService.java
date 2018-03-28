@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ import net.sf.json.JSONArray;
  * 异常统一由Controller进行try catch ,此处只抛出不处理
  * @author 邵帅
  */
-public class InitService {
+public class InitService extends HttpServlet{
 	
 	//正向字典
 	private LinkedHashMap<String,HashMap<String,String>> totalMap = new LinkedHashMap<String,HashMap<String,String>>();

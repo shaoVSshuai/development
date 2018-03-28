@@ -16,8 +16,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=basePath%>plugins/layui/css/layui.css" media="all">
-<script src="<%=basePath%>plugins/layui/layui.js"></script>
- <script src="<%=basePath%>js/jquery1.4.2.js"></script>
+<link rel="stylesheet" href="<%=basePath%>css/common.css" >
+<script type="text/javascript" src="<%=basePath%>js/jquery-3.2.1.js" charset=”utf-8″></script>
+<script  type="text/javascript" src="<%=basePath%>plugins/layer/layer.js" charset=”utf-8″></script>
+<script type="text/javascript" src="<%=basePath%>plugins/layui/layui.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/jquery1.4.2.js" charset=”utf-8″></script>
+ 
  <style type="text/css">
  	.omit {
 		max-width: 110px;
@@ -42,7 +46,6 @@
 	<% 
 		List<Course> cList = (List<Course>)request.getAttribute("cList");
 	%>
-	<form action="" method="post"  id="form">
 		<table class="layui-table" id="test">
 	        <thead>
 	            <tr>
@@ -69,7 +72,23 @@
 				        		<td class="omit"><%=cList.get(i).getDescribe()%></td>
 				        		<td>
 				        		<button onclick="detail('<%=cList.get(i).getDescribe()%>')" class="layui-btn layui-btn-small layui-btn-normal" style="margin:0" >详细</button>
-				        		<button class="layui-btn layui-btn-small layui-btn-warm" style="margin:0" >修改</button>
+				        		<button id="upd<%=i %>" class="layui-btn layui-btn-small layui-btn-warm" style="margin:0" >修改</button>
+				        		<script type="text/javascript">
+									$(document).ready(function(){
+									$("#upd<%=i%>").click(function(){
+										layer.open({
+										      type: 2,
+										      title: '精品课程修改',
+										      maxmin: true,
+										      name:'add',
+										      shadeClose: false, //点击遮罩关闭层
+										      area : ['800px' , '420px'],
+										      content: '<%=basePath%>/homepageInfoMan/result_update.jsp?id=<%=cList.get(i).getId()%>'
+										});
+									});
+									
+								});
+								</script>
 				        		</td>
 				        	</tr>
 	        	<%		
@@ -86,7 +105,5 @@
 	        <tfoot>
 	        </tfoot>
 		</table>
-	</form>
-	
 </body>
 </html>

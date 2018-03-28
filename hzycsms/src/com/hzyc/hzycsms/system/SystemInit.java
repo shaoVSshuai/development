@@ -52,7 +52,6 @@ public class SystemInit implements ServletContextListener {
 	    	System.out.println("====================课程图标缓存中...===========================");
 		    sys.getInitService().courseIcon(sce);
 		    System.out.println("====================课程图标缓存完毕！===========================");
-				
 	    	
     	} catch (Exception e) {
 			// TODO: handle exception
@@ -70,5 +69,6 @@ public class SystemInit implements ServletContextListener {
     public void contextDestroyed(ServletContextEvent arg0) {
         // TODO Auto-generated method stub
     }
+    
 	
 }

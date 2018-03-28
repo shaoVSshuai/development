@@ -1,6 +1,7 @@
 package com.hzyc.website.controllers;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.hzyc.website.beans.Course;
@@ -47,6 +49,21 @@ public class CourseCon {
 		modelAndView.addObject("cList",cList);
 		modelAndView.setViewName("../homepageInfoMan/result.jsp");
 		return modelAndView;
+	}
+	
+	@RequestMapping("/updateCourse.hzyc")
+	public String update(Course course,MultipartFile img1,HttpServletRequest request){
+		//课程信息修改
+		boolean b = false;
+		//获取文件字节数组
+		try {
+			
+			b = cs.updateCourseInfo(course, img1, request);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		return b ? "../../success.jsp" : "../../fail.jsp";
 	}
 
 }

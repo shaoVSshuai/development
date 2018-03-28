@@ -4,17 +4,17 @@ import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import com.hzyc.hzycsms.bean.Course;
 import com.hzyc.hzycsms.bean.Dictionary;
 import com.hzyc.hzycsms.mapper.CourseMapper;
 import com.hzyc.hzycsms.mapper.DictionaryMapper;
 import com.hzyc.hzycsms.system.Dict;
+import com.hzyc.hzycsms.util.RedisPool;
+
+import net.sf.json.JSONArray;
 
 /**
  * 容器启动初始化数据字典等操作
@@ -99,6 +99,4 @@ public class InitService {
 		}
 		return cList;
 	}
-	  
-	
 }

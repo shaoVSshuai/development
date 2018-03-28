@@ -209,7 +209,6 @@ public class InitService extends HttpServlet{
 		return companyMapper.selAllCompany();
 		
 	}
-	
 	/**
 	 * @author ÂíÈÙ¸£
 	 * @return
@@ -222,7 +221,7 @@ public class InitService extends HttpServlet{
 		RedisPool.getClient().set("jsonString", jsonString);
 		System.out.println("redis´æ´¢×Ö¶Îrunoobkey:" + RedisPool.getClient().get("jsonString"));
 		return list;
-	}
+	}  
 	
 	
 }

@@ -8,16 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.hzyc.website.beans.Address;
 import com.hzyc.website.beans.Company;
+import com.hzyc.website.beans.Course;
 import com.hzyc.website.beans.Dictionary;
 import com.hzyc.website.beans.Job;
 import com.hzyc.website.beans.Log;
 import com.hzyc.website.beans.Privilege;
 import com.hzyc.website.mappers.CompanyMapper;
+import com.hzyc.website.mappers.CourseMapper;
 import com.hzyc.website.mappers.DictionaryMapper;
 import com.hzyc.website.mappers.JobMapper;
 import com.hzyc.website.mappers.LogMapper;
 import com.hzyc.website.mappers.PrivilegeMapper;
 import com.hzyc.website.system.Dict;
+import com.hzyc.website.utils.RedisPool;
+
+import net.sf.json.JSONArray;
 /**
  * 容器启动初始化数据字典等操作
  * 	
@@ -41,7 +46,8 @@ public class InitService {
 	PrivilegeMapper pm;
 	@Autowired
 	CompanyMapper companyMapper;
-	
+	@Autowired
+	CourseMapper cm;
 	/**
 	 * 数据字典初始化 缓存
 	 * 		格式 ：  String(sex)，Map<String,String>(key:1,value:女)
@@ -197,6 +203,20 @@ public class InitService {
 		
 		return companyMapper.selAllCompany();
 		
+	}
+	
+	/**
+	 * @author 马荣福
+	 * @return
+	 * 在初始化的时候把课程存在redis里面
+	 */
+	public List<Course> selCourse(){
+		List<Course> list = cm.selCourse();
+		String jsonString = JSONArray.fromObject(list).toString();
+		System.out.println(jsonString+"-------------------");
+		RedisPool.getClient().set("jsonString", jsonString);
+		System.out.println("redis存储字段runoobkey:" + RedisPool.getClient().get("jsonString"));
+		return list;
 	}
 	
 }

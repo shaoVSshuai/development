@@ -1,9 +1,9 @@
 package com.hzyc.website.beans;
 
-import java.util.Arrays;
-
 public class Course {
     private Integer id;
+
+    private String iconName;
 
     private String courseName;
 
@@ -21,6 +21,14 @@ public class Course {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getIconName() {
+        return iconName;
+    }
+
+    public void setIconName(String iconName) {
+        this.iconName = iconName == null ? null : iconName.trim();
     }
 
     public String getCourseName() {
@@ -62,10 +70,4 @@ public class Course {
     public void setIcon(byte[] icon) {
         this.icon = icon;
     }
-
-	@Override
-	public String toString() {
-		return "Course [id=" + id + ", courseName=" + courseName + ", title=" + title + ", application=" + application
-				+ ", describe=" + describe + ", icon=" + Arrays.toString(icon) + "]";
-	}
 }

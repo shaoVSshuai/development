@@ -3,6 +3,7 @@
 <mapper namespace="com.hzyc.website.mappers.CourseMapper" >
   <resultMap id="BaseResultMap" type="com.hzyc.website.beans.Course" >
     <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="icon_name" property="iconName" jdbcType="VARCHAR" />
     <result column="course_name" property="courseName" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="application" property="application" jdbcType="VARCHAR" />
@@ -12,7 +13,7 @@
     <result column="icon" property="icon" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, course_name, title, application, describe
+    id, icon_name, course_name, title, application, describe
   </sql>
   <sql id="Blob_Column_List" >
     icon
@@ -30,18 +31,21 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.hzyc.website.beans.Course" >
-    insert into course (id, course_name, title, 
-      application, describe, icon
-      )
-    values (#{id,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
-      #{application,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, #{icon,jdbcType=LONGVARBINARY}
-      )
+    insert into course (id, icon_name, course_name, 
+      title, application, describe, 
+      icon)
+    values (#{id,jdbcType=INTEGER}, #{iconName,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{application,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=LONGVARBINARY})
   </insert>
   <insert id="insertSelective" parameterType="com.hzyc.website.beans.Course" >
     insert into course
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         id,
+      </if>
+      <if test="iconName != null" >
+        icon_name,
       </if>
       <if test="courseName != null" >
         course_name,
@@ -63,6 +67,9 @@
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
+      <if test="iconName != null" >
+        #{iconName,jdbcType=VARCHAR},
+      </if>
       <if test="courseName != null" >
         #{courseName,jdbcType=VARCHAR},
       </if>
@@ -83,6 +90,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.website.beans.Course" >
     update course
     <set >
+      <if test="iconName != null" >
+        icon_name = #{iconName,jdbcType=VARCHAR},
+      </if>
       <if test="courseName != null" >
         course_name = #{courseName,jdbcType=VARCHAR},
       </if>
@@ -103,7 +113,8 @@
   </update>
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hzyc.website.beans.Course" >
     update course
-    set course_name = #{courseName,jdbcType=VARCHAR},
+    set icon_name = #{iconName,jdbcType=VARCHAR},
+      course_name = #{courseName,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       application = #{application,jdbcType=VARCHAR},
       describe = #{describe,jdbcType=VARCHAR},
@@ -112,7 +123,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.hzyc.website.beans.Course" >
     update course
-    set course_name = #{courseName,jdbcType=VARCHAR},
+    set icon_name = #{iconName,jdbcType=VARCHAR},
+      course_name = #{courseName,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       application = #{application,jdbcType=VARCHAR},
       describe = #{describe,jdbcType=VARCHAR}

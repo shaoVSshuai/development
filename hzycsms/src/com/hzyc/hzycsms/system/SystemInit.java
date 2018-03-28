@@ -49,7 +49,10 @@ public class SystemInit implements ServletContextListener {
 	    	boolean isCacheDict = sys.getInitService().cacheDict();
 	    	System.out.println(isCacheDict ? "数据字典加载成功..." : "数据字典加载失败...");
 	    	
-
+	    	System.out.println("====================课程图标缓存中...===========================");
+		    sys.getInitService().courseIcon(sce);
+		    System.out.println("====================课程图标缓存完毕！===========================");
+				
 	    	
     	} catch (Exception e) {
 			// TODO: handle exception

@@ -39,6 +39,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring-webmvc-4.2.6.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aliyun-java-sdk-dysmsapi-1.0.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/aliyun-java-sdk-core-3.2.5.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jedis-2.9.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

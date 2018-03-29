@@ -37,8 +37,10 @@
      var iTop = (window.screen.availHeight - 30 - iHeight) / 2; 
      //获得窗口的水平位置 
      var iLeft = (window.screen.availWidth - 10 - iWidth) / 2; 
-     window.open("<%=basePath%>/homepageInfoMan/detail.jsp?code="+id, "_blank", 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft +
-     ',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no'); 	
+     var a = encodeURI("<%=basePath%>/homepageInfoMan/detail.jsp?code="+id);
+     alert(a);
+    // window.open(, "_blank", 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft +
+     //',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no'); 	
 	}
  </script>
 </head>

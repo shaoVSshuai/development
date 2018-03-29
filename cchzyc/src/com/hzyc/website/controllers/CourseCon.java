@@ -70,8 +70,11 @@ public class CourseCon {
 	@RequestMapping("/selCourseById.hzyc")
 	public ModelAndView selCourseById(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
+		System.out.println("-------------------------");
 		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println("-------------------------" + id);
 		Course course = cs.selCourseById(id);
+		System.out.println("-------" + id);
 		modelAndView.addObject("course",course);
 		modelAndView.setViewName("../homepageInfoMan/result_update.jsp");
 		return modelAndView;

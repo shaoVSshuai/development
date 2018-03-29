@@ -1,3 +1,4 @@
+<%@page import="com.hzyc.website.beans.Course"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -53,26 +54,41 @@
 		margin-top:100px;
 	}
 </style>
+<script type="text/javascript">
+		$(document).ready(function(){
+			$("#sub").click(function(){
+				document.getElementById("form").submit();
+				//window.parent.location.reload();
+			});
+		});
+	</script>
 </head>
 <body>
-<form action="<%=basePath%>recInfCon/recUpdate.hzyc" target="_parent"  method="post" enctype="multipart/form-data" id="form">
+	<%
+		Course course = (Course)request.getAttribute("course");
+	%>
+<form action="<%=basePath%>courseCon/updateCourse.hzyc" target="_parent"  method="post" enctype="multipart/form-data" id="form">
 	<div id="add_content">
 		<div id="position">
 			<div class="row">
-				<label class="layui-form-label" >图标</label>
+				<label class="layui-form-label" >原有图标</label>
+				<div><input type="text" name="courseName" class="hzyc-input"  id="courseName" value="<%=course.getCourseName()%>"/></div>
+			</div>
+			<div class="row">
+				<label class="layui-form-label" >更换图标</label>
 				<div><input type="file" class="hzyc-input"/></div>
 				<label class="layui-form-label" >课程名</label>
-				<div><input type="text" name="needNumber" class="hzyc-input"  id="recNumber"/></div>
+				<div><input type="text" name="courseName" class="hzyc-input"  id="courseName" value="<%=course.getCourseName()%>"/></div>
 			</div>
 			<div class="row">
 					<label class="layui-form-label" >标题</label>
-					<div><input type="text" name="needNumber" class="hzyc-input"  id="recNumber"/></div>
+					<div><input type="text" name="title" class="hzyc-input"  id="title" value="<%=course.getTitle() %>"/></div>
 					<label class="layui-form-label">应用于</label>
-					<div><input type="text" name="linkman" class="hzyc-input" id="contactPerson"/></div>
+					<div><input type="text" name="application" class="hzyc-input" id="application" value="<%=course.getApplication()%>"/></div>
 				</div>
 			<div class="row" id="welBo">
 				<label class="layui-form-label">描述</label>
-				<div><textarea cols="40" rows="7" name="posRequire" style="resize:none;" id="workAsk"></textarea></div>
+				<div><textarea cols="40" rows="7" name="describe" style="resize:none;" id="describe" ><%=course.getDescribe() %></textarea></div>
 			</div>
 		</div>
 	</div>

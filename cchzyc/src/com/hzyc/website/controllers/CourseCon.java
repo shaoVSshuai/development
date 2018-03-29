@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,8 +68,9 @@ public class CourseCon {
 	}
 	
 	@RequestMapping("/selCourseById.hzyc")
-	public ModelAndView selCourseById(int id) {
+	public ModelAndView selCourseById(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
+		int id = Integer.parseInt(request.getParameter("id"));
 		Course course = cs.selCourseById(id);
 		modelAndView.addObject("course",course);
 		modelAndView.setViewName("../homepageInfoMan/result_update.jsp");

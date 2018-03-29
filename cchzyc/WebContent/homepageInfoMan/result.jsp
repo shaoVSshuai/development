@@ -83,7 +83,7 @@
 										      name:'add',
 										      shadeClose: false, //点击遮罩关闭层
 										      area : ['800px' , '420px'],
-										      content: '<%=basePath%>/homepageInfoMan/result_update.jsp?id=<%=cList.get(i).getId()%>'
+										      content: '<%=basePath%>courseCon/selCourseById.hzyc?id=<%=cList.get(i).getId()%>'
 										});
 									});
 									

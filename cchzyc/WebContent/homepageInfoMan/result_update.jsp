@@ -53,6 +53,10 @@
 		margin:0 auto;
 		margin-top:100px;
 	}
+	#img{
+		width:35px;
+		height:35px;		
+	}
 </style>
 <script type="text/javascript">
 		$(document).ready(function(){
@@ -68,15 +72,16 @@
 		Course course = (Course)request.getAttribute("course");
 	%>
 <form action="<%=basePath%>courseCon/updateCourse.hzyc" target="_parent"  method="post" enctype="multipart/form-data" id="form">
+	<input type="hidden" value="<%=course.getId() %>" name="id">
 	<div id="add_content">
 		<div id="position">
 			<div class="row">
 				<label class="layui-form-label" >原有图标</label>
-				<div><input type="text" name="courseName" class="hzyc-input"  id="courseName" value="<%=course.getCourseName()%>"/></div>
+				<div><img src="<%=basePath %>/images/course/<%=course.getIconName()%>" id="img"/></div>
 			</div>
 			<div class="row">
 				<label class="layui-form-label" >更换图标</label>
-				<div><input type="file" class="hzyc-input"/></div>
+				<div><input type="file" class="hzyc-input" name="img1"/></div>
 				<label class="layui-form-label" >课程名</label>
 				<div><input type="text" name="courseName" class="hzyc-input"  id="courseName" value="<%=course.getCourseName()%>"/></div>
 			</div>
@@ -88,7 +93,7 @@
 				</div>
 			<div class="row" id="welBo">
 				<label class="layui-form-label">描述</label>
-				<div><textarea cols="40" rows="7" name="describe" style="resize:none;" id="describe" ><%=course.getDescribe() %></textarea></div>
+				<div><textarea cols="40" rows="7" name="describe" style="resize:none;" id="courseDescribe" ><%=course.getDescribe() %></textarea></div>
 			</div>
 		</div>
 	</div>

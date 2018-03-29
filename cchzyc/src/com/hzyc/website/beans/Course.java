@@ -11,7 +11,7 @@ public class Course {
 
     private String application;
 
-    private String describe;
+    private String course_describe;
 
     private byte[] icon;
 
@@ -56,11 +56,11 @@ public class Course {
     }
 
     public String getDescribe() {
-        return describe;
+        return course_describe;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe == null ? null : describe.trim();
+    public void setDescribe(String course_describe) {
+        this.course_describe = course_describe == null ? null : course_describe.trim();
     }
 
     public byte[] getIcon() {

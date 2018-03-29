@@ -7,13 +7,13 @@
     <result column="course_name" property="courseName" jdbcType="VARCHAR" />
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="application" property="application" jdbcType="VARCHAR" />
-    <result column="describe" property="describe" jdbcType="VARCHAR" />
+    <result column="course_describe" property="course_describe" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.hzyc.website.beans.Course" extends="BaseResultMap" >
     <result column="icon" property="icon" jdbcType="LONGVARBINARY" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, icon_name, course_name, title, application, describe
+    id, icon_name, course_name, title, application, course_describe
   </sql>
   <sql id="Blob_Column_List" >
     icon
@@ -32,10 +32,10 @@
   </delete>
   <insert id="insert" parameterType="com.hzyc.website.beans.Course" >
     insert into course (id, icon_name, course_name, 
-      title, application, describe, 
+      title, application, course_describe, 
       icon)
     values (#{id,jdbcType=INTEGER}, #{iconName,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, 
-      #{title,jdbcType=VARCHAR}, #{application,jdbcType=VARCHAR}, #{describe,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{application,jdbcType=VARCHAR}, #{course_describe,jdbcType=VARCHAR}, 
       #{icon,jdbcType=LONGVARBINARY})
   </insert>
   <insert id="insertSelective" parameterType="com.hzyc.website.beans.Course" >
@@ -56,8 +56,8 @@
       <if test="application != null" >
         application,
       </if>
-      <if test="describe != null" >
-        describe,
+      <if test="course_describe != null" >
+        course_describe,
       </if>
       <if test="icon != null" >
         icon,
@@ -79,8 +79,8 @@
       <if test="application != null" >
         #{application,jdbcType=VARCHAR},
       </if>
-      <if test="describe != null" >
-        #{describe,jdbcType=VARCHAR},
+      <if test="course_describe != null" >
+        #{course_describe,jdbcType=VARCHAR},
       </if>
       <if test="icon != null" >
         #{icon,jdbcType=LONGVARBINARY},
@@ -102,8 +102,8 @@
       <if test="application != null" >
         application = #{application,jdbcType=VARCHAR},
       </if>
-      <if test="describe != null" >
-        describe = #{describe,jdbcType=VARCHAR},
+      <if test="course_describe != null" >
+        course_describe = #{course_describe,jdbcType=VARCHAR},
       </if>
       <if test="icon != null" >
         icon = #{icon,jdbcType=LONGVARBINARY},
@@ -117,7 +117,7 @@
       course_name = #{courseName,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       application = #{application,jdbcType=VARCHAR},
-      describe = #{describe,jdbcType=VARCHAR},
+      course_describe = #{course_describe,jdbcType=VARCHAR},
       icon = #{icon,jdbcType=LONGVARBINARY}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -127,7 +127,7 @@
       course_name = #{courseName,jdbcType=VARCHAR},
       title = #{title,jdbcType=VARCHAR},
       application = #{application,jdbcType=VARCHAR},
-      describe = #{describe,jdbcType=VARCHAR}
+      course_describe = #{course_describe,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selCourse" resultMap="ResultMapWithBLOBs">

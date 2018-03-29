@@ -66,7 +66,7 @@
 	        	%>	
 				        	<tr>
 				        		<td><%=cList.get(i).getId()%></td>
-				        		<td><%=cList.get(i).getIcon()%></td>
+				        		<td><img src="localhost:8080/cchzyc/images"></td>
 				        		<td><%=cList.get(i).getCourseName()%></td>
 				        		<td><%=cList.get(i).getTitle()%></td>
 				        		<td><%=cList.get(i).getApplication()%></td>

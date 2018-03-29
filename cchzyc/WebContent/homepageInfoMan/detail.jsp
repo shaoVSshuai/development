@@ -19,12 +19,15 @@ font-weight: normal;
 </head>
 <body>
 <center><h1 class="h">详细描述</h1></center>
-<%	request.setCharacterEncoding("utf-8");
 
-	String username = (request.getParameter("code"));
-	username = URLDecoder.decode(username,"UTF-8");
 	
-	%>
-<h4 class="h" id="h"><%=username %></h4>
+<h4 class="h" id="h"> 
+	<script>
+		var local = window.location.href;
+		var code = local.substring(local.indexOf("?")+1);
+		var array = code.split("=");
+		document.write(decodeURI(array[1]));
+	</script>
+</h4>
 </body>
 </html>

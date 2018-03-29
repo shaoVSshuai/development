@@ -29,6 +29,11 @@
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		}
+	#img{
+		padding-left:30px;
+		width:50px;
+		height:50px;		
+	}
  </style>
  <script type="text/javascript">
  function detail(id){
@@ -67,7 +72,7 @@
 	        	%>	
 				        	<tr>
 				        		<td><%=cList.get(i).getId()%></td>
-				        		<td><%=cList.get(i).getIcon()%></td>
+				        		<td><img src="<%=basePath %>/images/course/<%=cList.get(i).getIconName()%>" id="img"/></td>
 				        		<td><%=cList.get(i).getCourseName()%></td>
 				        		<td><%=cList.get(i).getTitle()%></td>
 				        		<td><%=cList.get(i).getApplication()%></td>

@@ -49,6 +49,7 @@ public class CourseSer {
 	 */
 	public boolean updateCourseInfo(Course  c,MultipartFile img1 , HttpServletRequest request) throws IOException{
 		int flag = 0;
+		System.out.println(img1.getOriginalFilename()+"000");
 		//ÐÞ¸ÄÁËimgÍ¼Æ¬
 		if(img1 != null && ! img1.getOriginalFilename().equals("")  ){
 			System.out.println(img1 +"===" + img1.getOriginalFilename()) ;

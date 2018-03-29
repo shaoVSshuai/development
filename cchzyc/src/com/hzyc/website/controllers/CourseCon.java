@@ -58,13 +58,12 @@ public class CourseCon {
 		boolean b = false;
 		//获取文件字节数组
 		try {
-			
 			b = cs.updateCourseInfo(course, img1, request);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return b ? "../../success.jsp" : "../../fail.jsp";
+		return b ? "../homepageInfoMan/result.jsp" : "../../fail.jsp";
 	}
 	
 	@RequestMapping("/selCourseById.hzyc")

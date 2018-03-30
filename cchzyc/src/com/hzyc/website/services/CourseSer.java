@@ -57,6 +57,7 @@ public class CourseSer {
 			
 			//如果修改图片，重新设置图片路径（删除原图片）
 			String uuid = UUID.randomUUID().toString();
+			System.out.println(uuid+"---------");
 			//原图片名称
 			String filename = img1.getOriginalFilename();
 			//文件后缀 .jpg

@@ -20,4 +20,6 @@ public interface CourseMapper {
     int updateByPrimaryKey(Course record);
     
     List<Course> selCourse();
+    //查询不带图片的数据
+    List<Course> selCourseNoImg();
 }

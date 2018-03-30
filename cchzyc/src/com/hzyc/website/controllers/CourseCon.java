@@ -58,6 +58,7 @@ public class CourseCon {
 		boolean b = false;
 		//获取文件字节数组
 		try {
+			System.out.println("----");
 			b = cs.updateCourseInfo(course, img1, request);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block

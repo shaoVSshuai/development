@@ -215,7 +215,7 @@ public class InitService extends HttpServlet{
 	 * 在初始化的时候把课程存在redis里面
 	 */
 	public List<Course> selCourse(){
-		List<Course> list = cm.selCourse();
+		List<Course> list = cm.selCourseNoImg();
 		String jsonString = JSONArray.fromObject(list).toString();
 		System.out.println(jsonString+"-------------------");
 		RedisPool.getClient().set("jsonString", jsonString);

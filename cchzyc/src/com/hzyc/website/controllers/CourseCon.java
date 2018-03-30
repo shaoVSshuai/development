@@ -32,21 +32,6 @@ public class CourseCon {
 	public ModelAndView display(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		List<Course> cList = cs.display();
-		for (int i=0; i<cList.size(); i++) {
-			if (cList.get(i).getIcon() != null && !cList.get(i).getIcon().equals("")) {
-				FileOutputStream fos;
-				try {
-					String path = request.getSession().getServletContext().getRealPath("/");
-					String finalPathAndName = path +"images/course/"+cList.get(i).getIconName();
-					fos = new FileOutputStream(finalPathAndName);
-					fos.write(cList.get(i).getIcon());
-					fos.close();
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-		}
 		modelAndView.addObject("cList",cList);
 		modelAndView.setViewName("../homepageInfoMan/result.jsp");
 		return modelAndView;
@@ -64,17 +49,14 @@ public class CourseCon {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return b ? "../homepageInfoMan/result.jsp" : "../../fail.jsp";
+		return b ? "courseDisplay.hzyc" : "../homepageInfoMan/result.jsp";
 	}
 	
 	@RequestMapping("/selCourseById.hzyc")
 	public ModelAndView selCourseById(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		System.out.println("-------------------------");
 		int id = Integer.parseInt(request.getParameter("id"));
-		System.out.println("-------------------------" + id);
 		Course course = cs.selCourseById(id);
-		System.out.println("-------" + id);
 		modelAndView.addObject("course",course);
 		modelAndView.setViewName("../homepageInfoMan/result_update.jsp");
 		return modelAndView;

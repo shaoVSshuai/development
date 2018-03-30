@@ -81,7 +81,9 @@
 			</div>
 			<div class="row">
 				<label class="layui-form-label" >更换图标</label>
-				<div><input type="file" class="hzyc-input" name="img1"/></div>
+				<div><input type="file" class="hzyc-input" name="img1"/>
+						<input type="hidden" name="iconName" value="<%=course.getIconName()%>">
+				</div>
 				<label class="layui-form-label" >课程名</label>
 				<div><input type="text" name="courseName" class="hzyc-input"  id="courseName" value="<%=course.getCourseName()%>"/></div>
 			</div>

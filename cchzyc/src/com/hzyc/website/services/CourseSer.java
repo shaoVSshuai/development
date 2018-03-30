@@ -1,5 +1,7 @@
 package com.hzyc.website.services;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
@@ -49,27 +51,35 @@ public class CourseSer {
 	 */
 	public boolean updateCourseInfo(Course  c,MultipartFile img1 , HttpServletRequest request) throws IOException{
 		int flag = 0;
-		System.out.println(img1.getOriginalFilename()+"000");
 		//修改了img图片
 		if(img1 != null && ! img1.getOriginalFilename().equals("")  ){
+			//从服务器上删除图片
+			String path = request.getSession().getServletContext().getRealPath("/");
+			String finalPathAndName = path +"images/course/"+c.getIconName();
+			File file = new File(finalPathAndName);
+			file.delete();
+			
 			System.out.println(img1 +"===" + img1.getOriginalFilename()) ;
 			byte[] by =  img1.getBytes();
 			
-			//如果修改图片，重新设置图片路径（删除原图片）
-			String uuid = UUID.randomUUID().toString();
-			System.out.println(uuid+"---------");
 			//原图片名称
 			String filename = img1.getOriginalFilename();
 			//文件后缀 .jpg
 			String suffix = filename.substring(filename.lastIndexOf("."));
 			//新文件名
-			String newFileName = c.getIconName() + suffix;
-			
+			String newFileName = c.getId() + suffix;
+			System.out.println(newFileName+"--------");
 			//设置新图片
 			c.setIcon(by);
 			//设置图片名称
 			c.setIconName(newFileName);
-			
+			System.out.println(c.getIconName()+"----");
+			//上传图片到服务器
+			FileOutputStream fos;
+			String finalPathAndName1 = path +"images/course/"+c.getIconName();
+			fos = new FileOutputStream(finalPathAndName1);
+			fos.write(c.getIcon());
+			fos.close();
 		}
 		
 		

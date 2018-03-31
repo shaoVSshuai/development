@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.website.mappers.DeptMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.website.beans.Dept" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dept_code" property="deptCode" jdbcType="CHAR" />
+    <result column="dept_name" property="deptName" jdbcType="CHAR" />
+    <result column="dept_level" property="deptLevel" jdbcType="CHAR" />
+    <result column="dept_remark" property="deptRemark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap type="com.hzyc.website.beans.Dept" id="extraMap">
+  	<id column="id" property="id" jdbcType="INTEGER" />
+    <result column="dept_code" property="deptCode" jdbcType="CHAR" />
+    <result column="dept_name" property="deptName" jdbcType="CHAR" />
+    <result column="dept_level" property="deptLevel" jdbcType="CHAR" />
+    <result column="dept_remark" property="deptRemark" jdbcType="VARCHAR" />
+    	<collection property="deptList" ofType="com.hzyc.website.beans.Dept">
+    		<id column="id" property="id" jdbcType="INTEGER" />
+		    <result column="dept_code" property="deptCode" jdbcType="CHAR" />
+		    <result column="dept_name" property="deptName" jdbcType="CHAR" />
+		    <result column="dept_level" property="deptLevel" jdbcType="CHAR" />
+		    <result column="dept_remark" property="deptRemark" jdbcType="VARCHAR" />
+    	</collection>
+  </resultMap>
+
+  
+  <resultMap type="Dept" id="DeptUntilEmployee">
+			<id column="id" property="id"/>
+			<result column="dept_code" property="deptCode"/>
+			<result column="dept_name" property="deptName"/>
+			<result column="dept_level" property="deptLevel"/>
+			<result column="dept_remark" property="deptRemark"/>
+			<collection property="jobList" ofType="Job">
+				<id column="id" property="id"/>
+				<result column="job_code" property="jobCode"/>
+				<result column="job_name" property="jobName"/>
+				<result column="job_remark" property="jobRemark"/>
+		
+							
+			</collection>
+	</resultMap>
+  	<select id="selectDeptUntilEmployee" resultMap="DeptUntilEmployee" parameterType="String" >
+  	SELECT dept.*,job.* FROM dept,dept_job,job WHERE  dept.dept_code=dept_job.dept_code AND dept_job.job_code=job.job_code AND  dept.dept_code like CONCAT(#{value},'%')        
+  	
+  	</select>
+  
+
+
+
+  <sql id="Base_Column_List" >
+    id, dept_code, dept_name, dept_level, dept_remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dept
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dept
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.website.beans.Dept" >
+    insert into dept (id, dept_code, dept_name, 
+      dept_level, dept_remark)
+    values (#{id,jdbcType=INTEGER}, #{deptCode,jdbcType=CHAR}, #{deptName,jdbcType=CHAR}, 
+      #{deptLevel,jdbcType=CHAR}, #{deptRemark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.website.beans.Dept" >
+    insert into dept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="deptCode != null" >
+        dept_code,
+      </if>
+      <if test="deptName != null" >
+        dept_name,
+      </if>
+      <if test="deptLevel != null" >
+        dept_level,
+      </if>
+      <if test="deptRemark != null" >
+        dept_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="deptCode != null" >
+        #{deptCode,jdbcType=CHAR},
+      </if>
+      <if test="deptName != null" >
+        #{deptName,jdbcType=CHAR},
+      </if>
+      <if test="deptLevel != null" >
+        #{deptLevel,jdbcType=CHAR},
+      </if>
+      <if test="deptRemark != null" >
+        #{deptRemark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.website.beans.Dept" >
+    update dept
+    <set >
+      <if test="deptCode != null" >
+        dept_code = #{deptCode,jdbcType=CHAR},
+      </if>
+      <if test="deptName != null" >
+        dept_name = #{deptName,jdbcType=CHAR},
+      </if>
+      <if test="deptLevel != null" >
+        dept_level = #{deptLevel,jdbcType=CHAR},
+      </if>
+      <if test="deptRemark != null" >
+        dept_remark = #{deptRemark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.website.beans.Dept" >
+    update dept
+    set dept_code = #{deptCode,jdbcType=CHAR},
+      dept_name = #{deptName,jdbcType=CHAR},
+      dept_level = #{deptLevel,jdbcType=CHAR},
+      dept_remark = #{deptRemark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 查询所有部门 -->
+  <select id="selLevel" resultMap="extraMap">
+ 	SELECT d1.dept_code dept1,d1.dept_name dept1_name,d2.dept_code dept2,d2.dept_name dept2_name FROM (SELECT * FROM dept WHERE dept_level = '1' )d1 LEFT JOIN (SELECT * FROM dept WHERE dept_level='2') d2 ON d2.dept_code LIKE CONCAT(d1.dept_code,'%')
+  </select>
+  <!-- 查询一级部门 -->
+  <select id="selLevel1" resultMap="BaseResultMap">
+  	SELECT id,dept_name,dept_code,dept_remark FROM dept WHERE dept_level='1'
+  </select>
+   <!-- 查询二级部门 -->
+  <select id="selLevel2" resultMap="BaseResultMap" parameterType="String" >
+  	SELECT id,dept_name,dept_code,dept_remark FROM dept WHERE dept_level='2' AND dept_code like CONCAT(#{value},'%') 
+  </select>
+ 
+  <select id="seletAllDept" resultMap="BaseResultMap" parameterType="String" >
+  
+  	select *from dept where dept_level=#{deptLevel}
+  
+  </select>
+
+  <!-- 查询省 -->
+  <select id="selProvince" resultType="Province">
+  	select * from t_province
+  </select>
+  <!-- 通过省查询市 -->
+  <select id="selCity" resultType="Province" parameterType="String"> 
+  	select * from t_city where provinceCode=#{provinceCode}
+  </select>
+  <select id="selProvinceCode" parameterType="String" resultType="String">
+  	select code from t_province where name=#{name}
+  </select>
+ <select id="seleDeptNameByDeptCode" resultType="String" parameterType="String" >
+    select dept_name from dept where dept_code = #{deptCode}
+ </select>
+
+  
+  <select id="selLevel1Code" resultType="String">
+  		SELECT MAX(dept_code) FROM dept WHERE dept_level = '1'
+  </select>
+ 	<select id="selLevel2Code" resultType="String" parameterType="String">
+  		SELECT MAX(dept_code) FROM dept WHERE dept_code like CONCAT(#{value},'%')
+  </select>
+  
+
+</mapper>

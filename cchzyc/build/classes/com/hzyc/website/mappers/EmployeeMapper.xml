@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.website.mappers.EmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.website.beans.Employee" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="CHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="CHAR" />
+    <result column="idcard" property="idcard" jdbcType="CHAR" />
+    <result column="time" property="time" jdbcType="CHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="dept_two" property="deptTwo" jdbcType="VARCHAR" />
+    <result column="dept_one" property="deptOne" jdbcType="VARCHAR" />
+    <result column="job_code" property="jobCode" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="dis_img" property="disImg" jdbcType="LONGVARBINARY" />
+    <result column="card_img" property="cardImg" jdbcType="LONGVARBINARY" />
+    <result column="emp_img" property="empImg" jdbcType="LONGVARBINARY" />
+    <result column="emp_img_name" property="empImgName" jdbcType="VARCHAR" />
+    <result column="card_img_name" property="cardImgName" jdbcType="VARCHAR" />
+    <result column="dis_img_name" property="disImgName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- 扩展字段  用来联表查询 -->
+   <resultMap id="extra_Map" type="com.hzyc.website.beans.Employee" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="code" property="code" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="CHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="CHAR" />
+    <result column="idcard" property="idcard" jdbcType="CHAR" />
+    <result column="time" property="time" jdbcType="CHAR" />
+    <result column="province" property="province" jdbcType="VARCHAR" />
+    <result column="city" property="city" jdbcType="VARCHAR" />
+    <result column="dept_name2" property="deptTwo" jdbcType="VARCHAR" />
+    <result column="dept_name1" property="deptOne" jdbcType="VARCHAR" />
+    <result column="job_name" property="jobCode" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="dis_img" property="disImg" jdbcType="LONGVARBINARY" />
+    <result column="card_img" property="cardImg" jdbcType="LONGVARBINARY" />
+    <result column="emp_img" property="empImg" jdbcType="LONGVARBINARY" />
+    <result column="emp_img_name" property="empImgName" jdbcType="VARCHAR" />
+    <result column="card_img_name" property="cardImgName" jdbcType="VARCHAR" />
+    <result column="dis_img_name" property="disImgName" jdbcType="VARCHAR" />
+    <collection property="deptJobList" ofType="com.hzyc.website.beans.DeptJob" >
+       <result column="job_code" property="jobCode" jdbcType="CHAR" />
+       <result column="dept_level" property="deptLevel" jdbcType="CHAR" />
+    </collection>
+  </resultMap>
+  
+  <resultMap id="extra_Map_Zh" type="com.hzyc.website.beans.Employee" >
+  	<id column="id" property="id" jdbcType="INTEGER" />
+      <result column="code" property="code" jdbcType="CHAR" />
+      <result column="name" property="name" jdbcType="VARCHAR" />
+      <result column="tel" property="tel" jdbcType="CHAR" />
+      <result column="sex" property="sex" jdbcType="VARCHAR" />
+      <result column="birthday" property="birthday" jdbcType="CHAR" />
+      <result column="idcard" property="idcard" jdbcType="CHAR" />
+      <result column="time" property="time" jdbcType="CHAR" />
+      <result column="province" property="province" jdbcType="VARCHAR" />
+      <result column="city" property="city" jdbcType="VARCHAR" />
+      <result column="dept_name2" property="deptTwo" jdbcType="VARCHAR" />
+      <result column="dept_name1" property="deptOne" jdbcType="VARCHAR" />
+      <result column="job_name" property="jobCode" jdbcType="VARCHAR" />
+      <result column="remark" property="remark" jdbcType="VARCHAR" />
+      <result column="dis_img" property="disImg" jdbcType="LONGVARBINARY" />
+      <result column="card_img" property="cardImg" jdbcType="LONGVARBINARY" />
+      <result column="emp_img" property="empImg" jdbcType="LONGVARBINARY" />
+      <result column="emp_img_name" property="empImgName" jdbcType="VARCHAR" />
+      <result column="card_img_name" property="cardImgName" jdbcType="VARCHAR" />
+      <result column="dis_img_name" property="disImgName" jdbcType="VARCHAR" />
+  	  <collection property="deptJobList" ofType="com.hzyc.website.beans.DeptJob">
+		   <result column="job_code" property="jobCode" jdbcType="CHAR" />
+           <result column="dept_code" property="deptCode" jdbcType="CHAR" />
+	  </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+  	id, code, name, 
+      tel, sex, birthday, idcard, 
+      time, province, city, 
+      dept_two, dept_one, job_code, 
+      remark, dis_img, card_img, 
+      emp_img
+  </sql>
+  <sql id="extra_List">
+  		d1.dept_name dept_name1,d2.dept_name dept_name2,job.job_name,
+  			employee.id, CODE, NAME, tel, sex, birthday, idcard, TIME, province, city, dept_two,
+  			 dept_one, employee.job_code, remark, dis_img, card_img, emp_img , dis_img_name, card_img_name ,
+  			 emp_img_name
+  		
+  </sql>
+  <insert id="insert" parameterType="com.hzyc.website.beans.Employee" >
+    insert into employee (id, code, name, 
+      tel, sex, birthday, idcard, 
+      time, province, city, 
+      dept_two, dept_one, job_code, 
+      remark, dis_img, card_img, 
+      emp_img)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=CHAR}, #{sex,jdbcType=VARCHAR}, #{birthday,jdbcType=CHAR}, #{idcard,jdbcType=CHAR}, 
+      #{time,jdbcType=CHAR}, #{province,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, 
+      #{deptTwo,jdbcType=VARCHAR}, #{deptOne,jdbcType=VARCHAR}, #{jobCode,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{disImg,jdbcType=LONGVARBINARY}, #{cardImg,jdbcType=LONGVARBINARY}, 
+      #{empImg,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.website.beans.Employee" >
+    insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="idcard != null" >
+        idcard,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="deptTwo != null" >
+        dept_two,
+      </if>
+      <if test="deptOne != null" >
+        dept_one,
+      </if>
+      <if test="jobCode != null" >
+        job_code,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="disImg != null" >
+        dis_img,
+      </if>
+      <if test="cardImg != null" >
+        card_img,
+      </if>
+      <if test="empImg != null" >
+        emp_img,
+      </if>
+      <if test="empImgName != null" >
+        emp_img_name,
+      </if>
+      <if test="cardImgName != null" >
+        card_img_name,
+      </if>
+      <if test="disImgName != null" >
+        dis_img_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=CHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=CHAR},
+      </if>
+      <if test="idcard != null" >
+        #{idcard,jdbcType=CHAR},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=CHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="deptTwo != null" >
+        #{deptTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="deptOne != null" >
+        #{deptOne,jdbcType=VARCHAR},
+      </if>
+      <if test="jobCode != null" >
+        #{jobCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="disImg != null" >
+        #{disImg,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="cardImg != null" >
+        #{cardImg,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="empImg != null" >
+        #{empImg,jdbcType=LONGVARBINARY},
+      </if>
+      <!-- 这里是图片路径 -->
+      <if test="empImgName != null ">
+        #{empImgName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardImgName != null" >
+        #{cardImgName ,jdbcType=VARCHAR},
+      </if>
+      <if test="disImgName != null" >
+        #{disImgName ,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- 查询职业规划师 -->
+  <select id="selPlanner" resultMap="BaseResultMap" >
+  		select 
+  			<include refid="Base_Column_List"  ></include>
+  		from employee  WHERE job_code='1006'
+  </select>
+  <!-- 
+  		多条件查询Employee
+  		这里要显示一二级部门名称职位名称 而不是编码
+   -->
+  <select id="selEmp" resultMap="extra_Map" parameterType="com.hzyc.website.beans.Employee">
+  		SELECT 
+  		<include refid="extra_List"  ></include>
+  		from employee,job,(SELECT * FROM dept )d1 ,(SELECT * FROM dept)d2 
+  		 WHERE job.job_code = employee.job_code
+  		  AND d1.dept_code = employee.dept_one AND d2.dept_code = employee.dept_two
+ 			  <if test="id != null and id != ''" >
+	       and  employee.id = #{id}
+	      </if>
+	      <if test="code != null and code != '' " >
+	        and employee.code= #{code}
+	      </if>
+	      <if test="name != null and name != ''" >
+	       and   employee.name = #{name}
+	      </if>
+	      <if test="tel != null and tel != '' " >
+	       and   employee.tel = #{tel}
+	      </if>
+	      <if test="sex != null and sex != ''" >
+	        and  employee.sex = #{sex}
+	      </if>
+	      <if test="birthday != null and birthday != ''" >
+	         and birthday = #{birthday}
+	      </if>
+	      <if test="idcard != null and idcard != '' " >
+	        and  employee.idcard = #{idcard}
+	      </if>
+	      <if test="time != null and   time != ''" >
+	         and employee.time = #{time}
+	      </if>
+	      <if test="province != null and province != ''" >
+	        and  employee.province = #{province}
+	      </if>
+	      <if test="city != null and city != ''" >
+	         and employee.city = #{city}
+	      </if>
+	      <if test="deptTwo != null and deptTwo != ''" >
+	        and  employee.dept_two = #{deptTwo}
+	      </if>
+	      <if test="deptOne != null and deptOne != ''" >
+	        and  employee.dept_one = #{deptOne}
+	      </if>
+	      <if test="jobCode != null and jobCode != ''" >
+	        and  employee.job_code = #{jobCode}
+	      </if>
+  </select>
+  <!-- 员工登录 -->
+   <select id="login" resultMap="BaseResultMap" parameterType="com.hzyc.website.beans.Employee">
+  	select 
+  		<include refid="Base_Column_List"  ></include>
+  	from employee where (code = #{code} or tel = #{code} ) and password = md5(#{password}) 
+  </select> 
+  <!-- @author:张阳媚
+                  根据姓名或工号查询员工 -->
+   <select id="selEmpByNameOrCode" resultMap="BaseResultMap" parameterType="com.hzyc.website.beans.Employee">
+      select 
+        <include refid="Base_Column_List"  ></include>
+      from employee
+     <trim prefix="where" prefixOverrides="AND|OR">
+       <if test="name != '' and name != null">
+         name = #{name}
+       </if>
+       <if test="code != ''and code != null">
+         and code = #{code}
+       </if> 
+     </trim>
+   </select>
+   <select id="selJobByCode" resultMap="extra_Map_Zh" parameterType="com.hzyc.website.beans.Employee">
+      SELECT * FROM employee,dept_job WHERE employee.job_code=dept_job.job_code and employee.code=#{jobCode}
+   </select>
+  
+</mapper>

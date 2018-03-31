@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.website.mappers.EmploymentNewsMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.website.beans.EmploymentNews" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="life_photo_name" property="lifePhotoName" jdbcType="VARCHAR" />
+    <result column="company_logo_name" property="companyLogoName" jdbcType="VARCHAR" />
+    <result column="stu_name" property="stuName" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hzyc.website.beans.EmploymentNewsWithBLOBs" extends="BaseResultMap" >
+    <result column="life_photo" property="lifePhoto" jdbcType="LONGVARBINARY" />
+    <result column="company_logo" property="companyLogo" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, life_photo_name, company_logo_name, stu_name, position
+  </sql>
+  <sql id="Blob_Column_List" >
+    life_photo, company_logo
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from employment_news
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from employment_news
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.website.beans.EmploymentNewsWithBLOBs" >
+    insert into employment_news (id, life_photo_name, company_logo_name, 
+      stu_name, position, life_photo, 
+      company_logo)
+    values (#{id,jdbcType=INTEGER}, #{lifePhotoName,jdbcType=VARCHAR}, #{companyLogoName,jdbcType=VARCHAR}, 
+      #{stuName,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, #{lifePhoto,jdbcType=LONGVARBINARY}, 
+      #{companyLogo,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.website.beans.EmploymentNewsWithBLOBs" >
+    insert into employment_news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="lifePhotoName != null" >
+        life_photo_name,
+      </if>
+      <if test="companyLogoName != null" >
+        company_logo_name,
+      </if>
+      <if test="stuName != null" >
+        stu_name,
+      </if>
+      <if test="position != null" >
+        position,
+      </if>
+      <if test="lifePhoto != null" >
+        life_photo,
+      </if>
+      <if test="companyLogo != null" >
+        company_logo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="lifePhotoName != null" >
+        #{lifePhotoName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyLogoName != null" >
+        #{companyLogoName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuName != null" >
+        #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="lifePhoto != null" >
+        #{lifePhoto,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="companyLogo != null" >
+        #{companyLogo,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.website.beans.EmploymentNewsWithBLOBs" >
+    update employment_news
+    <set >
+      <if test="lifePhotoName != null" >
+        life_photo_name = #{lifePhotoName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyLogoName != null" >
+        company_logo_name = #{companyLogoName,jdbcType=VARCHAR},
+      </if>
+      <if test="stuName != null" >
+        stu_name = #{stuName,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        position = #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="lifePhoto != null" >
+        life_photo = #{lifePhoto,jdbcType=LONGVARBINARY},
+      </if>
+      <if test="companyLogo != null" >
+        company_logo = #{companyLogo,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hzyc.website.beans.EmploymentNewsWithBLOBs" >
+    update employment_news
+    set life_photo_name = #{lifePhotoName,jdbcType=VARCHAR},
+      company_logo_name = #{companyLogoName,jdbcType=VARCHAR},
+      stu_name = #{stuName,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR},
+      life_photo = #{lifePhoto,jdbcType=LONGVARBINARY},
+      company_logo = #{companyLogo,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.website.beans.EmploymentNews" >
+    update employment_news
+    set life_photo_name = #{lifePhotoName,jdbcType=VARCHAR},
+      company_logo_name = #{companyLogoName,jdbcType=VARCHAR},
+      stu_name = #{stuName,jdbcType=VARCHAR},
+      position = #{position,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

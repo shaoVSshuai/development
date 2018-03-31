@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.website.mappers.PosMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.website.beans.Pos" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="c_id" property="cId" jdbcType="INTEGER" />
+    <result column="pos_name" property="posName" jdbcType="VARCHAR" />
+    <result column="salary" property="salary" jdbcType="VARCHAR" />
+    <result column="need_number" property="needNumber" jdbcType="VARCHAR" />
+    <result column="edu_require" property="eduRequire" jdbcType="VARCHAR" />
+    <result column="pos_info" property="posInfo" jdbcType="VARCHAR" />
+    <result column="pos_require" property="posRequire" jdbcType="VARCHAR" />
+    <result column="pos_experience" property="posExperience" jdbcType="VARCHAR" />
+    <result column="announce_time" property="announceTime" jdbcType="VARCHAR" />
+    <result column="welfare" property="welfare" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="pay_style" property="payStyle" jdbcType="VARCHAR" />
+    <result column="linkman" property="linkman" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="ann_man" property="annMan" jdbcType="VARCHAR" />
+    <result column="states" property="states" jdbcType="VARCHAR" />
+    <result column="rec_st" property="recSt" jdbcType="VARCHAR" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, c_id, pos_name, salary, need_number, edu_require, pos_info, pos_require, pos_experience, 
+    announce_time, welfare, email, pay_style, linkman, phone, ann_man, states, rec_st, 
+    remark1, remark2
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pos
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pos
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.website.beans.Pos" >
+    insert into pos (id, c_id, pos_name, 
+      salary, need_number, edu_require, 
+      pos_info, pos_require, pos_experience, 
+      announce_time, welfare, email, 
+      pay_style, linkman, phone, 
+      ann_man, states, rec_st, 
+      remark1, remark2)
+    values (#{id,jdbcType=INTEGER}, #{cId,jdbcType=INTEGER}, #{posName,jdbcType=VARCHAR}, 
+      #{salary,jdbcType=VARCHAR}, #{needNumber,jdbcType=VARCHAR}, #{eduRequire,jdbcType=VARCHAR}, 
+      #{posInfo,jdbcType=VARCHAR}, #{posRequire,jdbcType=VARCHAR}, #{posExperience,jdbcType=VARCHAR}, 
+      #{announceTime,jdbcType=VARCHAR}, #{welfare,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{payStyle,jdbcType=VARCHAR}, #{linkman,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{annMan,jdbcType=VARCHAR}, #{states,jdbcType=VARCHAR}, #{recSt,jdbcType=VARCHAR}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.website.beans.Pos" >
+    insert into pos
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cId != null" >
+        c_id,
+      </if>
+      <if test="posName != null" >
+        pos_name,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="needNumber != null" >
+        need_number,
+      </if>
+      <if test="eduRequire != null" >
+        edu_require,
+      </if>
+      <if test="posInfo != null" >
+        pos_info,
+      </if>
+      <if test="posRequire != null" >
+        pos_require,
+      </if>
+      <if test="posExperience != null" >
+        pos_experience,
+      </if>
+      <if test="announceTime != null" >
+        announce_time,
+      </if>
+      <if test="welfare != null" >
+        welfare,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="payStyle != null" >
+        pay_style,
+      </if>
+      <if test="linkman != null" >
+        linkman,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="annMan != null" >
+        ann_man,
+      </if>
+      <if test="states != null" >
+        states,
+      </if>
+      <if test="recSt != null" >
+        rec_st,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="posName != null" >
+        #{posName,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="needNumber != null" >
+        #{needNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="eduRequire != null" >
+        #{eduRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="posInfo != null" >
+        #{posInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="posRequire != null" >
+        #{posRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="posExperience != null" >
+        #{posExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="announceTime != null" >
+        #{announceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="welfare != null" >
+        #{welfare,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="payStyle != null" >
+        #{payStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="annMan != null" >
+        #{annMan,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null" >
+        #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="recSt != null" >
+        #{recSt,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.website.beans.Pos" >
+    update pos
+    <set >
+      <if test="cId != null" >
+        c_id = #{cId,jdbcType=INTEGER},
+      </if>
+      <if test="posName != null" >
+        pos_name = #{posName,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=VARCHAR},
+      </if>
+      <if test="needNumber != null" >
+        need_number = #{needNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="eduRequire != null" >
+        edu_require = #{eduRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="posInfo != null" >
+        pos_info = #{posInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="posRequire != null" >
+        pos_require = #{posRequire,jdbcType=VARCHAR},
+      </if>
+      <if test="posExperience != null" >
+        pos_experience = #{posExperience,jdbcType=VARCHAR},
+      </if>
+      <if test="announceTime != null" >
+        announce_time = #{announceTime,jdbcType=VARCHAR},
+      </if>
+      <if test="welfare != null" >
+        welfare = #{welfare,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="payStyle != null" >
+        pay_style = #{payStyle,jdbcType=VARCHAR},
+      </if>
+      <if test="linkman != null" >
+        linkman = #{linkman,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="annMan != null" >
+        ann_man = #{annMan,jdbcType=VARCHAR},
+      </if>
+      <if test="states != null" >
+        states = #{states,jdbcType=VARCHAR},
+      </if>
+      <if test="recSt != null" >
+        rec_st = #{recSt,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.website.beans.Pos" >
+    update pos
+    set c_id = #{cId,jdbcType=INTEGER},
+      pos_name = #{posName,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=VARCHAR},
+      need_number = #{needNumber,jdbcType=VARCHAR},
+      edu_require = #{eduRequire,jdbcType=VARCHAR},
+      pos_info = #{posInfo,jdbcType=VARCHAR},
+      pos_require = #{posRequire,jdbcType=VARCHAR},
+      pos_experience = #{posExperience,jdbcType=VARCHAR},
+      announce_time = #{announceTime,jdbcType=VARCHAR},
+      welfare = #{welfare,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      pay_style = #{payStyle,jdbcType=VARCHAR},
+      linkman = #{linkman,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      ann_man = #{annMan,jdbcType=VARCHAR},
+      states = #{states,jdbcType=VARCHAR},
+      rec_st = #{recSt,jdbcType=VARCHAR},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

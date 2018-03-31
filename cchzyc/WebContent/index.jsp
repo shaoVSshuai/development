@@ -194,7 +194,7 @@
 							</dd>
 							<dd>
 							<dd>
-								<a href="homepageInfoMan/course_maintenance.jsp" target="main"> <i
+								<a href="homepageInfoMan/course/course_maintenance.jsp" target="main"> <i
 									class="layui-icon">&#xe6c6;</i> <span> 精品课程维护</span> </a>
 							</dd>
 								<a href="loading.jsp" target="main"> <i
@@ -207,7 +207,7 @@
 								</a>
 							</dd>
 							<dd>
-								<a href="loading.jsp" target="main"> <i class="fa fa-user" aria-hidden="true"></i> <span>
+								<a href="" target="main"> <i class="fa fa-user" aria-hidden="true"></i> <span>
 									就业信息维护</span></a>
 							</dd>
 

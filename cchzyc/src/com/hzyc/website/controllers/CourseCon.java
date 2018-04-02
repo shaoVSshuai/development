@@ -33,7 +33,7 @@ public class CourseCon {
 		ModelAndView modelAndView = new ModelAndView();
 		List<Course> cList = cs.display();
 		modelAndView.addObject("cList",cList);
-		modelAndView.setViewName("../homepageInfoMan/result.jsp");
+		modelAndView.setViewName("../homepageInfoMan/course/result.jsp");
 		return modelAndView;
 	}
 	
@@ -48,7 +48,7 @@ public class CourseCon {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return b ? "courseDisplay.hzyc" : "../homepageInfoMan/result.jsp";
+		return b ? "courseDisplay.hzyc" : "../homepageInfoMan/course/result.jsp";
 	}
 	
 	@RequestMapping("/selCourseById.hzyc")
@@ -57,7 +57,7 @@ public class CourseCon {
 		int id = Integer.parseInt(request.getParameter("id"));
 		Course course = cs.selCourseById(id);
 		modelAndView.addObject("course",course);
-		modelAndView.setViewName("../homepageInfoMan/result_update.jsp");
+		modelAndView.setViewName("../homepageInfoMan/course/result_update.jsp");
 		return modelAndView;
 	}
 }

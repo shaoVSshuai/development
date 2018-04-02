@@ -9,12 +9,16 @@ import java.util.UUID;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.hzyc.website.beans.Course;
 import com.hzyc.website.beans.StudentInfo;
 import com.hzyc.website.mappers.CourseMapper;
+import com.hzyc.website.system.CourseForInit;
+import com.hzyc.website.system.SystemInit;
 import com.hzyc.website.utils.BeanUtil;
 
 @Service
@@ -86,8 +90,10 @@ public class CourseSer {
 		flag = cm.updateByPrimaryKeySelective(c);
 		//如果数据库更新了，则更新redis
 		if(flag>=1) {
-			InitService init =  (InitService)BeanUtil.getBean("InitService");
-			init.selCourse();
+			ApplicationContext appContext = WebApplicationContextUtils.getWebApplicationContext(request.getSession().getServletContext());
+			SystemInit sys = (SystemInit)appContext.getBean("systemInit");
+			List<Course> cList  = sys.getInitService().selCourse();
+		    CourseForInit.setList(cList);
 		}
 		
 		return flag >= 1 ? true : false;

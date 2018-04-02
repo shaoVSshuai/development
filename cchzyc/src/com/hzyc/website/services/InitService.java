@@ -210,17 +210,19 @@ public class InitService extends HttpServlet{
 		return companyMapper.selAllCompany();
 		
 	}
+	
+	
 	/**
 	 * @author 马荣福
 	 * @return
-	 * 在初始化的时候把课程存在redis里面
+	 * 在初始化的时候把课程存在服务器里面
 	 */
 	public List<Course> selCourse(){
 		List<Course> list = cm.selCourseNoImg();
-		String jsonString = JSONArray.fromObject(list).toString();
+		/*String jsonString = JSONArray.fromObject(list).toString();
 		System.out.println(jsonString+"-------------------");
 		RedisPool.getClient().set("jsonString", jsonString);
-		System.out.println("redis存储字段runoobkey:" + RedisPool.getClient().get("jsonString"));
+		System.out.println("redis存储字段runoobkey:" + RedisPool.getClient().get("jsonString"));*/
 		return list;
 	}  
 	

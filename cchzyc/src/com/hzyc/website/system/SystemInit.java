@@ -11,6 +11,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.hzyc.website.beans.Audition;
 import com.hzyc.website.beans.Company;
+import com.hzyc.website.beans.Course;
 import com.hzyc.website.beans.Job;
 import com.hzyc.website.beans.Privilege;
 import com.hzyc.website.services.AudSer;
@@ -68,9 +69,10 @@ public class SystemInit implements ServletContextListener {
 	    	JobPrivliege.setList(list);
 		    System.out.println("====================菜单树加载完毕！===========================");
 		   
-		    System.out.println("====================把课程信息存在redis中===========================");
-		    sys.getInitService().selCourse();
-		    System.out.println("====================把课程信息存在redis完毕！===========================");
+		    System.out.println("====================把课程信息存在服务器中===========================");
+		    List<Course> cList  = sys.getInitService().selCourse();
+		    CourseForInit.setList(cList);
+		    System.out.println("====================把课程信息存在服务器中！===========================");
 			
 		    System.out.println("====================课程图标缓存中...===========================");
 		    sys.getInitService().courseIcon(sce);

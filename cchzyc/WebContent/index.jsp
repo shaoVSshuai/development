@@ -207,7 +207,7 @@
 								</a>
 							</dd>
 							<dd>
-								<a href="" target="main"> <i class="fa fa-user" aria-hidden="true"></i> <span>
+								<a href="homepageInfoMan/employmentNews/news_entry.jsp" target="main"> <i class="fa fa-user" aria-hidden="true"></i> <span>
 									就业信息维护</span></a>
 							</dd>
 

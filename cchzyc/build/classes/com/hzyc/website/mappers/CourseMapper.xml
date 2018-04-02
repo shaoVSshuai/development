@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hzyc.website.mappers.CourseMapper" >
+  <resultMap id="BaseResultMap" type="com.hzyc.website.beans.Course" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="icon_name" property="iconName" jdbcType="VARCHAR" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="application" property="application" jdbcType="VARCHAR" />
+    <result column="course_describe" property="course_describe" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hzyc.website.beans.Course" extends="BaseResultMap" >
+    <result column="icon" property="icon" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, icon_name, course_name, title, application, course_describe
+  </sql>
+  <sql id="Blob_Column_List" >
+    icon
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from course
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hzyc.website.beans.Course" >
+    insert into course (id, icon_name, course_name, 
+      title, application, course_describe, 
+      icon)
+    values (#{id,jdbcType=INTEGER}, #{iconName,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{application,jdbcType=VARCHAR}, #{course_describe,jdbcType=VARCHAR}, 
+      #{icon,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hzyc.website.beans.Course" >
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="iconName != null" >
+        icon_name,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="application != null" >
+        application,
+      </if>
+      <if test="course_describe != null" >
+        course_describe,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="iconName != null" >
+        #{iconName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="application != null" >
+        #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="course_describe != null" >
+        #{course_describe,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.website.beans.Course" >
+    update course
+    <set >
+      <if test="iconName != null" >
+        icon_name = #{iconName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="application != null" >
+        application = #{application,jdbcType=VARCHAR},
+      </if>
+      <if test="course_describe != null" >
+        course_describe = #{course_describe,jdbcType=VARCHAR},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hzyc.website.beans.Course" >
+    update course
+    set icon_name = #{iconName,jdbcType=VARCHAR},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      application = #{application,jdbcType=VARCHAR},
+      course_describe = #{course_describe,jdbcType=VARCHAR},
+      icon = #{icon,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hzyc.website.beans.Course" >
+    update course
+    set icon_name = #{iconName,jdbcType=VARCHAR},
+      course_name = #{courseName,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      application = #{application,jdbcType=VARCHAR},
+      course_describe = #{course_describe,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selCourse" resultMap="ResultMapWithBLOBs">
+  	select * from course
+  </select>
+  
+  <select id="selCourseNoImg" resultMap="ResultMapWithBLOBs">
+  	select id, icon_name, course_name, title, application, course_describe from course
+  </select>
+</mapper>

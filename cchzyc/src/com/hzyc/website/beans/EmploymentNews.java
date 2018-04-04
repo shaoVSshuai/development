@@ -11,6 +11,44 @@ public class EmploymentNews {
 
     private String position;
 
+    //这是 用来分页绑定的属性
+    private String nowPage;
+    private String pageSize;
+    private String maxPage;
+    private String startPage;
+    
+    
+    public String getStartPage() {
+		return startPage;
+	}
+
+	public void setStartPage(String startPage) {
+		this.startPage = startPage;
+	}
+
+	public String getNowPage() {
+		return nowPage;
+	}
+
+	public void setNowPage(String nowPage) {
+		this.nowPage = nowPage;
+	}
+
+	public String getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(String pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public String getMaxPage() {
+		return maxPage;
+	}
+
+	public void setMaxPage(String maxPage) {
+		this.maxPage = maxPage;
+	}
     public Integer getId() {
         return id;
     }

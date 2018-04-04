@@ -71,7 +71,7 @@ public class CourseSer {
 			//文件后缀 .jpg
 			String suffix = filename.substring(filename.lastIndexOf("."));
 			//新文件名
-			String newFileName = c.getId() + suffix;
+			String newFileName = System.currentTimeMillis() + suffix;
 			System.out.println(newFileName+"--------");
 			//设置新图片
 			c.setIcon(by);

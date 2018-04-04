@@ -81,28 +81,12 @@ layui.use('layer', function(){
 		$("#add").click(function(){
 			 layer.open({
 			      type: 2,
-			      title: '招聘信息录入',
+			      title: '就业信息录入',
 			      maxmin: true,
 			      name:'add',
 			      shadeClose: false, //点击遮罩关闭层
 			      area : ['900px' , '520px'],
 			      content: '<%=basePath%>homepageInfoMan/employmentNews/news_add.jsp'//,
-			      /*success:function($el,index){
-			    	 $el.find(".layui-layer-max").unbind("click.aa").bind("click.aa",function(){
-			    	        var momBool=$(this).hasClass("layui-layer-maxmin");//true时当前是正常窗口正要执行最大化，false反之
-			    	    	console.log(momBool);
-			    	    	var divObj=$el.find("iframe").contents().find("#add_content");
-							if(momBool){
-								divObj.css("margin-left","150px");
-								console.log("放大");
-							}else{
-								divObj.css("margin-left","10px");
-								console.log("缩小");
-							}
-							
-			    	    	//console.log(divObj);
-			    	// })
-			   	} */
 			});
 		});
 		

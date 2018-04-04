@@ -12,6 +12,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import com.hzyc.website.beans.Audition;
 import com.hzyc.website.beans.Company;
 import com.hzyc.website.beans.Course;
+import com.hzyc.website.beans.EmploymentNewsWithBLOBs;
 import com.hzyc.website.beans.Job;
 import com.hzyc.website.beans.Privilege;
 import com.hzyc.website.services.AudSer;
@@ -78,10 +79,16 @@ public class SystemInit implements ServletContextListener {
 		    sys.getInitService().courseIcon(sce);
 		    System.out.println("====================课程图标缓存完毕！===========================");
 		    
+		    System.out.println("====================就业信息和图片缓存中...===========================");
+		    List<EmploymentNewsWithBLOBs> eList = sys.getInitService().epment(sce);
+		    EpmentForInit.setCourseList(eList);
+		    sys.getInitService().selEpment();
+		    System.out.println("====================就业信息和图片缓存完毕！===========================");
+		    
 		    System.out.println("====================公司信息加载中...(用于招聘)===========================");
-		   List<Company> companyList = sys.getInitService().selAllCompany();
-		   CompanyForInit.setList(companyList);
-		   System.out.println("====================公司信息加载完毕！===========================");
+		    List<Company> companyList = sys.getInitService().selAllCompany();
+		    CompanyForInit.setList(companyList);
+		    System.out.println("====================公司信息加载完毕！===========================");
 		   
 		    System.out.println("===================每天1:00执行的定时任务启动========================================");
 		    new AudDelTimerManager();    

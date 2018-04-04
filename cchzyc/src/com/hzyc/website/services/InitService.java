@@ -15,12 +15,14 @@ import com.hzyc.website.beans.Address;
 import com.hzyc.website.beans.Company;
 import com.hzyc.website.beans.Course;
 import com.hzyc.website.beans.Dictionary;
+import com.hzyc.website.beans.EmploymentNewsWithBLOBs;
 import com.hzyc.website.beans.Job;
 import com.hzyc.website.beans.Log;
 import com.hzyc.website.beans.Privilege;
 import com.hzyc.website.mappers.CompanyMapper;
 import com.hzyc.website.mappers.CourseMapper;
 import com.hzyc.website.mappers.DictionaryMapper;
+import com.hzyc.website.mappers.EmploymentNewsMapper;
 import com.hzyc.website.mappers.JobMapper;
 import com.hzyc.website.mappers.LogMapper;
 import com.hzyc.website.mappers.PrivilegeMapper;
@@ -53,6 +55,8 @@ public class InitService extends HttpServlet{
 	CompanyMapper companyMapper;
 	@Autowired
 	CourseMapper cm;
+	@Autowired
+	EmploymentNewsMapper enm;
 	
 	/**
 	 * 数据字典初始化 缓存
@@ -235,7 +239,7 @@ public class InitService extends HttpServlet{
 	public List<Course> courseIcon(ServletContextEvent sce){
 		List<Course> cList = cm.selCourse();
 		for (int i=0; i<cList.size(); i++) {
-			if (cList.get(i).getIcon() != null && !cList.get(i).getIcon().equals("")) {
+			if (cList.get(i).getIcon() != null && ! cList.get(i).getIcon().equals("")) {
 				FileOutputStream fos;
 				try {
 					String path = sce.getServletContext().getRealPath("/");
@@ -251,5 +255,51 @@ public class InitService extends HttpServlet{
 		}
 		return cList;
 	}
-	
+	/**
+	 * 将就业信息的图片缓存起来
+	 * @author 郑斌
+	 * @param sce
+	 * @return
+	 */
+	public List<EmploymentNewsWithBLOBs> epment(ServletContextEvent sce){
+		List<EmploymentNewsWithBLOBs> eList = enm.selAll();
+		for (int i=0; i<eList.size(); i++) {
+			if (eList.get(i).getLifePhoto() != null && ! eList.get(i).getLifePhoto().equals("")) {
+				FileOutputStream fos;
+				try {
+					String path = sce.getServletContext().getRealPath("/");
+					String finalPathAndName = path +"images/course/"+eList.get(i).getLifePhotoName();
+					fos = new FileOutputStream(finalPathAndName);
+					fos.write(eList.get(i).getLifePhoto());
+					fos.close();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if (eList.get(i).getCompanyLogo() != null && ! eList.get(i).getCompanyLogo().equals("")) {
+				FileOutputStream fos;
+				try {
+					String path = sce.getServletContext().getRealPath("/");
+					String finalPathAndName = path +"images/course/"+eList.get(i).getCompanyLogoName();
+					fos = new FileOutputStream(finalPathAndName);
+					fos.write(eList.get(i).getCompanyLogo());
+					fos.close();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return eList;
+	}
+	/**
+	 * 将就业信息缓存起来
+	 * @author 郑斌
+	 * @return
+	 */
+	public List<EmploymentNewsWithBLOBs> selEpment() {
+		List<EmploymentNewsWithBLOBs> eList = enm.selAll();
+		return eList;
+	}
 }

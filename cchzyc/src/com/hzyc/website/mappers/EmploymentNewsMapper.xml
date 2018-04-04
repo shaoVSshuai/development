@@ -135,11 +135,31 @@
 	  	<where>
   			<!-- 姓名为模糊查询 -->
   			<if test="stuName != null  and stuName != '' " >
-  				and stu_name = #{stuName}
+  				and stu_name like concat(concat('%',#{stuName}),'%')
   			</if>
   			<if test="position != null  and position != '' " >
   				and position = #{position}
   			</if>
   		</where>	
+  		limit #{startPage} , #{pageSize}
+  </select>
+  <!-- 查询满足条件所有学员的个数 -->
+  <select id="selAllEmpCount" resultType="int" parameterType="EmploymentNewsWithBLOBs">
+  		select count(id) 
+  		
+  		from employment_news 
+  		<where>
+  			<!-- 姓名为模糊查询 -->
+  			<if test="stuName != null  and stuName != '' " >
+  				and stu_name like concat(concat('%',#{stuName}),'%')
+  			</if>
+  			<if test="position != null  and position != '' " >
+  				and position = #{position}
+  			</if>
+  		</where>
+  </select>
+  <select id="selAll" resultMap="BaseResultMap">
+  	select * 
+  	from employment_news
   </select>
 </mapper>

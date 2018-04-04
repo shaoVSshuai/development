@@ -1,88 +1,103 @@
 <%@page import="com.hzyc.website.beans.EmploymentNewsWithBLOBs"%>
-<%@page import="com.hzyc.website.beans.Course"%>
+<%@page import="com.hzyc.website.beans.StudentInfo"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%response.setHeader("Pragma", "No-Cache"); %>
-    <%response.setHeader("Cache-Control", "No-Cache"); %>
-    <%response.setDateHeader("Expires", 0); %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=basePath%>plugins/layui/css/layui.css" media="all">
-<link rel="stylesheet" href="<%=basePath%>css/common.css" >
-<script type="text/javascript" src="<%=basePath%>js/jquery-3.2.1.js" charset=”utf-8″></script>
-<script  type="text/javascript" src="<%=basePath%>plugins/layer/layer.js" charset=”utf-8″></script>
-<script type="text/javascript" src="<%=basePath%>plugins/layui/layui.js"></script>
-<script type="text/javascript" src="<%=basePath%>js/jquery1.4.2.js" charset=”utf-8″></script>
- 
- <style type="text/css">
- 	.omit {
-		max-width: 110px;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		}
-	#img{
-		padding-left:30px;
-		width:50px;
-		height:50px;		
-	}
- </style>
- <script type="text/javascript">
- function detail(id){
-		var iWidth=620;                          //弹出窗口的宽度; 
-		var iHeight=420; 
-     var iTop = (window.screen.availHeight - 30 - iHeight) / 2; 
-     //获得窗口的水平位置 
-     var iLeft = (window.screen.availWidth - 10 - iWidth) / 2; 
-     var a = encodeURI("<%=basePath%>/homepageInfoMan/course/detail.jsp?code="+id);
-     console.log(a);
-     window.open(a , "_blank", 'height=' + iHeight + ',innerHeight=' + iHeight + ',width=' + iWidth + ',innerWidth=' + iWidth + ',top=' + iTop + ',left=' + iLeft +
-    ',status=no,toolbar=no,menubar=no,location=no,resizable=no,scrollbars=0,titlebar=no'); 	
-	}
- </script>
+    <script src="<%=basePath%>plugins/layui/layui.js"></script>
+     <script src="<%=basePath%>js/jquery1.4.2.js"></script>
+      <script src="<%=basePath%>js/nextPage.js"></script>
+    <script>
+	    /*
+	    * 删除
+	    */
+    	function del(id){
+    		if(confirm("您确认删除该学员吗?ID："+ id +",姓名:"+ name)){
+    			//删除
+    			htmlobj=$.ajax({url:"<%=basePath%>stuCon/delStudent.hzyc?id="+id,async:false});
+    			if(htmlobj.responseText == 1){
+    				alert("删除成功!");
+    				parent.formSubmit();
+    			}else{
+    				alert("删除失败!");
+    			}
+    		}
+    	}
+    
+    </script>
+    <style>
+    	*{
+    		margin:0;
+    		padding:0;
+    	}
+    
+    </style>
 </head>
-<body>
-	<% 
-		List<EmploymentNewsWithBLOBs> eList = (List<EmploymentNewsWithBLOBs>)request.getAttribute("");
-	%>
-		<table class="layui-table" id="test">
-	        <thead>
-	            <tr>
-	            	<th>ID</th>
+<body style="padding:0;margin:0;">
+	 <%
+	 	List<EmploymentNewsWithBLOBs> list = (List<EmploymentNewsWithBLOBs>)request.getAttribute("");
+	 %>
+	  <div style="width:100%;height:30px;background-color: #f2f2f2;line-height:30px;font-size:13px;color:#444;padding-left:10px;">
+		当前位置 >> 首页信息管理 >> 就业信息查询结果  
+	</div>
+	
+	 <form action="<%=basePath%>stuCon/nextPage.hzyc" method="post"  id="form">
+	 	<!-- 查询数据绑定 用来分页 -->
+		        	<%
+		        		EmploymentNewsWithBLOBs aud = (EmploymentNewsWithBLOBs)request.getAttribute("emp");
+		        	    //p.getNowPage() 
+		        		if(aud != null){
+		        	%>
+		        		<input type="hidden" name="stuName" class="layui-input" value="<%=aud.getStuName()==null ? "" : aud.getStuName()%>"/> 
+				  		 <input type="hidden" name="position" class="layui-input"   value="<%=aud.getPosition()==null ? "" : aud.getPosition()%>"/> 
+					 	    <!-- 绑定分页查询 -->
+					 	   <input type="hidden"   name="nowPage"  id="nowPage"  class="layui-input" id="inputDate2"  value="<%=aud.getNowPage() %>"/> 
+					 	   <input type="hidden" name="pageSize" id="pageSize" value="<%=aud.getPageSize() %>" />
+					 	      <input type="hidden"   name="maxPage"  id="maxPage"  class="layui-input" id="inputDate2"  value="<%=aud.getMaxPage()%>"/> 
+					 	   <input type="hidden"   name="startPage"  id="startPage"  class="layui-input" id="inputDate2"  value=""/> 
+		        			
+		        	<%		
+		        			
+		        		}
+		        	%>
+	 	<table class="layui-table" id="test">
+		        <thead>
+		        <tr>
+		        	<th>ID</th>
 	                <th>学员姓名</th>
 	                <th>职位</th>
 	                <th>公司logo</th>
 	                <th>生活照</th>
 	                <th>操作</th>
-	            </tr>
-	        </thead>
-	        <tbody>
-	        	<% 
-	        		if (eList != null && eList.size() > 0) {
-	        			for (int i=0; i<eList.size(); i++) {
-	        	%>	
-				        	<tr>
-				        		<td><%=eList.get(i).getId() %></td>
-				        		<td><%=eList.get(i).getStuName() %></td>
-				        		<td><%=eList.get(i).getPosition() %></td>
-				        		<td><img src="<%=basePath %>/images/course/<%=eList.get(i).getCompanyLogoName()%>" id="img"/></td>
-				        		<td><img src="<%=basePath %>/images/course/<%=eList.get(i).getLifePhotoName()%>" id="img"/></td>
-				        		<td>
-			        			<button id="upd<%=i %>" class="layui-btn layui-btn-small layui-btn-warm" style="margin:0" >修改</button>
-				        		<button onclick="del('<%=eList.get(i).getId()%>')" class="layui-btn layui-btn-small layui-btn-normal" style="margin:0" >删除</button>
-				        		<script type="text/javascript">
+		            <tr>
+		        </thead>
+		        <tbody>
+		        	<%
+		        		if(list != null && list.size() > 0 ){
+			        		for(int i = 0;i<list.size();i++){
+			        %>
+			        		<tr>
+			        			<td><%=list.get(i).getId() %></td>
+				                <td><%=list.get(i).getStuName() %></td>
+				                <td><%=list.get(i).getPosition() %></td>
+				                <td><img src="<%=basePath %>/images/course/<%=list.get(i).getCompanyLogoName()%>" id="img"/></td>
+				        		<td><img src="<%=basePath %>/images/course/<%=list.get(i).getLifePhotoName()%>" id="img"/></td>
+				        		
+				                <td>
+				                	<button onclick="upd('<%=list.get(i).getId()%>')" class="layui-btn layui-btn-small layui-btn-warm" style="margin:0" >修改</button>
+				                	<input type="button" onclick="del('<%=list.get(i).getId()%>','<%=list.get(i).getStuName()%>')" class="layui-btn layui-btn-small layui-btn-danger" style="margin:0" value="删除" />
+				              	<script type="text/javascript">
 									$(document).ready(function(){
 									$("#upd<%=i%>").click(function(){
 										layer.open({
@@ -92,27 +107,76 @@
 										      name:'add',
 										      shadeClose: false, //点击遮罩关闭层
 										      area : ['800px' , '420px'],
-										      content: '<%=basePath%>courseCon/selCourseById.hzyc?id=<%=eList.get(i).getId()%>'
+										      content: '<%=basePath%>courseCon/selCourseById.hzyc?id=<%=list.get(i).getId()%>'
 										});
 									});
 									
 								});
 								</script>
-				        		</td>
-				        	</tr>
-	        	<%		
-	        			}
-	        		} else {
-	        	%>
-	        	<tr>
-	       			<td colspan="10" align="center">暂无查询数据</td>
-	       		</tr>
-	        	<%	
-	        		}
-	        	%>
-	        </tbody>
-	        <tfoot>
-	        </tfoot>
-		</table>
+				                </td>
+			        		</tr>
+			        <%
+			        		}
+		        		}else{
+		        	%>
+		        			<tr>
+			        			<td colspan="6" align="center">暂无数据</td>
+			        		</tr>
+		        	<%
+		        		}
+		        	%>
+		        	
+		        	
+		        
+		        </tbody>
+		        <tfoot>
+		        	<tr>
+		        		<td colspan="6">
+		        			<%
+		        				if(aud != null){
+		        			%>
+		        				当前第<%=aud.getNowPage() %>页
+			        			共<%=aud.getMaxPage() %> 页
+			        			<a id="start" href="javascript:pageChange('<%=1%>','start')">首页</a>
+			        			<a id="top" href="javascript:pageChange('<%=aud.getNowPage()%>','top')">上一页</a>
+			        			<a id="bottom" href="javascript:pageChange('<%=aud.getNowPage()%>','bottom')">下一页</a>
+			        			<a id="end" href="javascript:pageChange('<%=aud.getMaxPage()%>','end')">尾页</a>
+		        				
+		        				<script>
+								//如果当前页已经为首页或是尾页,则让按钮不能点击
+									var nowPage = (<%=aud.getNowPage()%>);
+									var lastPage = (<%=aud.getMaxPage()%>);
+									if(nowPage >= lastPage){
+										$("#bottom").attr('disabled', 'true');
+								       	$("#bottom").removeAttr('href');
+									}
+									if(nowPage <= 1){
+										$("#top").attr('disabled', 'true');
+										$("#top").removeAttr('href');
+									}
+									//如果总页数为0，那么首页尾页也不可点击
+									if(lastPage <= 0){
+										$("#end").attr('disabled', 'true');
+										$("#end").removeAttr('href');
+										$("#start").attr('disabled', 'true');
+										$("#start").removeAttr('href');
+									}
+									 
+								
+								</script>
+		        		
+		        			<%	
+		        				}
+		        			%>
+		        		</td>
+		        	</tr>
+		        </tfoot>
+		    </table>
+		    </form>
+	<script>
+        layui.use('table', function() {
+            var table = layui.table;
+        });
+    </script>
 </body>
 </html>

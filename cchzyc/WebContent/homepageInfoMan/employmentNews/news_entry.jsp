@@ -1,6 +1,4 @@
-<%@page import="com.hzyc.website.beans.Company"%>
 <%@page import="java.util.List"%>
-<%@page import="com.hzyc.website.system.CompanyForInit"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="ex" uri="../../WEB-INF/tags/dict.tld"%>
@@ -55,7 +53,9 @@ layui.use('layer', function(){
 </script>
 </head>
 <body >
-	<!-- action="?%=basePath%?empCon/selEmp.hzyc" -->
+	<div style="width:100%;height:30px;background-color: #f2f2f2;line-height:30px;font-size:13px;color:#444;padding-left:10px;">
+		当前位置 >> 首页信息管理 >> 就业信息查询条件  
+	</div>
 	<form action="*"  method="post" target="result">
 		  <table >
 		  	<tr>
@@ -73,7 +73,7 @@ layui.use('layer', function(){
 		  </table>
 	</form>
 	
-	<iframe src="<%=basePath%>/homepageInfoMan/employmentNews/news_maintenance.jsp" name="result" style="width:1130px;height:450px;margin-top:20px;">
+	<iframe src="<%=basePath%>/homepageInfoMan/employmentNews/result.jsp" name="result" style="width:1130px;height:450px;margin-top:20px;">
 	
 	</iframe>
 	<script type="text/javascript">

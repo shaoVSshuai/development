@@ -8,6 +8,7 @@
   </error-page> -->
   
   <welcome-file-list>
+    <welcome-file>sms_index.jsp</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
   <context-param>

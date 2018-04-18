@@ -167,7 +167,7 @@
   			</if>
   		</where>
   </select>
-  <select id="selAll" resultMap="BaseResultMap">
+  <select id="selAll" resultMap="ResultMap">
   	select * 
   	from employment_news
   </select>
@@ -175,7 +175,7 @@
   
   <select id="fenye" parameterType="int" resultMap="ResultMap">
   
-  		select * from employment_news limit #{0} , #{1}
+  		select id,life_photo_name,company_logo_name,stu_name,position from employment_news limit #{0} , #{1}
   		
   </select>
 </mapper> 

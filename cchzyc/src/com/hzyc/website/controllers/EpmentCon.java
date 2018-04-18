@@ -2,6 +2,7 @@ package com.hzyc.website.controllers;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -136,8 +137,11 @@ public class EpmentCon {
 	 * nowPage ： 当前页
 	 * 目前每页显示4个
 	 */
+	@RequestMapping("fenye.hzyc")
 	public void fenye(HttpServletRequest req , HttpServletResponse res ,   String nowPage) {
-		int now = 0;
+		System.out.println("进来分页了");
+		res.setContentType("text/html;charset=utf-8");
+		int now = 1;
 		if(nowPage != null) {
 			try {
 				now = Integer.parseInt(nowPage);
@@ -174,6 +178,7 @@ public class EpmentCon {
 	 * @param request
 	 * @return
 	 */
+	@RequestMapping("/selById.hzyc")
 	public ModelAndView selById(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
 		

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.hzyc.website.beans.Audition;
 import com.hzyc.website.beans.EmploymentNewsWithBLOBs;
 import com.hzyc.website.services.EpmentSer;
@@ -126,5 +127,46 @@ public class EpmentCon {
 			e1.printStackTrace();
 		}
 		return flag ? "" : "";
+	}
+	
+	
+	/**
+	 * 上一页下一页
+	 * @param req
+	 * @param res 
+	 * nowPage ： 当前页
+	 * 目前每页显示4个
+	 */
+	public void fenye(HttpServletRequest req , HttpServletResponse res ,   String nowPage) {
+		int now = 0;
+		if(nowPage != null) {
+			try {
+				now = Integer.parseInt(nowPage);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		} 
+		//上一页
+		//起始索引
+		int start = (now-1) * 4;
+		//每页显示几条
+		int pageSize = 4;
+		//select * from table limit 0  ,4
+		List<EmploymentNewsWithBLOBs> list = es.fenye(start , pageSize);
+		Gson g = new Gson();
+		String re  = g.toJson(list);
+		PrintWriter out = null;
+		try {
+			out = res.getWriter();
+			out.print(re);
+			out.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			out.close();
+		}
+		
+		
 	}
 }

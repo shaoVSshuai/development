@@ -23,10 +23,11 @@
 	    * 删除
 	    */
     	function del(id){
-    		if(confirm("您确认删除该学员吗?ID："+ id +",姓名:"+ name)){
+    		if(confirm("您确认删除该信息吗?ID："+ id +",姓名:"+ name)){
     			//删除
     			htmlobj=$.ajax({url:"<%=basePath%>epmentCon/delEp.hzyc?id="+id,async:false});
     			if(htmlobj.responseText == 1){
+    				
     				alert("删除成功!");
     				parent.formSubmit();
     			}else{

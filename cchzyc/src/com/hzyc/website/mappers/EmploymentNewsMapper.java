@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hzyc.website.beans.EmploymentNews;
 import com.hzyc.website.beans.EmploymentNewsWithBLOBs;
+import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
 
 public interface EmploymentNewsMapper {
     int deleteByPrimaryKey(Integer id);
@@ -26,4 +27,6 @@ public interface EmploymentNewsMapper {
     int selAllEmpCount(EmploymentNewsWithBLOBs enw);
     
     List<EmploymentNewsWithBLOBs> selAll();
+    
+    public  List<EmploymentNewsWithBLOBs> fenye(int start , int pageSize);
 }

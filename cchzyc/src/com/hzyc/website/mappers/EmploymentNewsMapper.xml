@@ -171,4 +171,11 @@
   	select * 
   	from employment_news
   </select>
-</mapper>
+  
+  
+  <select id="fenye" parameterType="int" resultMap="ResultMap">
+  
+  		select * from employment_news limit #{0} , #{1}
+  		
+  </select>
+</mapper> 

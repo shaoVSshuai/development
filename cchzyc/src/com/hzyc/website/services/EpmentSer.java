@@ -127,4 +127,15 @@ public class EpmentSer {
 		}
 		return flag;
 	}
+	
+	
+	/**
+	 * ·ÖÒ³
+	 * @param start
+	 * @param pageSize
+	 * @return
+	 */
+	public List<EmploymentNewsWithBLOBs> fenye(int start , int pageSize){
+		return enm.fenye(start , pageSize);
+	}
 }

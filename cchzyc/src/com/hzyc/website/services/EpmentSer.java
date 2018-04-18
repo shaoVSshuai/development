@@ -114,7 +114,7 @@ public class EpmentSer {
 		if(img1 != null && ! img1.getOriginalFilename().equals("")){
 			//从服务器上删除图片
 			String path = request.getSession().getServletContext().getRealPath("/");
-			String finalPathAndName = path +"images/enployment/"+ enw.getLifePhotoName();
+			String finalPathAndName = path +"images/employment/"+ enw.getLifePhotoName();
 			File file = new File(finalPathAndName);
 			file.delete();
 			
@@ -131,7 +131,7 @@ public class EpmentSer {
 			
 			//上传图片到服务器
 			FileOutputStream fos;
-			String finalPathAndName1 = path +"images/enployment/"+ enw.getLifePhotoName();
+			String finalPathAndName1 = path +"images/employment/"+ enw.getLifePhotoName();
 			fos = new FileOutputStream(finalPathAndName1);
 			fos.write(by1);
 			fos.close();
@@ -139,7 +139,7 @@ public class EpmentSer {
 		if (img2 != null && ! img2.getOriginalFilename().equals("")) {
 			//从服务器上删除图片
 			String path = request.getSession().getServletContext().getRealPath("/");
-			String finalPathAndName = path +"images/enployment/"+ enw.getCompanyLogoName();
+			String finalPathAndName = path +"images/employment/"+ enw.getCompanyLogoName();
 			File file = new File(finalPathAndName);
 			file.delete();
 			
@@ -149,14 +149,14 @@ public class EpmentSer {
 			//公司logo后缀 .jpg
 			String suffix2 = filename2.substring(filename2.lastIndexOf("."));
 			//公司logo名
-			String newFileName2 = System.currentTimeMillis() + suffix2;
+			String newFileName2 = System.currentTimeMillis()+"1" + suffix2;
 			
 			enw.setCompanyLogo(by2);
 			enw.setCompanyLogoName(newFileName2);
 			
 			//上传图片到服务器
 			FileOutputStream fos;
-			String finalPathAndName1 = path +"images/enployment/"+ enw.getCompanyLogoName();
+			String finalPathAndName1 = path +"images/employment/"+ enw.getCompanyLogoName();
 			fos = new FileOutputStream(finalPathAndName1);
 			fos.write(by2);
 			fos.close();

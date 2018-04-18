@@ -268,7 +268,7 @@ public class InitService extends HttpServlet{
 				FileOutputStream fos;
 				try {
 					String path = sce.getServletContext().getRealPath("/");
-					String finalPathAndName = path +"images/course/"+eList.get(i).getLifePhotoName();
+					String finalPathAndName = path +"images/employment/"+eList.get(i).getLifePhotoName();
 					fos = new FileOutputStream(finalPathAndName);
 					fos.write(eList.get(i).getLifePhoto());
 					fos.close();
@@ -281,7 +281,7 @@ public class InitService extends HttpServlet{
 				FileOutputStream fos;
 				try {
 					String path = sce.getServletContext().getRealPath("/");
-					String finalPathAndName = path +"images/course/"+eList.get(i).getCompanyLogoName();
+					String finalPathAndName = path +"images/employment/"+eList.get(i).getCompanyLogoName();
 					fos = new FileOutputStream(finalPathAndName);
 					fos.write(eList.get(i).getCompanyLogo());
 					fos.close();

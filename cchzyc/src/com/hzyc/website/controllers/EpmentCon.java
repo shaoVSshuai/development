@@ -126,7 +126,7 @@ public class EpmentCon {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return flag ? "" : "";
+		return flag ? "../homepageInfoMan/employmentNews/news_entry.jsp" : "../homepageInfoMan/employmentNews/false.jsp";
 	}
 	
 	
@@ -181,12 +181,12 @@ public class EpmentCon {
 	@RequestMapping("/selById.hzyc")
 	public ModelAndView selById(HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView();
-		
+		System.out.println("-------------");
 		int id = Integer.parseInt(request.getParameter("id"));
 		EmploymentNewsWithBLOBs enw = es.selById(id);
 		
 		modelAndView.addObject("enw",enw);
-		modelAndView.setViewName("");
+		modelAndView.setViewName("../homepageInfoMan/employmentNews/result_update.jsp");
 		
 		return modelAndView;
 	}

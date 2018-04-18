@@ -58,6 +58,13 @@
 		width:35px;
 		height:35px;		
 	}
+	#img1{
+		width:35px;
+		height:35px;		
+	}
+	.layui-form-label{
+		width:100px;
+	}
 </style>
 <script type="text/javascript">
 		$(document).ready(function(){
@@ -70,38 +77,39 @@
 </head>
 <body>
 	<%
-	EmploymentNewsWithBLOBs emp = (EmploymentNewsWithBLOBs)request.getAttribute("");
+	EmploymentNewsWithBLOBs emp = (EmploymentNewsWithBLOBs)request.getAttribute("enw");
 	%>
-<form action="<%=basePath%>empCon/updateCourse.hzyc" target="_parent"  method="post" enctype="multipart/form-data" id="form">
+<form action="<%=basePath%>epmentCon/updateEp.hzyc" target="_parent"  method="post" enctype="multipart/form-data" id="form">
 	<input type="hidden" value="<%=emp.getId() %>" name="id">
 	<div id="add_content">
 		<div id="position">
 			<div class="row">
-				<label class="layui-form-label" >原有公司logo</label>
+				<label class="layui-form-label" >原公司logo</label>
 					<div>
-						<img src="<%=basePath %>/images/emp/<%=emp.getCompanyLogoName()%>" id="img"/>
+						<img src="<%=basePath %>/images/employment/<%=emp.getCompanyLogoName()%>" id="img"/>
 					</div>
-				<label class="layui-form-label" >原有生活照</label>
-					<div>
-						<img src="<%=basePath %>/images/emp/<%=emp.getLifePhotoName()%>" id="img"/>
-					</div>
+					<label class="layui-form-label">更换公司logo</label>
+				<div>
+					<input type="file" class="hzyc-input" name="img1"/>
+					<input type="hidden" name="companyLogoName" value="<%=emp.getCompanyLogoName()%>">
+				</div>
 			</div>
 			<div class="row">
-				<label class="layui-form-label" >更换公司logo</label>
-				<div><input type="file" class="hzyc-input" name="img"/>
-						<input type="hidden" name="companyLogoName" value="<%=emp.getCompanyLogoName()%>">
-				</div>
+				<label class="layui-form-label" >原生活照</label>
+					<div>
+						<img src="<%=basePath %>/images/employment/<%=emp.getLifePhotoName()%>" id="img1"/>
+					</div>
 				<label class="layui-form-label" >更换生活照</label>
-				<div><input type="file" class="hzyc-input" name="img1"/>
-						<input type="hidden" name="LifePhotoName" value="<%=emp.getLifePhotoName()%>">
+				<div><input type="file" class="hzyc-input" name="img2"/>
+						<input type="hidden" name="lifePhotoName" value="<%=emp.getLifePhotoName()%>">
 				</div>
 			</div>
 			<div class="row">
-					<label class="layui-form-label" >学员姓名</label>
-					<div><input type="text" name="stuName" class="hzyc-input"  id="title" value="<%=emp.getStuName() %>"/></div>
-					<label class="layui-form-label">职位</label>
-					<div><input type="text" name="position" class="hzyc-input" id="application" value="<%=emp.getPosition()%>"/></div>
-				</div>
+				<label class="layui-form-label" >学员姓名</label>
+				<div><input type="text" name="stuName" class="hzyc-input"  id="title" value="<%=emp.getStuName() %>"/></div>
+				<label class="layui-form-label">职位</label>
+				<div><input type="text" name="position" class="hzyc-input" id="application" value="<%=emp.getPosition()%>"/></div>
+			</div>
 		</div>
 	</div>
 	<div id="anniu">

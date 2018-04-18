@@ -1,24 +1,50 @@
 <%@page import="com.hzyc.website.beans.EmploymentNewsWithBLOBs"%>
-<%@page import="com.hzyc.website.beans.StudentInfo"%>
+<%@page import="com.hzyc.website.beans.Course"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%response.setHeader("Pragma", "No-Cache"); %>
+    <%response.setHeader("Cache-Control", "No-Cache"); %>
+    <%response.setDateHeader("Expires", 0); %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
 			+ request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=basePath%>plugins/layui/css/layui.css" media="all">
-    <script src="<%=basePath%>plugins/layui/layui.js"></script>
-     <script src="<%=basePath%>js/jquery1.4.2.js"></script>
-      <script src="<%=basePath%>js/nextPage.js"></script>
-    <script>
+<link rel="stylesheet" href="<%=basePath%>css/common.css" >
+<script type="text/javascript" src="<%=basePath%>js/jquery-3.2.1.js" charset=”utf-8″></script>
+<script  type="text/javascript" src="<%=basePath%>plugins/layer/layer.js" charset=”utf-8″></script>
+<script type="text/javascript" src="<%=basePath%>plugins/layui/layui.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/jquery1.4.2.js" charset=”utf-8″></script>
+ 
+ <style type="text/css">
+ 	.omit {
+		max-width: 110px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		}
+	#img{
+		padding-left:30px;
+		width:50px;
+		height:50px;		
+	}
+	#img1{
+		padding-left:30px;
+		width:50px;
+		height:50px;		
+	}
+ </style>
+<script>
 	    /*
 	    * 删除
 	    */
@@ -68,22 +94,69 @@
  		document.getElementById("form").submit();
  	}
     </script>
-    <style>
-    	*{
-    		margin:0;
-    		padding:0;
-    	}
-    
-    </style>
 </head>
-<body style="padding:0;margin:0;">
-	 <%
+<body>
+	<%
 	 	List<EmploymentNewsWithBLOBs> list = (List<EmploymentNewsWithBLOBs>)request.getAttribute("enList");
 	 %>
-	  <div style="width:100%;height:30px;background-color: #f2f2f2;line-height:30px;font-size:13px;color:#444;padding-left:10px;">
-		当前位置 >> 首页信息管理 >> 就业信息查询结果  
-	</div>
-	 <form action="<%=basePath%>epmentCon/nextPage.hzyc" method="post"  id="form">
+		<table class="layui-table" id="test">
+	         <thead>
+		        <tr>
+		        	<th>ID</th>
+	                <th>学员姓名</th>
+	                <th>职位</th>
+	                <th>公司logo</th>
+	                <th>生活照</th>
+	                <th>操作</th>
+		            <tr>
+		        </thead>
+	        <tbody>
+	        	<%
+		        		if(list != null && list.size() > 0 ){
+			        		for(int i = 0;i<list.size();i++){
+			        %>
+			        		<tr>
+			        			<td><%=i+1 %></td>
+				                <td><%=list.get(i).getStuName() %></td>
+				                <td><%=list.get(i).getPosition() %></td>
+				                <td><img src="<%=basePath %>/images/employment/<%=list.get(i).getCompanyLogoName()%>" id="img"/></td>
+				        		<td><img src="<%=basePath %>/images/employment/<%=list.get(i).getLifePhotoName()%>" id="img1"/></td>
+				        		
+				                <td>
+				                	<button id="upd<%=i %>" class="layui-btn layui-btn-small layui-btn-warm" style="margin:0" >修改</button>
+				                	<input type="button" onclick="del('<%=list.get(i).getId()%>','<%=list.get(i).getStuName()%>')" class="layui-btn layui-btn-small layui-btn-danger" style="margin:0" value="删除" />
+				        		<script type="text/javascript">
+									$(document).ready(function(){
+									$("#upd<%=i%>").click(function(){
+										layer.open({
+										      type: 2,
+										      title: '精品课程修改',
+										      maxmin: true,
+										      name:'add',
+										      shadeClose: false, //点击遮罩关闭层
+										      area : ['800px' , '420px'],
+										      content: '<%=basePath%>epmentCon/selById.hzyc?id=<%=list.get(i).getId()%>'
+										});
+									});
+									
+								});
+								</script>
+				        		</td>
+				        	</tr>
+	        	<%		
+	        			}
+	        		} else {
+	        	%>
+	        	<tr>
+	       			<td colspan="10" align="center">暂无查询数据</td>
+	       		</tr>
+	        	<%	
+	        		}
+	        	%>
+	        </tbody>
+	        <tfoot>
+	        <tr>
+	         <form action="<%=basePath%>epmentCon/nextPage.hzyc" method="post"  id="form">
 	 	<!-- 查询数据绑定 用来分页 -->
 		        	<%
 		        		EmploymentNewsWithBLOBs aud = (EmploymentNewsWithBLOBs)request.getAttribute("enw");
@@ -102,66 +175,6 @@
 		        			
 		        		}
 		        	%>
-	 	<table class="layui-table" id="test">
-		        <thead>
-		        <tr>
-		        	<th>ID</th>
-	                <th>学员姓名</th>
-	                <th>职位</th>
-	                <th>公司logo</th>
-	                <th>生活照</th>
-	                <th>操作</th>
-		            <tr>
-		        </thead>
-		        <tbody>
-		        	<%
-		        		if(list != null && list.size() > 0 ){
-			        		for(int i = 0;i<list.size();i++){
-			        %>
-			        		<tr>
-			        			<td><%=i+1 %></td>
-				                <td><%=list.get(i).getStuName() %></td>
-				                <td><%=list.get(i).getPosition() %></td>
-				                <td><img src="<%=basePath %>/images/course/<%=list.get(i).getCompanyLogoName()%>" id="img"/></td>
-				        		<td><img src="<%=basePath %>/images/course/<%=list.get(i).getLifePhotoName()%>" id="img1"/></td>
-				        		
-				                <td>
-				                	<button onclick="upd('<%=list.get(i).getId()%>')" class="layui-btn layui-btn-small layui-btn-warm" style="margin:0" >修改</button>
-				                	<input type="button" onclick="del('<%=list.get(i).getId()%>','<%=list.get(i).getStuName()%>')" class="layui-btn layui-btn-small layui-btn-danger" style="margin:0" value="删除" />
-				              	<script type="text/javascript">
-									$(document).ready(function(){
-									$("#upd<%=i%>").click(function(){
-										layer.open({
-										      type: 2,
-										      title: '就业信息修改',
-										      maxmin: true,
-										      name:'add',
-										      shadeClose: false, //点击遮罩关闭层
-										      area : ['800px' , '420px'],
-										      content: '<%=basePath%>courseCon/selCourseById.hzyc?id=<%=list.get(i).getId()%>'
-										});
-									});
-									
-								});
-								</script>
-				                </td>
-			        		</tr>
-			        <%
-			        		}
-		        		}else{
-		        	%>
-		        			<tr>
-			        			<td colspan="6" align="center">暂无数据</td>
-			        		</tr>
-		        	<%
-		        		}
-		        	%>
-		        	
-		        	
-		        
-		        </tbody>
-		        <tfoot>
-		        	<tr>
 		        		<td colspan="6">
 		        			<%
 		        				if(aud != null){
@@ -201,13 +214,8 @@
 		        			%>
 		        		</td>
 		        	</tr>
+		        	</form>
 		        </tfoot>
-		    </table>
-		    </form>
-	<script>
-        layui.use('table', function() {
-            var table = layui.table;
-        });
-    </script>
+		</table>
 </body>
 </html>

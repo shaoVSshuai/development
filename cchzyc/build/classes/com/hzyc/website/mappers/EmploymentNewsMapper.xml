@@ -147,7 +147,7 @@
   				and stu_name like concat(concat('%',#{stuName}),'%')
   			</if>
   			<if test="position != null  and position != '' " >
-  				and position = #{position}
+  				and position like concat(concat('%',#{position}),'%')
   			</if>
   		</where>	
   		limit #{startPage} , #{pageSize}
@@ -163,7 +163,7 @@
   				and stu_name like concat(concat('%',#{stuName}),'%')
   			</if>
   			<if test="position != null  and position != '' " >
-  				and position = #{position}
+  				and position like concat(concat('%',#{position}),'%')  
   			</if>
   		</where>
   </select>

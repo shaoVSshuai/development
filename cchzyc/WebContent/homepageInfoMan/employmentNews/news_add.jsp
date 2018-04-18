@@ -75,6 +75,9 @@
 				<label class="layui-form-label" ></label>
 			</div>
 			<div class="row">
+				<span style="color:#d00;font-size:15px;margin-left:25px;"> [提示 : 生活照的尺寸最好是 285*281px]</span>
+			</div>
+			<div class="row">
 				<label class="layui-form-label" >生活照</label>
 				<div><input type="file" class="hzyc-input" name="img1"/>
 				</div>

@@ -15,9 +15,19 @@ public class Audition {
     private String maxPage;
     private String startPage;
     
+  //用来验证用户的验证码
+    private String validCode;
     
     
      
+	public String getValidCode() {
+		return validCode;
+	}
+
+	public void setValidCode(String validCode) {
+		this.validCode = validCode;
+	}
+
 	public String getStartPage() {
 		return startPage;
 	}

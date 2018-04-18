@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib prefix="ex" uri="WEB-INF/tags/dict.tld"%>
+<%@ taglib prefix="ex" uri="../WEB-INF/tags/dict.tld"%>
 <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"
@@ -15,17 +15,17 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/iconfont.css">
-	<link rel="stylesheet" href="css/jquery.slider.css" />
-	<link rel="stylesheet" href="css/swiper-3.4.2.min.css">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link href="css/slider.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/index.css">
-	<script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
-	<script type="text/javascript" src="js/jquery.slider.min.js"></script>
-	<script type="text/javascript" src="js/flexible.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/main.js"></script>
+	<link rel="stylesheet" href="/cchzyc/css/iconfont.css">
+	<link rel="stylesheet" href="/cchzyc/css/jquery.slider.css" />
+	<link rel="stylesheet" href="/cchzyc/css/swiper-3.4.2.min.css">
+	<link rel="stylesheet" href="/cchzyc/css/bootstrap.min.css">
+	<link href="/cchzyc/css/slider.css" rel="stylesheet">
+	<link rel="stylesheet" href="/cchzyc/css/index.css">
+	<script type="text/javascript" src="/cchzyc/js/jquery-3.2.0.min.js"></script>
+	<script type="text/javascript" src="/cchzyc/js/jquery.slider.min.js"></script>
+	<script type="text/javascript" src="/cchzyc/js/flexible.js"></script>
+	<script type="text/javascript" src="/cchzyc/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/cchzyc/js/main.js"></script>
 	<title>合众易成</title>
 	
 	<script>
@@ -40,7 +40,7 @@
 				}else{
 					 $.ajax({
 						   type: "POST",
-						   url: "audCon/addAudition.hzyc",
+						   url: "addAudition.hzyc",
 						   data: value,
 						   success: function(msg){
 							   var info = "";
@@ -54,9 +54,9 @@
 							   }else if(msg == "103"){
 								   info = "提交失败,错误代码"+msg;
 								   alert(info);
-							}
+								}
 							
-						}
+							}
 					});
 				}
 			   
@@ -66,18 +66,18 @@
 				var value =  $("#tel").val();
 				$.ajax({
 					   type: "POST",
-					   url: "audCon/getMessage.hzyc",
+					   url: "getMessage.hzyc",
 					   data:{ 
 						   phone:value
 					   }
 				});
 			});
 			
-			//更新下后台数据字典,以防无法显示最新字典内容
+			/* //更新下后台数据字典,以防无法显示最新字典内容
 			  $.ajax({
 				   type: "POST",
-				   url: "sysCon/reloadDict.hzyc"
-			  });
+				   url: "reloadDict.hzyc"
+			  }); */
 		});
 		
 		
@@ -91,7 +91,7 @@
 	
 </head>
 <body>
-	
+
 <nav class="navbar navbar-default navbar-inverse site-navbar" role="navigation">
 <% List<Course> cList = (List)request.getAttribute("courseList"); %>
 		<div class="container"> 
@@ -126,7 +126,7 @@
 	<div class="container-fluid">
 		<div class="header-wrapper">
 			<div class="context">
-				<img src="img/main2.jpg">
+				<img src="/cchzyc/img/main2.jpg">
 			</div>
 			<div class="box">
 				<h2>合众易成，做你生活中的IT导师</h2>
@@ -221,7 +221,7 @@
 			<div class="row teacherList">
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher.jpg">
+						<img src="/cchzyc/img/teacher.jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">董事长</p>
 							<p class="wire"></p>
@@ -231,7 +231,7 @@
 				</div>
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/people.jpg">
+						<img src="/cchzyc/img/people.jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">训导总监</p>
 							<p class="wire"></p>
@@ -241,7 +241,7 @@
 				</div>
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher2(1).jpg">
+						<img src="/cchzyc/img/teacher2(1).jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">技术总监</p>
 							<p class="wire"></p>
@@ -251,7 +251,7 @@
 				</div>
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher4.jpg">
+						<img src="/cchzyc/img/teacher4.jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">Web前端</br>高级讲师</p>
 							<p class="wire"></p>
@@ -276,7 +276,7 @@
 								<div class="swiper-slide">
 									<ul class="clearfix panel">
 				                        <li class="job-list-item job-list-special">
-				                            <img src="img/student1.jpg">
+				                            <img src="/cchzyc/img/student1.jpg">
 				                        </li>
 				                        <li class="job-list-item job-list-special job-special">
 				                            <p class="huawei">
@@ -291,7 +291,7 @@
 				                            <p>职位：安卓开发</p>
 				                        </li>
 				                        <li class="job-list-item job-list-special">
-				                            <img src="img/student2.jpg">
+				                            <img src="/cchzyc/img/student2.jpg">
 				                        </li>
 				                        <li class="job-list-item job-list-bot job-special">
 				                            <p class="huawei">
@@ -318,7 +318,7 @@
 				                            <p>职位：前端开发</p>
 				                        </li>
 				                        <li class="job-list-item job-list-rig">
-				                            <img src="img/student3.jpg">
+				                            <img src="/cchzyc/img/student3.jpg">
 				                        </li>
 				                        <li class="job-list-item job-list-rig list-special">
 				                            <p class="huawei">
@@ -333,14 +333,14 @@
 				                            <p>职位：安卓开发</p>
 				                        </li>
 				                        <li class="job-list-item">
-				                            <img src="img/student2.jpg">
+				                            <img src="/cchzyc/img/student2.jpg">
 				                        </li>
 				                    </ul>
 						        </div>
 						        <div class="swiper-slide">
 						        	<ul class="clearfix panel">
 				                        <li class="job-list-item job-list-special">
-				                            <img src="img/people.jpg">
+				                            <img src="/cchzyc/img/people.jpg">
 				                        </li>
 				                        <li class="job-list-item job-list-special job-special">
 				                            <p class="huawei">
@@ -355,7 +355,7 @@
 				                            <p>职位：安卓开发</p>
 				                        </li>
 				                        <li class="job-list-item job-list-special">
-				                            <img src="img/people.jpg">
+				                            <img src="/cchzyc/img/people.jpg">
 				                        </li>
 				                        <li class="job-list-item job-list-bot job-special">
 				                            <p class="huawei">
@@ -382,7 +382,7 @@
 				                            <p>职位：前端开发</p>
 				                        </li>
 				                        <li class="job-list-item job-list-rig">
-				                            <img src="img/people.jpg">
+				                            <img src="/cchzyc/img/people.jpg">
 				                        </li>
 				                        <li class="job-list-item job-list-rig list-special">
 				                            <p class="huawei">
@@ -397,7 +397,7 @@
 				                            <p>职位：安卓开发</p>
 				                        </li>
 				                        <li class="job-list-item">
-				                            <img src="img/people.jpg">
+				                            <img src="/cchzyc/img/people.jpg">
 				                        </li>
 				                    </ul>
 						        </div>
@@ -420,7 +420,7 @@
 			<div class="row market-list">
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher6.jpg">
+						<img src="/cchzyc/img/teacher6.jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">社招中心</br>总经理</p>
 							<p class="wire"></p>
@@ -430,7 +430,7 @@
 				</div>
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher8.jpg">
+						<img src="/cchzyc/img/teacher8.jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">吉林分校</br>市场部总经理</p>
 							<p class="wire"></p>
@@ -440,7 +440,7 @@
 				</div>
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher3(1).jpg">
+						<img src="/cchzyc/img/teacher3(1).jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">长春分校</br>市场部总经理</p>
 							<p class="wire"></p>
@@ -450,7 +450,7 @@
 				</div>
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher7.jpg">
+						<img src="/cchzyc/img/teacher7.jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">校企部</br>总经理</p>
 							<p class="wire"></p>
@@ -471,7 +471,7 @@
 							<h3 class="title">专业兴教.教育兴产.产业兴国</h3>
 						</div>
 						<div class="join">
-							<img src="img/sao.png">
+							<img src="/cchzyc/img/sao.png">
 							<span class="join-our">扫微信关注我们</span>
 						</div>
 						<p>公司地址：长春市前进大街与修正路交汇，修正服务外包大厦2209室</p>
@@ -573,7 +573,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher.jpg">
+							<img src="/cchzyc/img/teacher.jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -597,7 +597,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/people.jpg">
+							<img src="/cchzyc/img/people.jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -622,7 +622,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher2(1).jpg">
+							<img src="/cchzyc/img/teacher2(1).jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -646,7 +646,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher4.jpg">
+							<img src="/cchzyc/img/teacher4.jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -672,7 +672,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher6.jpg">
+							<img src="/cchzyc/img/teacher6.jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -696,7 +696,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher8.jpg">
+							<img src="/cchzyc/img/teacher8.jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -720,7 +720,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher3(1).jpg">
+							<img src="/cchzyc/img/teacher3(1).jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -744,7 +744,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher7.jpg">
+							<img src="/cchzyc/img/teacher7.jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -759,7 +759,7 @@
 			</div>
 		</div>
 	</div>
-	<script src="js/swiper-3.4.2.min.js"></script>
-	<script type="text/javascript" src="js/slider.js"></script>
+	<script src="/cchzyc/js/swiper-3.4.2.min.js"></script>
+	<script type="text/javascript" src="/cchzyc/js/slider.js"></script>
 </body>
 </html>

@@ -23,4 +23,5 @@ public interface AuditionMapper {
     int  selAllAuditionCount(Audition aud);
     
     int delAMonthAgo();
+    
 }

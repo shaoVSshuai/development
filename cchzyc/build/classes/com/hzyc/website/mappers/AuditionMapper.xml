@@ -33,61 +33,7 @@
       #{applyCode,jdbcType=CHAR}, #{stuDept,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR}, 
       #{applyLesson,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.hzyc.website.beans.Audition" >
-    insert into audition
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="tel != null" >
-        tel,
-      </if>
-      <if test="applyTime != null" >
-        apply_time,
-      </if>
-      <if test="applyCode != null" >
-        apply_code,
-      </if>
-      <if test="stuDept != null" >
-        stu_dept,
-      </if>
-      <if test="school != null" >
-        school,
-      </if>
-      <if test="applyLesson != null" >
-        apply_lesson,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=CHAR},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="tel != null" >
-        #{tel,jdbcType=CHAR},
-      </if>
-      <if test="applyTime != null" >
-        #{applyTime,jdbcType=CHAR},
-      </if>
-      <if test="applyCode != null" >
-        #{applyCode,jdbcType=CHAR},
-      </if>
-      <if test="stuDept != null" >
-        #{stuDept,jdbcType=VARCHAR},
-      </if>
-      <if test="school != null" >
-        #{school,jdbcType=VARCHAR},
-      </if>
-      <if test="applyLesson != null" >
-        #{applyLesson,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
+  
   <update id="updateByPrimaryKeySelective" parameterType="com.hzyc.website.beans.Audition" >
     update audition
     <set >
@@ -205,4 +151,66 @@
   <delete id="delAMonthAgo">
   	DELETE FROM audition WHERE apply_time &lt; DATE_ADD(CURDATE(),INTERVAL -1 MONTH)
   </delete>
+    <!-- 插入试听学员 -->
+  <insert id="insertSelective" parameterType="com.hzyc.website.beans.Audition" >
+    insert into audition
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="applyCode != null" >
+        apply_code,
+      </if>
+      <if test="stuDept != null" >
+        stu_dept,
+      </if>
+      <if test="school != null" >
+        school,
+      </if>
+      <if test="applyLesson != null" >
+        apply_lesson,
+      </if>
+      <if test="classes != null" >
+        classes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=CHAR},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=CHAR},
+      </if>
+      <if test="applyCode != null" >
+        #{applyCode,jdbcType=CHAR},
+      </if>
+      <if test="stuDept != null" >
+        #{stuDept,jdbcType=VARCHAR},
+      </if>
+      <if test="school != null" >
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="applyLesson != null" >
+        #{applyLesson,jdbcType=VARCHAR},
+      </if>
+      <if test="classes != null" >
+        #{classes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
 </mapper>

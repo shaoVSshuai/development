@@ -98,10 +98,20 @@ public class LoginFilter implements Filter {
 		}else{
 			//用户未登录
 			System.out.println("用户[未登录]");
+			if(resource.trim().equals("")) {
+				
+				out.print("<script>window.top.location.href='" + basePath + "index/goindex.jsp" +"';</script>");
+				return ;
+			}
 			//进入登录页面不过滤
 			if(LOGINACTION.equals(resource) || LOGINJSP.equals(resource)){
 				chain.doFilter(request, response);
 			}else{
+				if(resource.startsWith("index")  ) {
+					chain.doFilter(request, response);
+					return ;
+				}
+				
 				//其余未登录全部过滤
 				out.print("<script>window.top.location.href='" + basePath + LOGINJSP +"';</script>");
 			}

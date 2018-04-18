@@ -13,11 +13,5 @@ import com.hzyc.website.system.CourseForInit;
 @Controller
 public class LoadCon {
 	
-	@RequestMapping("/load.hzyc")
-	public String load(HttpServletRequest request) {
-		System.out.println("0000000-----------000000000");
-		List<Course> cList = CourseForInit.getList();
-		request.setAttribute("courseList", cList);
-		return "sms_index.jsp";
-	}
+	
 }

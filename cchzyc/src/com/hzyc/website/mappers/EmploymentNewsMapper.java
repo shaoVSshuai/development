@@ -21,7 +21,7 @@ public interface EmploymentNewsMapper {
     int updateByPrimaryKey(EmploymentNews record);
     
     //多条件查询
-    List<EmploymentNewsWithBLOBs> selConditionEmp(EmploymentNewsWithBLOBs enw);
+    List<EmploymentNewsWithBLOBs> selAllEmp(EmploymentNewsWithBLOBs enw);
     
     int selAllEmpCount(EmploymentNewsWithBLOBs enw);
     

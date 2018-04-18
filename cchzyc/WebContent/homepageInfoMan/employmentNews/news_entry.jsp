@@ -52,11 +52,11 @@ layui.use('layer', function(){
 
 </script>
 </head>
-<body >
+<body onload="formSubmit()">
 	<div style="width:100%;height:30px;background-color: #f2f2f2;line-height:30px;font-size:13px;color:#444;padding-left:10px;">
 		当前位置 >> 首页信息管理 >> 就业信息查询条件  
 	</div>
-	<form action="*"  method="post" target="result">
+	<form action="<%=basePath%>epmentCon/selConditionEmp.hzyc"  id="form" method="post" target="result">
 		  <table >
 		  	<tr>
 		  	<td><label  >学员姓名</label></td> 
@@ -91,6 +91,9 @@ layui.use('layer', function(){
 		});
 		
 	});
+	function  formSubmit(){
+		document.getElementById("form").submit();
+	}
 	</script>
 </body>
 </html>

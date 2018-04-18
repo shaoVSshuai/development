@@ -68,10 +68,7 @@
 	</script>
 </head>
 <body>
-	<%
-		Course course = (Course)request.getAttribute("course");
-	%>
-<form action="<%=basePath%>courseCon/updateCourse.hzyc" target="_parent"  method="post" enctype="multipart/form-data" id="form">
+<form action="<%=basePath%>epmentCon/insertEmp.hzyc" target="_parent"  method="post" enctype="multipart/form-data" id="form">
 	<div id="add_content">
 		<div id="position">
 			<div class="row">
@@ -82,14 +79,14 @@
 				<div><input type="file" class="hzyc-input" name="img1"/>
 				</div>
 				<label class="layui-form-label" >学员名</label>
-				<div><input type="text" name="courseName" class="hzyc-input"  id="courseName" /></div>
+				<div><input type="text" name="stuName" class="hzyc-input"  id="stuName" /></div>
 			</div>
 			<div class="row">
 				<label class="layui-form-label" >公司logo</label>
-				<div><input type="file" class="hzyc-input" name="img1"/>
+				<div><input type="file" class="hzyc-input" name="img2"/>
 				</div>
 				<label class="layui-form-label" >职位</label>
-				<div><input type="text" name="courseName" class="hzyc-input"  id="courseName" /></div>
+				<div><input type="text" name="position" class="hzyc-input"  id="lifePhotoName" /></div>
 			</div>
 		</div>
 	</div>

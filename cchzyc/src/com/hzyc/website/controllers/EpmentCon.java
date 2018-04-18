@@ -33,6 +33,7 @@ public class EpmentCon {
 	 */
 	@RequestMapping("/selConditionEmp.hzyc")
 	public ModelAndView selConditionEmp(EmploymentNewsWithBLOBs enw) {
+		System.out.println("--------------");
 		ModelAndView modelAndView = new ModelAndView();
 		Page p = new Page();
 		//查询最大行数
@@ -48,7 +49,7 @@ public class EpmentCon {
 		List<EmploymentNewsWithBLOBs> enList = es.selConditionEmp(enw);
 		modelAndView.addObject("enList", enList);
 		modelAndView.addObject("enw", enw);
-		modelAndView.setViewName("../");
+		modelAndView.setViewName("../homepageInfoMan/employmentNews/result.jsp");
 		return modelAndView;
 	}
 	/**
@@ -63,11 +64,11 @@ public class EpmentCon {
 		
 		//查询试听学员
 		List<EmploymentNewsWithBLOBs> eList = es.selConditionEmp(enw);
-		modelAndView.addObject("eList",eList);
+		modelAndView.addObject("enList",eList);
 		//设置回传的实体属性  {分页处理使用当筛选条件}
 		modelAndView.addObject("enw",enw);
 		//returnP 是包含  最大页  当前页  
-		modelAndView.setViewName("../");
+		modelAndView.setViewName("../homepageInfoMan/employmentNews/result.jsp");
 		return modelAndView;
 	}
 	/**
@@ -85,7 +86,7 @@ public class EpmentCon {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		return flag ? "" : "";
+		return flag ? "../homepageInfoMan/employmentNews/news_entry.jsp" : "../homepageInfoMan/employmentNews/false.jsp";
 	}
 	/**
 	 * 删除

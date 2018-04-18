@@ -12,6 +12,15 @@
     <result column="life_photo" property="lifePhoto" jdbcType="LONGVARBINARY" />
     <result column="company_logo" property="companyLogo" jdbcType="LONGVARBINARY" />
   </resultMap>
+  <resultMap id="ResultMap" type="com.hzyc.website.beans.EmploymentNewsWithBLOBs" extends="BaseResultMap" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="life_photo_name" property="lifePhotoName" jdbcType="VARCHAR" />
+    <result column="company_logo_name" property="companyLogoName" jdbcType="VARCHAR" />
+    <result column="stu_name" property="stuName" jdbcType="VARCHAR" />
+    <result column="position" property="position" jdbcType="VARCHAR" />
+    <result column="life_photo" property="lifePhoto" jdbcType="LONGVARBINARY" />
+    <result column="company_logo" property="companyLogo" jdbcType="LONGVARBINARY" />
+  </resultMap>
   <sql id="Base_Column_List" >
     id, life_photo_name, company_logo_name, stu_name, position
   </sql>
@@ -129,7 +138,7 @@
       position = #{position,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selAllEmp" resultMap="BaseResultMap" parameterType="EmploymentNewsWithBLOBs">
+  <select id="selAllEmp" resultMap="ResultMap" parameterType="EmploymentNewsWithBLOBs">
   	select <include refid="Base_Column_List"></include>
 		from employment_news 
 	  	<where>

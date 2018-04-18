@@ -25,7 +25,7 @@
     	function del(id){
     		if(confirm("您确认删除该学员吗?ID："+ id +",姓名:"+ name)){
     			//删除
-    			htmlobj=$.ajax({url:"<%=basePath%>stuCon/delStudent.hzyc?id="+id,async:false});
+    			htmlobj=$.ajax({url:"<%=basePath%>epmentCon/delEp.hzyc?id="+id,async:false});
     			if(htmlobj.responseText == 1){
     				alert("删除成功!");
     				parent.formSubmit();
@@ -34,7 +34,38 @@
     			}
     		}
     	}
-    
+    function pageChange(page,flag){
+ 		var n = document.getElementById("nowPage").value;
+ 		var p = document.getElementById("pageSize").value;
+ 		var m = document.getElementById("maxPage").value;
+ 		//这就是起始行
+ 		var sPage ;
+ 		//这是当前页
+ 		var nPage;
+ 		
+ 		switch(flag){
+	 		case 'top':
+	 			nPage = parseInt(page)-1;
+	 			sPage = (parseInt(nPage)-1) * p;
+	 			break;
+	 		case 'bottom':
+	 			nPage = parseInt(page)+1;
+	 			sPage = ( parseInt(nPage)-1) * p;
+		 		break;
+	 		case 'start':
+	 			nPage = 1;
+	 			sPage = (parseInt(page)-1) * p;
+		 		break;
+	 		case 'end':
+	 			nPage = page;
+	 			sPage = (parseInt(page)-1) * p;
+		 		break;
+ 		}
+ 		document.getElementById("startPage").value = sPage;
+ 		document.getElementById("nowPage").value = nPage;
+ 		//提交
+ 		document.getElementById("form").submit();
+ 	}
     </script>
     <style>
     	*{
@@ -46,16 +77,15 @@
 </head>
 <body style="padding:0;margin:0;">
 	 <%
-	 	List<EmploymentNewsWithBLOBs> list = (List<EmploymentNewsWithBLOBs>)request.getAttribute("");
+	 	List<EmploymentNewsWithBLOBs> list = (List<EmploymentNewsWithBLOBs>)request.getAttribute("enList");
 	 %>
 	  <div style="width:100%;height:30px;background-color: #f2f2f2;line-height:30px;font-size:13px;color:#444;padding-left:10px;">
 		当前位置 >> 首页信息管理 >> 就业信息查询结果  
 	</div>
-	
-	 <form action="<%=basePath%>stuCon/nextPage.hzyc" method="post"  id="form">
+	 <form action="<%=basePath%>epmentCon/nextPage.hzyc" method="post"  id="form">
 	 	<!-- 查询数据绑定 用来分页 -->
 		        	<%
-		        		EmploymentNewsWithBLOBs aud = (EmploymentNewsWithBLOBs)request.getAttribute("emp");
+		        		EmploymentNewsWithBLOBs aud = (EmploymentNewsWithBLOBs)request.getAttribute("enw");
 		        	    //p.getNowPage() 
 		        		if(aud != null){
 		        	%>
@@ -88,11 +118,11 @@
 			        		for(int i = 0;i<list.size();i++){
 			        %>
 			        		<tr>
-			        			<td><%=list.get(i).getId() %></td>
+			        			<td><%=i+1 %></td>
 				                <td><%=list.get(i).getStuName() %></td>
 				                <td><%=list.get(i).getPosition() %></td>
 				                <td><img src="<%=basePath %>/images/course/<%=list.get(i).getCompanyLogoName()%>" id="img"/></td>
-				        		<td><img src="<%=basePath %>/images/course/<%=list.get(i).getLifePhotoName()%>" id="img"/></td>
+				        		<td><img src="<%=basePath %>/images/course/<%=list.get(i).getLifePhotoName()%>" id="img1"/></td>
 				        		
 				                <td>
 				                	<button onclick="upd('<%=list.get(i).getId()%>')" class="layui-btn layui-btn-small layui-btn-warm" style="margin:0" >修改</button>

@@ -25,7 +25,7 @@ public class EpmentSer {
 	 * @return List<EmploymentNewsWithBLOBs>
 	 */
 	public List<EmploymentNewsWithBLOBs> selConditionEmp(EmploymentNewsWithBLOBs enw){
-		List<EmploymentNewsWithBLOBs> enList = enm.selConditionEmp(enw);
+		List<EmploymentNewsWithBLOBs> enList = enm.selAllEmp(enw);
 		
 		return enList;
 	}
@@ -55,7 +55,7 @@ public class EpmentSer {
 		//公司logo后缀 .jpg
 		String suffix2 = filename2.substring(filename2.lastIndexOf("."));
 		//公司logo名
-		String newFileName2 = System.currentTimeMillis() + suffix2;
+		String newFileName2 = System.currentTimeMillis() +"1"+ suffix2;
 		
 		enw.setLifePhoto(by1);
 		enw.setLifePhotoName(newFileName1);

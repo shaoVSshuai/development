@@ -14,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
-import com.hzyc.website.beans.Audition;
 import com.hzyc.website.beans.EmploymentNewsWithBLOBs;
 import com.hzyc.website.services.EpmentSer;
 import com.hzyc.website.utils.Page;
@@ -168,5 +167,22 @@ public class EpmentCon {
 		}
 		
 		
+	}
+	
+	/**
+	 * 修改的时候先通过id查询
+	 * @param request
+	 * @return
+	 */
+	public ModelAndView selById(HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		EmploymentNewsWithBLOBs enw = es.selById(id);
+		
+		modelAndView.addObject("enw",enw);
+		modelAndView.setViewName("");
+		
+		return modelAndView;
 	}
 }

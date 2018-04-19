@@ -42,7 +42,7 @@ $(function(){
 		reset();
 	});
 	$(".send1").click(function(){
-		var time = 5;
+		var time = 180;
 		function timeCountDown(){
 		    if(time==0){
 			    clearInterval(timer);

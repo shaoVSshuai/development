@@ -1,5 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="com.hzyc.website.beans.Course"%>
+<%@ taglib prefix="ex" uri="../WEB-INF/tags/dict.tld"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%
@@ -27,6 +28,57 @@
 	<script type="text/javascript" src="/cchzyc/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/cchzyc/js/main.js"></script>
 	<title>合众易成</title>
+	<script>
+		$(document).ready(function(){
+			$(".submit-btn").click(function(){
+				//所有表单选项
+				var value =  "name=" + $("#name").val() + "&tel="+ $("#tel").val() + "&applyLesson=" + $("#applyLesson").val() 
+						+ "&school=" + $("#school").val() + "&stuDept=" + $("#stuDept").val() +"&classes=" + $("#classes").val() 
+						+ "&validCode=" + $("#phone").val() ;
+				if( $("#name").val().trim() == "" || $("#tel").val().trim()=="" || $("#applyLesson").val().trim() =="" || $("#school").val().trim() == "" || $("#stuDept").val().trim() == "" || $("#classes").val().trim() == "" || $("#phone").val().trim() == "" ){
+					alert("请填写完整信息..");
+				}else{
+					 $.ajax({
+						   type: "POST",
+						   url: "<%=basePath%>index/addAudition.hzyc",
+						   data: value,
+						   success: function(msg){
+							   var info = "";
+							   if(msg == "101"){
+								   info = "提交成功!";
+								   alert(info);
+								   $(".cover").hide();
+							   }else if(msg == "102"){
+								   info = "验证失败,请检查验证码填写...";
+								   alert(info);
+							   }else if(msg == "103"){
+								   info = "提交失败,错误代码"+msg;
+								   alert(info);
+							}
+							
+						}
+					});
+				}
+			   
+			});
+			
+			$(".send1").click(function(){
+				var value =  $("#tel").val();
+				$.ajax({
+					   type: "POST",
+					   url: "<%=basePath%>index/getMessage.hzyc",
+					   data:{ 
+						   phone:value
+					   }
+				});
+			});
+			
+		});
+		
+		
+			
+	</script>
+	
 </head>
 <body >
 	<div id="app">
@@ -359,53 +411,45 @@
 				</div>
 				<div class="login-list">
 					<div class="login-item clearfix">
-						<span class="login-title">学校：</span>
-						<select class="text-item school-name">
-							<option>河北省</option>
-							<option>河南省</option>
-							<option>河西省</option>
-						</select>
-					</div>
-					<div class="login-item clearfix">
-						<span class="login-title">学院：</span>
-						<select class="text-item college-name">
-							<option>计算机科学技术学院</option>
-							<option>河南省</option>
-							<option>河西省</option>
-						</select>
-						<span class="login-title grade-title">年级：</span>
-						<select class="text-item grade">
-							<option>大四</option>
-							<option>大三</option>
-							<option>大二</option>
-						</select>
-					</div>
-					<div class="login-item clearfix">
-						<span class="login-title">申请课程：</span>
-						<select class="text-item class-name">
-							<option>河北省</option>
-							<option>河南省</option>
-							<option>河西省</option>
-						</select>
-					</div>
-					<div class="login-item clearfix">
-						<span class="login-title">姓名：</span>
-						<input type="text" class="text-item name-item item-special" placeholder="数字字典">
-					</div>
-				    <div class="login-item clearfix">
-						<span class="login-title">手机号：</span>
-						<input type="text" class="text-item phone-item item-special" placeholder="请输入手机号">
-					</div>
-				    <div class="login-item clearfix login-item-box">
-					</div>
-					<div class="div-phone login-item clearfix">
-				        <label for="phone" class="login-title">验证码：</label>
-				        <input type="text" id="phone" placeholder="请输入验证码" readonly>
-				       <button href="javascript:;" class="send1" disabled>发送验证码</button>
-				    </div>
-					<div class="login-item login-submit">
-						<button type="button" class="submit-btn" disabled>提交</button>
-					</div>
+					<span class="login-title">学校：</span>
+					 <ex:dict type="university" classname="text-item school-name" id="school" name="school" />
+					
+				</div>
+				<div class="login-item clearfix">
+					<span class="login-title">学院：</span>
+					<ex:dict type="school_dept" classname="text-item college-name"  id="stuDept" name="stuDept" />
+					<span class="login-title grade-title">年级：</span>
+					<select class="text-item grade" name="classes" id="classes" >
+						<option>大四</option>
+						<option>大三</option>
+						<option>大二</option>
+						<option>大一</option>
+					</select>
+				</div>
+				<div class="login-item clearfix">
+					<span class="login-title">申请课程：</span>
+					<ex:dict type="class_type" classname="text-item class-name" id="applyLesson" name="applyLesson" />
+					
+				</div>
+				<div class="login-item clearfix">
+					<span class="login-title">姓名：</span>
+					<input type="text" class="text-item name-item item-special" readonly="readonly" placeholder="数字字典" name="name" id="name">
+				</div>
+			    <div class="login-item clearfix">
+					<span class="login-title">手机号：</span>
+					<input type="text" class="text-item phone-item item-special" readonly="readonly" placeholder="请输入手机号" name="tel" id="tel">
+				</div>
+			    <div class="login-item clearfix login-item-box">
+				</div>
+				<div class="div-phone login-item clearfix">
+			        <label for="phone" class="login-title">验证码：</label>
+			        <input type="text" id="phone" placeholder="请输入验证码" readonly>
+			       <button href="javascript:;" class="send1" disabled>发送验证码</button>
+			    </div>
+				<div class="login-item login-submit">
+					<button type="button" class="submit-btn" disabled>提交</button>
+				</div>
+					
 				</div>
 			</div>
 		</div>

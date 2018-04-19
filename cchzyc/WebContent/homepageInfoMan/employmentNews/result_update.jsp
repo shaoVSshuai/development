@@ -90,7 +90,7 @@
 					</div>
 					<label class="layui-form-label">更换公司logo</label>
 				<div>
-					<input type="file" class="hzyc-input" name="img1"/>
+					<input type="file" class="hzyc-input" name="img2"/>
 					<input type="hidden" name="companyLogoName" value="<%=emp.getCompanyLogoName()%>">
 				</div>
 			</div>
@@ -100,7 +100,7 @@
 						<img src="<%=basePath %>/images/employment/<%=emp.getLifePhotoName()%>" id="img1"/>
 					</div>
 				<label class="layui-form-label" >更换生活照</label>
-				<div><input type="file" class="hzyc-input" name="img2"/>
+				<div><input type="file" class="hzyc-input" name="img1"/>
 						<input type="hidden" name="lifePhotoName" value="<%=emp.getLifePhotoName()%>">
 				</div>
 			</div>

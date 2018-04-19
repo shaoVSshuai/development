@@ -41,18 +41,8 @@ $(function(){
 		//滑动验证码等重置
 		reset();
 	});
-	var mySwiper = new Swiper('.swiper-container',{
-		loop: true,
-		pagination: true,
-	    direction: 'horizontal',
-	    observer:true,
-	    observeParents:true,
-	    mousewheelControl : true,
-    	mousewheelReleaseOnEdges : true,
-    	spaceBetween: 50
-	});
 	$(".send1").click(function(){
-		var time = 180;
+		var time = 5;
 		function timeCountDown(){
 		    if(time==0){
 			    clearInterval(timer);
@@ -93,6 +83,96 @@ $(function(){
 		$(".container-fluid").removeClass("mar-top");
 		var index=$(this).index();
 		$(".market-box .Introduce").eq(index).show().siblings().hide();
+	})
+	//就业弹框
+	$(".panel").click(function(){
+		$(".navbar").removeClass("header-fix");
+		$(".container-fluid").removeClass("mar-top");
+		$(".jobPopup").show();
+
+		var currentPage = 1; //当前页
+		var totalPage = 1;   //我要访问的页
+		//上一页
+		$(".last").click(function(){
+   			access --;
+   			getList();
+
+		})
+		//下一页
+		$(".next").click(function(){
+                //访问页数+1
+                access ++;
+                getList();  
+              
+		})
+
+		
+		// getList();
+	});
+	
+	
+	var now = 1;
+		var access = 1;
+		//请求数据
+		function getList(){
+			
+			var xml = new XMLHttpRequest();
+			var jobStr = "";
+			var name = '/cchzyc/images/employment/';
+			xml.onreadystatechange =  function(){
+			
+				if(xml.readyState == 4){
+					
+					var dataarr = xml.responseText;
+					var obj = JSON.parse(dataarr);
+					if(dataarr == '[]'){
+
+						//说明没有下一页了
+						access = now;
+					}else{
+						now = access;
+					}
+					
+					
+					for(var i = 0 ; i < obj.length ; i ++){
+						if(i >= 2){
+							jobStr+='<li class="job-list-item job-list-special job-special"'+ 
+			    			'v-for="item in list"><p class="huawei"><i class="iconFont"><img src="' +name + obj[i].companyLogoName+ '"></i></p><p class="student-name">'+obj[i].stuName+'</p><div class="job-cen"><p class="wire"></p></div><p>职位：'+obj[i].position+'</p></li>'+
+			    			'<li class="job-list-item job-list-special jobSpecial"'+
+			    			'v-for="item in list"><img src="'+ name  + obj[i].lifePhotoName + '"></li>';
+					
+
+						}else{
+							jobStr+='<li class="job-list-item job-list-special jobSpecial"'+
+			    			'v-for="item in list"><img src="'+ name  + obj[i].lifePhotoName + '"></li><li class="job-list-item job-list-special job-special"'+ 
+			    			'v-for="item in list"><p class="huawei"><i class="iconFont"><img src="'+name + obj[i].companyLogoName+ '"></i></p><p class="student-name">'+obj[i].stuName+'</p><div class="job-cen"><p class="wire"></p></div><p>职位：'+obj[i].position+'</p></li>';
+					
+						}
+			    	}
+					if(dataarr == '[]'){
+					}else{
+						$(".boxPanel").html(jobStr);
+							$(".boxPanel").hide();
+						$(".boxPanel").fadeIn(1000);
+
+						if(now == 1){
+							$(".panelUl").html(jobStr);
+						}
+					}
+				}
+
+			};
+
+			xml.open("post" , "/cchzyc/epmentCon/fenye.hzyc" , true);
+			xml.setRequestHeader("Content-Type" , "application/x-www-form-urlencoded");
+			
+			xml.send("nowPage=" + access);
+		}
+	getList();
+	$(".closePanel").click(function(){
+		$(".jobPopup").hide();
+		$(".navbar").addClass("header-fix");
+		$(".container-fluid").addClass("mar-top");
 	})
 	function getClientInfo(){  
 	   var userAgentInfo = navigator.userAgent;  

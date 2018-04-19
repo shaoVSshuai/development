@@ -75,7 +75,7 @@ public class LoginFilter implements Filter {
 		int index = requestURI.indexOf(PROJECTNAME) + PROJECTNAME.length() + 1;
 		String resource = requestURI.substring(index);
 		System.out.println(resource);
-		
+		chain.doFilter(request, response);
 		/*//用户已经登录,
 		if(userObject != null && roleid != null ){
 			*//**

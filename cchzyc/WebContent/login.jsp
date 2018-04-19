@@ -29,13 +29,13 @@
 						<label class="beg-login-icon">
                         <i class="layui-icon">&#xe612;</i>
                     </label>
-						<input type="text" name="code" lay-verify="required" value="13244236072" autocomplete="off" placeholder="工号 / 手机号" class="layui-input">
+						<input type="text" name="code" lay-verify="required" value="" autocomplete="off" placeholder="工号 / 手机号" class="layui-input">
 					</div>
 					<div class="layui-form-item">
 						<label class="beg-login-icon">
                         <i class="layui-icon">&#xe642;</i>
                     </label>
-						<input type="password" name="password" lay-verify="required" value="123456" autocomplete="off" placeholder="这里输入密码" class="layui-input">
+						<input type="password" name="password" lay-verify="required" value="" autocomplete="off" placeholder="这里输入密码" class="layui-input">
 					</div>
 					<div class="layui-form-item">
 						<div class="beg-pull-left beg-login-remember">
@@ -64,11 +64,11 @@
 					
 				form.on('submit(login)',function(data){
 					
-					//location.href='index.html';
+					location.href='index.html';
 					return false;
 				});
 			});
-			document.getElementById("formId").submit();
+			//document.getElementById("formId").submit();
 		</script>
 		<%
 			String flag = request.getParameter("flag");

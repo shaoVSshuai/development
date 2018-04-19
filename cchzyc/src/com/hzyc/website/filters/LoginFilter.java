@@ -76,11 +76,11 @@ public class LoginFilter implements Filter {
 		String resource = requestURI.substring(index);
 		System.out.println(resource);
 		
-		//用户已经登录,
+		/*//用户已经登录,
 		if(userObject != null && roleid != null ){
-			/**
+			*//**
 			 * 继续判断是否拥有该资源的权限，避免通过地址栏绕过访问未授权页面
-			 * */
+			 * *//*
 			
 			//用户拥有这个权限  或者  用户被拦到了no_access.jsp[拒绝访问] 
 			if(JobPrivliege.selPriByJobCode(roleid, resource) ){
@@ -92,9 +92,9 @@ public class LoginFilter implements Filter {
 				out.flush();
 			}
 			//禁止get方式action的访问
-			/*if(req.getMethod().equals("GET") && requestURI.endsWith(".hzyc")){
+			if(req.getMethod().equals("GET") && requestURI.endsWith(".hzyc")){
 				out.print("<script>window.top.location.href='"+basePath+"errorPage/404.html';</script>");
-			}*/
+			}
 		}else{
 			//用户未登录
 			System.out.println("用户[未登录]");
@@ -118,7 +118,7 @@ public class LoginFilter implements Filter {
 			System.out.println(resource);
 			
 			out.flush();
-		}
+		}*/
 		
 	}
 

@@ -162,7 +162,7 @@ public class EpmentSer {
 			fos.close();
 		}
 		
-		int result = enm.updateByPrimaryKey(enw);
+		int result = enm.updateByPrimaryKeySelective(enw);
 		if (result > 0) {
 			flag = true;
 		}

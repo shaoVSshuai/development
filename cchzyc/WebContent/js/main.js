@@ -2,6 +2,17 @@ $(function(){
 	//头部
 	$(".navbar").addClass("header-fix");
 	$(".container-fluid").addClass("mar-top");
+
+	//搜索切换
+	var nowWidth = $(window).width();
+	if(nowWidth < 768){
+		$(".navbar-nav").hide();
+		$(".hiddenNav").show();
+	}else {
+		$(".hiddenNav").hide();
+		$(".navbar-nav").show()
+	}
+	
 	//手机号码格式验证
 	$(".send-btn").click(function(){
 		var userName = $(".user-name").val();

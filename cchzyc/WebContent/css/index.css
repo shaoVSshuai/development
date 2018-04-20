@@ -941,3 +941,10 @@ h2 {
 	width: auto;
     height: 65px;
 }
+.hiddenNav {
+	padding: 15px 0;
+}
+.hiddenNav input {
+	color: #9d9485;
+	font-size: 10px;
+}

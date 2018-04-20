@@ -353,7 +353,7 @@
 		</div>
 	</div>
 	<div class="cover">
-		<div class="login">
+		<div class="login hiddenLogin">
 			<div class="clear-close clearfix">
 				<div class="close">
 					<i class="iconfont">&#x3443;</i>

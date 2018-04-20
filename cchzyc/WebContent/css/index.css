@@ -722,7 +722,6 @@ h2 {
 	.login {
 		width: 92%;
 		height: 440px;
-		overflow-y: scroll;
 	}
 	.bomb-box {
 		width: 92%;
@@ -947,4 +946,7 @@ h2 {
 .hiddenNav input {
 	color: #9d9485;
 	font-size: 10px;
+}
+.hiddenLogin {
+	overflow-y: scroll;
 }

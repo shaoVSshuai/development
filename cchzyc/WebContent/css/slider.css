@@ -33,7 +33,7 @@
     left: 0;
     top: 0;
     width: 52px;
-    height: 52px;
+    height: 42px;
     background-color: #fff;
     transition: left 0s;
     -webkit-transition: left 0s;
@@ -43,7 +43,7 @@
     left: 0;
     top: 0;
     width: 52px;
-    height: 52px;
+    height: 42px;
     background-color: #fff;
     transition: left 1s;
     -webkit-transition: left .5s;

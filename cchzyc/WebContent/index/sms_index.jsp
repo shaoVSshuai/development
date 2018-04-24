@@ -125,7 +125,7 @@
 	<div class="container-fluid">
 		<div class="header-wrapper">
 			<div class="context">
-				<img src="img/main2.jpg">
+				<img src="<%=basePath %>/img/main2.jpg">
 			</div>
 			<div class="box">
 				<h2>合众易成，做你生活中的IT导师</h2>
@@ -223,7 +223,7 @@
 			<div class="row teacherList">
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher.jpg">
+						<img src="<%=basePath %>/img/teacher.jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">董事长</p>
 							<p class="wire"></p>
@@ -233,7 +233,7 @@
 				</div>
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/people.jpg">
+						<img src="<%=basePath %>/img/people.jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">训导总监</p>
 							<p class="wire"></p>
@@ -243,7 +243,7 @@
 				</div>
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher2(1).jpg">
+						<img src="<%=basePath %>/img/teacher2(1).jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">技术总监</p>
 							<p class="wire"></p>
@@ -253,7 +253,7 @@
 				</div>
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher4.jpg">
+						<img src="<%=basePath %>/img/teacher4.jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">Web前端</br>高级讲师</p>
 							<p class="wire"></p>
@@ -291,7 +291,7 @@
 			<div class="row market-list">
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher6.jpg">
+						<img src="<%=basePath %>/img/teacher6.jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">社招中心</br>总经理</p>
 							<p class="wire"></p>
@@ -301,7 +301,7 @@
 				</div>
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher8.jpg">
+						<img src="<%=basePath %>/img/teacher8.jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">吉林分校</br>市场部总经理</p>
 							<p class="wire"></p>
@@ -311,7 +311,7 @@
 				</div>
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher3(1).jpg">
+						<img src="<%=basePath %>/img/teacher3(1).jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">长春分校</br>市场部总经理</p>
 							<p class="wire"></p>
@@ -321,7 +321,7 @@
 				</div>
 				<div class="col-md-3">
 					<li class="course-item team-item">
-						<img src="img/teacher7.jpg">
+						<img src="<%=basePath %>/img/teacher7.jpg">
 						<div class="teacherBox">
 							<p class="teacher-title">校企部</br>总经理</p>
 							<p class="wire"></p>
@@ -342,7 +342,7 @@
 							<h3 class="title">专业兴教.教育兴产.产业兴国</h3>
 						</div>
 						<div class="join">
-							<img src="img/sao.png">
+							<img src="<%=basePath %>/img/sao.png">
 							<span class="join-our">扫微信关注我们</span>
 						</div>
 						<p>公司地址：长春市前进大街与修正路交汇，修正服务外包大厦2209室</p>
@@ -506,7 +506,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher.jpg">
+							<img src="<%=basePath %>/img/teacher.jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -530,7 +530,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/people.jpg">
+							<img src="<%=basePath %>/img/people.jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -555,7 +555,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher2(1).jpg">
+							<img src="<%=basePath %>/img/teacher2(1).jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -579,7 +579,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher4.jpg">
+							<img src="<%=basePath %>/img/teacher4.jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -605,7 +605,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher6.jpg">
+							<img src="<%=basePath %>/img/teacher6.jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -629,7 +629,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher8.jpg">
+							<img src="<%=basePath %>/img/teacher8.jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -653,7 +653,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher3(1).jpg">
+							<img src="<%=basePath %>/img/teacher3(1).jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">
@@ -677,7 +677,7 @@
 				<div class="in-box clearfix">
 					<div class="in-box-img fl">
 						<div class="box-img">
-							<img src="img/teacher7.jpg">
+							<img src="<%=basePath %>/img/teacher7.jpg">
 						</div>
 					</div>
 					<div class="in-box-title fl">

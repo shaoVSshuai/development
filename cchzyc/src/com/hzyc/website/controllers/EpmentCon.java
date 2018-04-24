@@ -151,10 +151,11 @@ public class EpmentCon {
 			
 		} 
 		//上一页
-		//起始索引
-		int start = (now-1) * 4;
 		//每页显示几条
-		int pageSize = 4;
+		int pageSize = 6;
+		//起始索引
+		int start = (now-1) * pageSize;
+		
 		//select * from table limit 0  ,4
 		List<EmploymentNewsWithBLOBs> list = es.fenye(start , pageSize);
 		Gson g = new Gson();

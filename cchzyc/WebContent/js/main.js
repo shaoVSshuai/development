@@ -146,7 +146,7 @@ $(function(){
 					
 					
 					for(var i = 0 ; i < obj.length ; i ++){
-						if(i >= 2){
+						if(i >= 3){
 							jobStr+='<li class="job-list-item job-list-special job-special"'+ 
 			    			'v-for="item in list"><p class="huawei"><i class="iconFont"><img src="' +name + obj[i].companyLogoName+ '"></i></p><p class="student-name">'+obj[i].stuName+'</p><div class="job-cen"><p class="wire"></p></div><p>职位：'+obj[i].position+'</p></li>'+
 			    			'<li class="job-list-item job-list-special jobSpecial"'+

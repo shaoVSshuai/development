@@ -420,7 +420,7 @@ h2 {
 .login, .bomb-box{
 	background-color: #fff;
 	width: 53%;
-	height: 513px;
+	height: 550px;
 	padding-bottom: 28px;
 	border-radius: 5px;
 	margin: auto;  
@@ -654,7 +654,7 @@ h2 {
 }
 .teacherTitle {
 	width: 341px;
-    margin-top: 60px;
+    margin-top: 45px;
     font-size: 14px;
     visibility: visible;
     text-align: justify;
@@ -723,7 +723,7 @@ h2 {
 	}
 	.login {
 		width: 92%;
-		height: 440px;
+		height: 450px;
 	}
 	.bomb-box {
 		width: 92%;

@@ -1,7 +1,7 @@
 $(function(){
 	//头部
 	$(".navbar").addClass("header-fix");
-	$(".container-fluid").addClass("mar-top");
+	// $(".container-fluid").addClass("mar-top");
 
 	//搜索切换
 	var nowWidth = $(window).width();
@@ -25,7 +25,7 @@ $(function(){
 		}else{
 			$(".cover").show();
 			$(".navbar").removeClass("header-fix");
-			$(".container-fluid").removeClass("mar-top");
+			// $(".container-fluid").removeClass("mar-top");
 		} 
 	});
 	//进行手机号码格式验证
@@ -40,13 +40,13 @@ $(function(){
 			}else{
 				$(".cover").show();
 				$(".navbar").removeClass("header-fix");
-				$(".container-fluid").removeClass("mar-top");
+				// $(".container-fluid").removeClass("mar-top");
 			} 
 	});
 	//关闭登录窗口
 	$(".close").click(function(){
 		$(".navbar").addClass("header-fix");
-		$(".container-fluid").addClass("mar-top");
+		// $(".container-fluid").addClass("mar-top");
 		$(".cover").hide();
 		$(".Introduce").hide();
 		//滑动验证码等重置
@@ -79,26 +79,26 @@ $(function(){
 	})
 	$(".teacherList .col-md-3").click(function(){
 		$(".navbar").removeClass("header-fix");
-		$(".container-fluid").removeClass("mar-top");
+		// $(".container-fluid").removeClass("mar-top");
 		var index=$(this).index();
 		$(".teacher-box .Introduce").eq(index).show().siblings().hide();
 	})
 	$(".course-list .col-md-3").click(function(){
 		$(".navbar").removeClass("header-fix");
-		$(".container-fluid").removeClass("mar-top");
+		// $(".container-fluid").removeClass("mar-top");
 		var index=$(this).index();
 		$(".course-box .Introduce").eq(index).show().siblings().hide();
 	})
 	$(".market-list .col-md-3").click(function(){
 		$(".navbar").removeClass("header-fix");
-		$(".container-fluid").removeClass("mar-top");
+		// $(".container-fluid").removeClass("mar-top");
 		var index=$(this).index();
 		$(".market-box .Introduce").eq(index).show().siblings().hide();
 	})
 	//就业弹框
 	$(".panel").click(function(){
 		$(".navbar").removeClass("header-fix");
-		$(".container-fluid").removeClass("mar-top");
+		// $(".container-fluid").removeClass("mar-top");
 		$(".jobPopup").show();
 
 		var currentPage = 1; //当前页
@@ -183,7 +183,7 @@ $(function(){
 	$(".closePanel").click(function(){
 		$(".jobPopup").hide();
 		$(".navbar").addClass("header-fix");
-		$(".container-fluid").addClass("mar-top");
+		// $(".container-fluid").addClass("mar-top");
 	})
 	function getClientInfo(){  
 	   var userAgentInfo = navigator.userAgent;  

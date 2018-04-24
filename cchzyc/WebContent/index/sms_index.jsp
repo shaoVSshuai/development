@@ -171,7 +171,7 @@
 			</div>
 		</div>
 		<%
-		List<Course> cList = (List<Course>)request.getAttribute("cList");
+		List<Course> cList = (List<Course>)request.getAttribute("courseList");
 		if(cList!=null && cList.size()>0){
 			%>
 			<div class="container">

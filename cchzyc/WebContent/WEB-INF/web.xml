@@ -49,7 +49,7 @@
   
   
   
-  <filter>
+<!--   <filter>
     <filter-name>LoginFilter</filter-name>
     <filter-class>com.hzyc.website.filters.LoginFilter</filter-class>
   </filter>
@@ -64,7 +64,7 @@
   <filter-mapping>
     <filter-name>jspFilter</filter-name>
     <url-pattern>*.jsp</url-pattern>
-  </filter-mapping>
+  </filter-mapping> -->
   <jsp-config>
     <taglib>
       <taglib-uri>http://www.lgb.com/tags/dic</taglib-uri>
@@ -83,4 +83,12 @@
     <filter-name>IndexFilter</filter-name>
     <url-pattern>/index/*</url-pattern>
   </filter-mapping> -->
+  <error-page>  
+        <error-code>404</error-code>  
+        <location>/500error.html</location>  
+    </error-page>  
+    <error-page>  
+        <error-code>404</error-code>  
+        <location>/500error.html</location>  
+    </error-page>  
 </web-app>

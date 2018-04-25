@@ -392,8 +392,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="course-box">
-		<div class="Introduce">
+	<%if(cList!=null && cList.size()>0){
+		%>
+		<div class="course-box">
+		<%for(int i = 0;i<cList.size();i++){
+			%>
+			<div class="Introduce">
 			<div class="bomb-box">
 				<div class="clear-close clearfix">
 					<div class="close">
@@ -403,87 +407,22 @@
 				<div class="in-box clearfix">
 					<div class="bomb-img fl">
 						<div class="course-img">
-							<i class="iconfont">&#xe721;</i>
+						<img src="<%=basePath %>/images/course/<%=cList.get(i).getIconName()%>" id="img"/>
 						</div>
 					</div>
 					<div class="in-box-title fl">
-						<p class="teacher-title">android开发</p>
+						<p class="teacher-title"><%=cList.get(i).getCourseName() %></p>
 						<div class="teacherTitle">
-							环境搭建、配置虚拟机、介绍android系统LinearLayout、RelativeLayout布局讲解、常用控件、Activity加载布局文件GridView和ListView使用、BaseAdapter和ArrayAdapter用法ScrollView使用，静态加载和动态加载UI控件Activity生命周期、传值和回传值、现场保护、自定义适配器、ListView图文混排Menu、DialogAndroid数据存储、File存储、SQLite数据库ContentProvider、Http通信异步任务、Fragment详解、NotificationBroadcastReceiver广播、Service《电子商务APP》《即时通讯APP》等项目开发
+							<%=cList.get(i).getDescribe() %>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="Introduce">
-			<div class="bomb-box">
-				<div class="clear-close clearfix">
-					<div class="close">
-						<i class="iconfont">&#x3443;</i>
-					</div>
-				</div>
-				<div class="in-box clearfix">
-					<div class="bomb-img fl">
-						<div class="course-img">
-							<i class="iconfont">&#xe676;</i>
-						</div>
-					</div>
-					<div class="in-box-title fl">
-						<p class="teacher-title">java开发</p>
-						<div class="teacherTitle">
-							Java句法、语法基础、面向对象编程数组、字符串、Math、Date、SimpleDateFormat常用类使用数据结构List（Vector、Stack）、Set、Map详解
-							Java异常处理、捕获机制MySQL数据库、JDBC技术、批量处理、事务处理Java I/O流技术、预处理技术、Java多线程技术Java图形化技术、RCP技术《航空售票系统》，《影院售票系统》项目开发HTML、DIV、CSS技术JSP、Servlet技术、MVC开发模式、Tomcat服务器、文件上传、下载技术Oracle数据库、连接池技术JavaScript语言、Dom模型及元素操作、Ajax技术、JSon技术文本编辑器等项目常规应用MyBatis框架详解、SpringMVC框架详解Hibernate\Struts2\Spring专题《电子商务平台》项目开发
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="Introduce">
-			<div class="bomb-box">
-				<div class="clear-close clearfix">
-					<div class="close">
-						<i class="iconfont">&#x3443;</i>
-					</div>
-				</div>
-				<div class="in-box clearfix">
-					<div class="bomb-img fl">
-						<div class="course-img">
-							<i class="iconfont">&#xe61e;</i>
-						</div>
-					</div>
-					<div class="in-box-title fl">
-						<p class="teacher-title">web开发</p>
-						<div class="teacherTitle">
-							HTML概述、标题、段落、图像、列表、超链接、表格的使用、框架，表单控件及多媒体H5新语义化标签及新特性CSS概述、基本语法、优先级、选择器及伪类盒模型、表格、列表、轮廓、定位、浮动主流浏览器兼容性及静态企业站及展示站实践CSS3用户列表、动画、过度移动端web布局、响应式web前端开发
-							移动端电商网站实践HTML概述、标题、段落、图像、列表、超链接、表格的使用、框架，表单控件及多媒体H5新语义化标签及新特性CSS概述、基本语法、优先级、选择器及伪类盒模型、表格、列表、轮廓、定位、浮动主流浏览器兼容性及静态企业站及展示站实践CSS3用户列表、动画、过度移动端web布局、响应式web前端开发移动端电商网站实践
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="Introduce">
-			<div class="bomb-box">
-				<div class="clear-close clearfix">
-					<div class="close">
-						<i class="iconfont">&#x3443;</i>
-					</div>
-				</div>
-				<div class="in-box clearfix">
-					<div class="bomb-img fl">
-						<div class="course-img">
-							<i class="iconfont">&#xe633;</i>
-						</div>
-					</div>
-					<div class="in-box-title fl">
-						<p class="teacher-title">专题课程</p>
-						<div class="teacherTitle">
-							Maven：Apache Maven 是一种创新的软件项目管理工具，提供了一个项目对象模型（POM）文件的新概念来管理项目的构建，相关性和文档。最强大的功能就是能够自动下载项目依赖库。GIT：Git是目前世界上最先进的分布式版本控制系统。团队协作开发、多任务并行的好帮手。Redis：可基于内存亦可持久化的日志型、Key-Value数据库，高可用高并发保障的神器。Dubbo：一个分布式、高性能、透明化的RPC服务框架，大型互联网应用多系统之间交互和服务管理利器。EasyUI：一种基于jQuery的用户界面插件集合，名副其实的能快速地在流行的 jQuery 核心和 HTML5 上建立程序页面UI插件。
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+		<%}%>
 	</div>
+	<% }%>
+	
 	<div class="teacher-box">
 		<div class="Introduce">
 			<div class="login">

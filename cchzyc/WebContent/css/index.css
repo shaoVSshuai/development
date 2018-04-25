@@ -5,6 +5,9 @@ body, html, ul {
 ul, li {
 	list-style: none;
 }
+body {
+	background-color: #f7f7f7;
+}
 .clearfic::after {
 	display: block;
 	content: "";
@@ -96,6 +99,7 @@ select:focus {
 	position: absolute;
 	top: 52px;
 	left: 0;
+	z-index: 10;
 	padding-left: 0;
 	padding-right: 0;
 }
@@ -672,6 +676,9 @@ h2 {
 	margin-top: 52px;
 }*/
 @media (max-width: 768px) {
+	.introduce {
+		margin-top: 150px;
+	}
 	.nav li {
 		width: 30%;
 	}

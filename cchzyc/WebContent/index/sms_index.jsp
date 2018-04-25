@@ -108,17 +108,6 @@
 						<button class="listening send-btn">申请试听</button>
 					</li>
 				</ul>
-				<ul class="nav clearfix hiddenNav">
-					<li>
-						<input type="text" name="name" class="user-name nameSpecial" placeholder="姓名">
-					</li>
-					<li>
-						<input type="text" name="phone" class="user-phone phoneSpecial" placeholder="手机号码">
-					</li>
-					<li>
-						<button class="listening send-btn">申请试听</button>
-					</li>
-				</ul>
 			</div>
 		</div>
 	</nav>

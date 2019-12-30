@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="com.hzyc.website.beans.Course"%>
-<%@ taglib prefix="ex" uri="../WEB-INF/tags/dict.tld"%>
+<%@ taglib prefix="ex" uri="../WEB-INF/dict.tld"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%

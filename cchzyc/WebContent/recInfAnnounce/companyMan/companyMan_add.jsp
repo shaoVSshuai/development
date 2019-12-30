@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
- <%@ taglib prefix="ex" uri="../../WEB-INF/tags/dict.tld"%>
+ <%@ taglib prefix="ex" uri="../../WEB-INF/dict.tld"%>
     <%
 	String path = request.getContextPath();
 	String basePath = request.getScheme() + "://"

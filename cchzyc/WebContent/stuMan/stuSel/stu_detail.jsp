@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib prefix="ex" uri="../../WEB-INF/tags/dict.tld"%>
+<%@ taglib prefix="ex" uri="../../WEB-INF/dict.tld"%>
 <%@ taglib prefix="cs" uri="../../WEB-INF/tags/codeswitch.tld"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>

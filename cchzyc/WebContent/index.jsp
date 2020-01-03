@@ -202,7 +202,7 @@
 								</a>
 							</dd>
 							<dd>
-								<a href="loading.jsp" target="main"> <i
+								<a href="homepageInfoMan/teacher/teacher_maintenance.jsp" target="main"> <i
 									class="fa fa-user" aria-hidden="true"></i> <span> 教师团队维护</span>
 								</a>
 							</dd>
@@ -250,7 +250,7 @@
 		</div>
 		<div style="position: relative; left: 201px;">
 			<!-- 内容主体区域 -->
-			<iframe name="main" width="1168px" height="545px" style="border: 0;"></iframe>
+			<iframe name="main" width="1168px" height="700px" style="border: 0;"></iframe>
 		</div>
 
 		<div class="layui-footer">

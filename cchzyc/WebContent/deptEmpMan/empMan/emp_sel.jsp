@@ -156,7 +156,7 @@
 	</form>
 	
 	<div style="width:100%;margin-top:10px;">
-		<iframe style="height:500px;border:0;width: 100%" src="emp_result.jsp" name="result1"></iframe>
+		<iframe style="height:700px;border:0;width: 100%" src="emp_result.jsp" name="result1"></iframe>
     </div>
 	
 	

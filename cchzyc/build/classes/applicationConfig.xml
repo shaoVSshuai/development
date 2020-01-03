@@ -22,7 +22,7 @@
 		-->
 		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 			<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-			<property name="url" value="jdbc:mysql://192.168.1.250:3306/hzyc?allowMultiQueries=true"/>
+			<property name="url" value="jdbc:mysql://47.100.113.198:3308/hzyc?allowMultiQueries=true"/>
 			<property name="username" value="root"/>
 			<property name="password" value="mysql"/>
 			<!-- 连接活跃最大值（最大连接数） -->

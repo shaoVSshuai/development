@@ -175,7 +175,8 @@ public class DeptEmpCon {
 	public ModelAndView addEmp(Employee emp,MultipartFile img1 , MultipartFile img2){
 		ModelAndView mav  = new ModelAndView ();
 		try {
-			
+			//д╛хо123456
+			emp.setPassword("e10adc3949ba59abbe56e057f20f883e");
 			es.addEmp(emp,img1,img2);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

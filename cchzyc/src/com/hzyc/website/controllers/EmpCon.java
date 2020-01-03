@@ -81,10 +81,10 @@ public class EmpCon {
 	 */
 	@RequestMapping("/addEmp.hzyc")
 	@SystemLog(module="员工维护" , methods = "添加新员工" )
-	public ModelAndView addEmp(Employee emp,MultipartFile img1 , MultipartFile img2){
+	public ModelAndView addEmp(Employee emp,MultipartFile img1 , MultipartFile img2, MultipartFile img3){
 		ModelAndView mav  = new ModelAndView ();
 		try {
-			es.addEmp(emp,img1,img2);
+			es.addEmp(emp,img1,img2 , img3);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -138,25 +138,43 @@ public class EmpSer {
 	 * @return
 	 * @throws IOException
 	 */
-	public boolean addEmp(Employee emp, MultipartFile img1 ,MultipartFile img2) throws IOException{
-		//二寸图片
-		byte[] imgsecond = img1.getBytes();
-		String filename = img1.getOriginalFilename();
-		//文件后缀 .jpg
-		String suffix = filename.substring(filename.lastIndexOf("."));
-		//新二寸图片文件名
-		String newSecondName = emp.getIdcard() + suffix;
-		//身份证照片
-		byte[] idimg = img2.getBytes();
-		String cardfilename = img2.getOriginalFilename();
-		//文件后缀 .jpg
-		String suffix2 = cardfilename.substring(cardfilename.lastIndexOf("."));
-		//新身份证文件名
-		String newcardName = "idcard_"+emp.getIdcard() + suffix2;
-		emp.setEmpImg(imgsecond);
-		emp.setEmpImgName(newSecondName);
-		emp.setCardImg(idimg);
-		emp.setCardImgName(newcardName);
+	public boolean addEmp(Employee emp, MultipartFile img1 ,MultipartFile img2,MultipartFile img3) throws IOException{
+		if(img1 != null) {
+			//二寸图片
+			byte[] imgsecond = img1.getBytes();
+			String filename = img1.getOriginalFilename();
+			//文件后缀 .jpg
+			String suffix = filename.substring(filename.lastIndexOf("."));
+			//新二寸图片文件名
+			String newSecondName = emp.getIdcard() + suffix;
+			emp.setEmpImg(imgsecond);
+			emp.setEmpImgName(newSecondName);
+		}
+		if(img2 != null) {
+			//身份证照片
+			byte[] idimg = img2.getBytes();
+			String cardfilename = img2.getOriginalFilename();
+			//文件后缀 .jpg
+			String suffix2 = cardfilename.substring(cardfilename.lastIndexOf("."));
+			//新身份证文件名
+			String newcardName = "idcard_"+emp.getIdcard() + suffix2;
+			
+			emp.setCardImg(idimg);
+			emp.setCardImgName(newcardName);
+		}
+		if(img3 != null) {
+			//身份证照片
+			byte[] disImg = img3.getBytes();
+			String cardfilename = img3.getOriginalFilename();
+			//文件后缀 .jpg
+			String suffix3 = cardfilename.substring(cardfilename.lastIndexOf("."));
+			//新身份证文件名
+			String newcardName = "idcard_"+emp.getIdcard() + suffix3;
+			
+			emp.setDisImgName(newcardName);
+			emp.setDisImg(disImg);
+		}
+		
 		
 		return  em.insertSelective(emp) > 0 ? true : false;
 	}

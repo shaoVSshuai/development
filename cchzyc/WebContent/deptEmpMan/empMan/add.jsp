@@ -52,6 +52,19 @@ function previewFile2() {
 		reader.readAsDataURL(file);
 	} 
 }
+function previewFile3() {
+	
+	var preview = document.getElementById("img3");
+	var file  = document.getElementById("imgUpload3").files[0];
+	var reader = new FileReader();
+	
+	reader.onloadend = function () {
+		preview.src = reader.result;
+	};
+	if (file) {
+		reader.readAsDataURL(file);
+	} 
+}
 	<%-- //监听省份下拉框
 	function loadCity(){
 		var selectObj = document.getElementById("province");
@@ -192,9 +205,29 @@ function previewFile2() {
 		
 	}
 </script>
+<script>
+	function valid(){
+		var file1  = document.getElementById("imgUpload1").files[0];
+		var file2  = document.getElementById("imgUpload2").files[0];
+		if(!file1){
+			alert("请上传身份证照片");
+			return false;
+		}
+		if(!file2){
+			alert("请上传小二寸照片");
+			return false;
+		}
+		//var preview3 = document.getElementById("img3");
+		//if(preview3.src.indexOf("noimg")){
+		//	
+		//}
+		return true;
+	}
+</script>
 </head>
+
 <body onload="initProvince();initDept1();">
-	<form action="<%=basePath%>deptEmpCon/addEmp.hzyc"  method="post" enctype="multipart/form-data" >
+	<form action="<%=basePath%>deptEmpCon/addEmp.hzyc" onsubmit="return valid()" method="post" enctype="multipart/form-data" >
 	<table class="layui-table">
 		<tr>
 			<td>姓名</td>
@@ -223,6 +256,13 @@ function previewFile2() {
 							id="img2" alt="暂无上传照片" />
 							<input type="file" name="img2"  id="imgUpload2" style="display:none" onchange="previewFile2()" />
 							<input type="button" id="btn" value="请选择 " class="layui-small-btn" onclick="document.getElementById('imgUpload2').click();" />
+						</div>
+						<div>
+							<img src="<%=basePath%>images/no_img.jpg"
+							style="width: 100px; height: 126px; border:2px solid #ccc" title="学员二寸照片"
+							id="img3" alt="暂无上传照片" />
+							<input type="file" name="img3"  id="imgUpload3" style="display:none" onchange="previewFile3()" />
+							<input type="button" id="btn" value="请选择 " class="layui-small-btn" onclick="document.getElementById('imgUpload3').click();" />
 						</div>
 						
 					</div>
